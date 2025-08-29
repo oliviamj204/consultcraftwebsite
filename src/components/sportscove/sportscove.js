@@ -80,7 +80,7 @@ export default function Sportscove() {
       {/* {see what you can do with sportscove section} */}
       <section className="sc-feature-section">
       <h2 className="sc-feature-title">
-        See what you can do with SportsCove.
+        SEE WHAT YOU CAN DO WITH SPORTSCOVE.
       </h2>
 
       <div className="sc-feature-card">

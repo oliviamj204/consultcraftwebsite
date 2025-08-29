@@ -16,7 +16,7 @@
 }
 
 .sportsCove-info h2 {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 700;
   margin-top: 30px;
   margin-bottom: 60px;
@@ -51,7 +51,7 @@
 .sc-steps-title {
     color: #000;
   text-align: center;
-  font-size: 30px;
+  font-size: 36px;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 80px;
@@ -146,7 +146,7 @@
 .sc-feature-title {
   position: sticky;
    top: 0;
-  font-size: 2rem;
+  font-size: 36px;
   font-weight: bold;
   color: #fff;
   margin-bottom: 40px;

@@ -25,7 +25,7 @@ export default function TailoredRoles() {
 
   return (
     <section className="role-section">
-      <h2 className="role-title">Tailored for Every Role</h2>
+      <h2 className="role-title">TAILORED FOR EVERY ROLE</h2>
       <div className="role-cards">
         {roles.map((role, index) => (
           <div key={index} className="role-card">
