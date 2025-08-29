@@ -168,7 +168,7 @@
 .vision-mission-section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  gap: 30px;
   padding: 80px 40px;
   background-color: white;
   color: black;
@@ -182,7 +182,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 50px; 
+  padding: 0 40px; 
   box-sizing: border-box; 
 }
 
