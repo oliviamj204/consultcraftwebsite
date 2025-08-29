@@ -1,171 +1,340 @@
-/*=============================================
-=            Global & Page Wrapper            =
-=============================================*/
+/* Page wrapper */
 .overlap-scroll-container {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color: #fff;
 }
 
-/*=========================================
-=            Base Card Styles             =
-=========================================*/
 .overlap-card {
-  /* Layout & Sizing */
-  min-height: 100vh; /* Use 100vh for consistent full-height sections */
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 80vh; /* Keeps sections tall enough for readability */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 10%; /* Equal spacing on both sides */
+}
+
+.overlap-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45); /* Dark overlay */
+  z-index: 1;
+}
+
+.card-content,
+.cover-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 900px;
+}
+
+.coach-name {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+}
+
+.coach-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  white-space: normal; /* allow wrapping */
+  line-height: 1.6;
+}
+
+/* Back button */
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 20px;
+}
+
+.back-icon {
+  width: 10px;   /* adjust size as needed */
+  height: 10px;
+}
+
+.back-button {
+  position: fixed;
+  left: 18px;
+  top: 18px;
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.9);
+  color: #074048;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Common card styles */
+.overlap-card {
+  height: 100vh;
   position: sticky;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 48px;
   box-sizing: border-box;
-
-  /* Spacing - scales with screen size */
-  padding: clamp(24px, 5vw, 48px);
-
-  /* Background & Overlay */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: white;
 }
 
-/* Dark overlay for readability */
-.overlap-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.45);
-  z-index: 1;
-}
-
-/*=======================================
-=            Content & Text             =
-=======================================*/
-.card-content {
+.overlap-card.train {
+  /* ... your existing styles like position, overflow, color ... */
   position: relative;
-  z-index: 2;
-  max-width: 900px;
-  width: 100%;
-  text-align: center; /* Center by default, override for specific cards */
+  overflow: hidden;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* --- Styles for full-width --- */
+  width: 100vw; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  border-radius: 0; 
+  margin-bottom: 0; 
+
+  /* --- ADD THIS LINE TO FIX THE SPACING --- */
+  padding: 0; 
 }
 
-/* Fluid Typography using clamp() */
-.coach-name {
-  /* Scales from 1.8rem to 3rem based on viewport width */
-  font-size: clamp(1.8rem, 5vw + 1rem, 3rem);
-  margin: 0.5rem 0;
-}
-
-.coach-subtitle {
-  /* Scales from 1rem to 1.5rem */
-  font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
-  font-weight: 300;
-  line-height: 1.6;
-}
-
-/*============================================
-=            Specific Card Sections          =
-============================================*/
-
-/* --- Cover Card --- */
-.cover {
-  z-index: 10;
-  justify-content: flex-start; /* Aligns content to the left */
-  align-items: flex-end;    /* Aligns content to the bottom */
-}
-
-.cover .card-content {
-  text-align: left;
-  max-width: 700px;
-}
-
-/* --- History, Journey, Meet Cards --- */
-.history { z-index: 20; }
-.journey { z-index: 30; }
-.meet { z-index: 40; }
-
-/* --- Train with Video Card --- */
-.train {
-  z-index: 50;
-  padding: 0; /* Remove padding to allow video to be full-bleed */
-}
-
-.train .train-content {
+.overlap-card.train .train-content {
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 30px;
+  padding: 30px 40px;
+  border-radius: 12px;
   max-width: 800px;
   width: 90%;
 }
-
 .train-title-container {
-  /* Responsive margin-top. Scales down on smaller screens. */
-  margin-top: clamp(80px, 30vh, 340px);
+  margin-top: 340px;
   margin-bottom: 24px;
 }
 
+/* Styles for "TRAIN WITH" and "on" */
+.train-subtitle {
+  display: block;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 8px 0;
+}
+
+/* Style for the Coach's Name */
 .train-coach-name {
-  font-size: clamp(2.5rem, 6vw + 1rem, 3.5rem);
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 10px 0;
+  line-height: 1.1;
+  color: #fff;
 }
 
+/* Style for "SPORTSCOVE" */
 .train-platform-name {
-  font-size: clamp(1.5rem, 4vw + 0.8rem, 2.5rem);
-  text-shadow: -4px 2px 2px #b3f08e;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ffffff; /* Accent color */
+  text-shadow: -6px 2px 2px #b3f08e;
+  margin: 10px 0;
 }
 
+/* Style for the description paragraph below */
 .train-description {
-  font-size: clamp(0.9rem, 1.5vw + 0.5rem, 1.1rem);
+  font-size: 1.1rem;
+  line-height: 1.6;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto; /* Center the text block */
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .background-video {
-  position: absolute;
+  position: absolute; /* Positions the video behind the content */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: -1; /* Place video behind content */
+  object-fit: cover;   /* Ensures the video covers the entire section */
+  z-index: -1;        /* Puts the video behind other content */
 }
 
-/*===================================
-=            UI Elements            =
-===================================*/
-.back-button {
-  position: fixed;
-  left: clamp(12px, 3vw, 18px); /* Responsive positioning */
-  top: clamp(12px, 3vw, 18px);
-  z-index: 200;
-  background: rgba(255, 255, 255, 0.9);
-  color: #074048;
-  border: none;
-  padding: clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 14px); /* Responsive padding */
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  font-size: clamp(0.8rem, 2vw, 1rem); /* Responsive font size */
-}
-
-/*================================================
-=            Mobile Responsive Overrides         =
-================================================*/
-@media (max-width: 768px) {
-  /* On mobile, align all card content towards the bottom for better visibility */
-  .overlap-card {
-    align-items: flex-end;
-    justify-content: center;
-  }
+.overlap-card.train .card-content {
+  position: relative; /* Ensures card-content is above the video */
+  z-index: 1;         /* Explicitly brings content to the front */
+  text-align: center; /* Center the text over the video */
   
-  .card-content {
-    text-align: center; /* Center all text on mobile */
-    max-width: 95%;
-    margin-bottom: 5vh; /* Add some space from the bottom edge */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  text-align: left;
+}
+
+/* Text styles */
+.card-content h1 {
+  font-size: 4rem;
+  margin: 0 0 8px 0;
+  letter-spacing: 2px;
+}
+
+.card-content h2 {
+  margin: 0 0 12px 0;
+  font-size: 2rem;
+}
+
+.card-content p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* --- Cover section override: bottom-left text --- */
+.cover {
+  z-index: 10;
+  justify-content: flex-start; /* align horizontally left */
+  align-items: flex-end; /* align vertically bottom */
+  padding: 40px;
+}
+
+.cover-text {
+  text-align: left;
+  max-width: 700px;
+}
+
+/* Other section stacking */
+.history {
+  z-index: 20;
+}
+
+.journey {
+  z-index: 30;
+}
+
+.meet {
+  z-index: 40;
+}
+
+.train {
+  z-index: 50;
+}
+
+/* --- Responsive Breakpoints --- */
+
+/* Tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .card-content h1 {
+    font-size: 3rem;
+  }
+  .coach-name {
+    font-size: 2.5rem;
+  }
+  .card-content h2 {
+    font-size: 1.6rem;
+  }
+  .coach-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+/* Mobile landscape (≤768px) */
+@media (max-width: 768px) {
+  .overlap-card {
+    padding: 24px;
+    text-align: center;
+    align-items: flex-end; /* text lower */
   }
 
-  /* Keep the cover text aligned left on mobile if desired */
-  .cover .card-content {
-     text-align: left;
+  .card-content {
+    max-width: 90%;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .card-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .card-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .coach-name {
+    font-size: 2rem;
+  }
+
+  .coach-subtitle {
+    font-size: 1rem;
+  }
+
+  .cover {
+    padding: 20px;
+    align-items: flex-end;
+  }
+
+  .back-button {
+    left: 12px;
+    top: 12px;
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Small phones (≤480px) */
+@media (max-width: 480px) {
+  .overlap-card {
+    padding: 16px;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  .card-content h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .card-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .card-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .coach-name {
+    font-size: 1.6rem;
+  }
+
+  .coach-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .cover-text {
+    max-width: 100%;
+  }
+
+  .back-button {
+    padding: 5px 7px;
+    font-size: 0.75rem;
   }
 }
