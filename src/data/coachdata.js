@@ -404,8 +404,8 @@ export const coaches = {
     Location:"UK",
     CoachType:"Super",
     skills:{
-      KungFu:{
-        displayName:"KungFu",
+      "Kung Fu":{
+        displayName:"Kung Fu",
         category:"Sports",
         experience:"2+ years"
       },
@@ -460,7 +460,7 @@ export const coaches = {
 
   sam: {
     name: "SAM",
-    Sports:"KickBoxing",
+    Sports:"Kickboxing",
     Experience:"5+ years",
     Location:"India",
     CoachType:"Super",
@@ -601,8 +601,8 @@ export const coaches = {
     Location:"India",
     CoachType:"Super",
     skills:{
-      KungFu:{
-        displayName:"KungFu",
+      "Kung Fu":{
+        displayName:"Kung Fu",
         category:"Sports",
         experience:"2+ years"
       },
@@ -699,7 +699,7 @@ export const coaches = {
 
   salvin: {
     name: "SALVIN FRANCIS",
-    Sports:"KickBoxing",
+    Sports:"Kickboxing",
     Experience:"3+ years",
     Location:"India",
     CoachType:"Super",
