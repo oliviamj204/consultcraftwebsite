@@ -52,7 +52,7 @@ export default function Sportscove() {
                 <span className="step-number step-2">02</span> Book with Ease
               </h3>
               <p>
-                Schedule sports and wellness coaching sessions with just a few clicks — anytime, anywhere. Scheduling, payments, notifications and alerts all integrated for convenience.
+                Schedule sports and wellness coaching sessions with just a few clicks: anytime, anywhere. Scheduling, payments, notifications and alerts all integrated for convenience.
               </p>
             </div>
 

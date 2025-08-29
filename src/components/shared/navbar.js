@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom'; // <-- 1. Import useNavigate
 import './navbar.css';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from './logo.png';
@@ -8,6 +10,14 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate(); // <-- 2. Initialize useNavigate
+
+  // 3. Add the click handler function
+  const handleLogoClick = () => {
+    navigate("/"); // navigate to home
+    window.scrollTo({ top: 0, behavior: "smooth" }); // scroll to top
+    closeAllMenus(); // Also close any open menus
+  };
 
   const toggleMobileMenu = () => setMobileMenuOpen(prev => !prev);
   const closeAllMenus = () => {
@@ -28,11 +38,13 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      {/* Logo */}
-      <div className="navbar-logo">
+      {/* Logo - 4. Add the onClick event */}
+      <div className="navbar-logo" onClick={handleLogoClick}>
         <img src={logo} alt="Logo" />
         <span className="navbar-brand">ConsultCraft</span>
       </div>
+
+      {/* ... (rest of the component is the same) ... */}
 
       {/* Hamburger Icon */}
       <div className="hamburger" onClick={toggleMobileMenu}>

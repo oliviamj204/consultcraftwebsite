@@ -122,6 +122,7 @@
 
 /* Right Side Form */
 .contactform-right {
+  margin-top: 50px;
   flex: 1;
 }
 

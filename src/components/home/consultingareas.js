@@ -28,7 +28,8 @@ const ConsultingAreasCarousel = () => {
       <h2 className="consulting-carousel-title">CONSULTING AREAS WE'LL COVER</h2>
 
       <div className="carousel-navigation">
-        <button className="consulting-carousel-arrow left" onClick={() => scroll('left')}>
+        {/* Changed className here */}
+        <button className="consulting-carousel-arrow arrow-left" onClick={() => scroll('left')}>
           &lt;
         </button>
 
@@ -45,7 +46,8 @@ const ConsultingAreasCarousel = () => {
           ))}
         </div>
 
-        <button className="consulting-carousel-arrow right" onClick={() => scroll('right')}>
+        {/* Changed className here */}
+        <button className="consulting-carousel-arrow arrow-right" onClick={() => scroll('right')}>
           &gt;
         </button>
       </div>

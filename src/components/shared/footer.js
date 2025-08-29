@@ -1,31 +1,32 @@
 'use client';
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // ✅ Import Link
+import { Link } from 'react-router-dom'; // <-- 1. useNavigate is no longer needed
 import './footer.css';
 import { FaYoutube, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
-  const navigate = useNavigate();
+  // 2. The handleLogoClick function is removed from here
 
-  const handleLogoClick = () => {
-    navigate("/"); // navigate to home
-    window.scrollTo({ top: 0, behavior: "smooth" }); // scroll to top
-  };
   return (
     <footer className="footer">
       <div className="footer-content">
         
         {/* Left Section */}
         <div className="footer-section left">
- <div className="logo-section">
-      <div className="logo-link" onClick={handleLogoClick} style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-        <div className="logo-icon">
-          <img src="/asset/logo.png" alt="ConsultCraft Logo" />
-        </div>
-        <h2 className="company-name">ConsultCraft Inc</h2>
-      </div>
-    </div>
+          <div className="logo-section">
+            {/* 3. Replaced div with a Link component for standard navigation */}
+            <Link 
+              to="/" 
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="logo-link"
+            >
+              <div className="logo-icon">
+                <img src="/asset/logo.png" alt="ConsultCraft Logo" />
+              </div>
+              <h2 className="company-name">ConsultCraft Inc</h2>
+            </Link>
+          </div>
 
           <div className="contact-info">
             <div className="email-section">
@@ -39,37 +40,36 @@ const Footer = () => {
           <div className="socials-section">
             <span className="socials-label">Socials</span>
             <div className="footer-socials">
-  <a 
-    href="https://www.youtube.com/@consultcraftinc" 
-    className="footer-social-icon youtube" 
-    aria-label="YouTube" 
-    target="_blank" 
-    rel="noopener noreferrer"
-  >
-    <FaYoutube />
-  </a>
+              <a 
+                href="https://www.youtube.com/@consultcraftinc" 
+                className="footer-social-icon youtube" 
+                aria-label="YouTube" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <FaYoutube />
+              </a>
 
-  <a 
-    href="https://www.instagram.com/consultcraft.inc/" 
-    className="footer-social-icon instagram" 
-    aria-label="Instagram" 
-    target="_blank" 
-    rel="noopener noreferrer"
-  >
-    <FaInstagram />
-  </a>
+              <a 
+                href="https://www.instagram.com/consultcraft.inc/" 
+                className="footer-social-icon instagram" 
+                aria-label="Instagram" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <FaInstagram />
+              </a>
 
-  <a 
-    href="https://www.linkedin.com/company/consultcraft-inc/posts/?feedView=all" 
-    className="footer-social-icon linkedin" 
-    aria-label="LinkedIn" 
-    target="_blank" 
-    rel="noopener noreferrer"
-  >
-    <FaLinkedin />
-  </a>
-</div>
-
+              <a 
+                href="https://www.linkedin.com/company/consultcraft-inc/posts/?feedView=all" 
+                className="footer-social-icon linkedin" 
+                aria-label="LinkedIn" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <FaLinkedin />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -77,12 +77,12 @@ const Footer = () => {
         <div className="footer-section center">
           <h3 className="footer-heading">Links</h3>
           <ul className="footer-links">
-            <li><Link to="/"onClick={() => window.scrollTo(0, 0)}>Home</Link></li>
-            <li><Link to="/about"onClick={() => window.scrollTo(0, 0)}>About</Link></li>
-            <li><Link to="/products/sportscove"onClick={() => window.scrollTo(0, 0)}>Products</Link></li>
-            <li><Link to="/contact"onClick={() => window.scrollTo(0, 0)}>Contact</Link></li>
-            <li><Link to="/termscondition"onClick={() => window.scrollTo(0, 0)}>T&C</Link></li>
-            <li><Link to="/privacypolicy"onClick={() => window.scrollTo(0, 0)}>Privacy Policy</Link></li>
+            <li><Link to="/" onClick={() => window.scrollTo(0, 0)}>Home</Link></li>
+            <li><Link to="/about" onClick={() => window.scrollTo(0, 0)}>About</Link></li>
+            <li><Link to="/products/sportscove" onClick={() => window.scrollTo(0, 0)}>Products</Link></li>
+            <li><Link to="/contact" onClick={() => window.scrollTo(0, 0)}>Contact</Link></li>
+            <li><Link to="/termscondition" onClick={() => window.scrollTo(0, 0)}>T&C</Link></li>
+            <li><Link to="/privacypolicy" onClick={() => window.scrollTo(0, 0)}>Privacy Policy</Link></li>
           </ul>
           <div className="footer-bottom">
             ConsultCraft Inc © 2024–2025 All Rights Reserved

@@ -22,7 +22,7 @@ const About = () => {
       {/* Team Experience Section */}
       <div className="team-experience-section">
         <div className="team-text">
-          <h2>TEAM EXPERINCE</h2>
+          <h2>TEAM EXPERIENCE</h2>
           <p>
             Our strength lies in our diverse, world-class team spanning continents with exceptional expertise from
             technology, sports, and business. Our global talent includes UK-educated UX designers and experienced engineers

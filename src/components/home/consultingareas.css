@@ -62,23 +62,33 @@
 
 /* Arrows */
 .consulting-carousel-arrow {
-  background-color: #111; /* Changed background for consistency */
-  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #000000;
   border: none;
   border-radius: 50%;
-  width: 40px; /* Updated width */
-  height: 40px; /* Updated height */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  z-index: 10;
-  margin: 0 10px;
-  transition: background-color 0.3s;
-  display: flex; /* Added to center icon */
-  align-items: center; /* Added to center icon */
-  justify-content: center; /* Added to center icon */
+  z-index: 5;
+  transition: background-color 0.3s ease;
+  color: #ffffff;
+  width: 44px; /* Consistent size */
+  height: 44px; /* Consistent size */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px; /* Adjusted for < > characters */
+  line-height: 1;
 }
 
-.consulting-carousel-arrow:hover {
-  background-color: #333;
+.consulting-carousel-arrow.arrow-left {
+  left: -20px;
+}
+
+.consulting-carousel-arrow.arrow-right {
+  right: -20px;
 }
 
 .consulting-carousel-arrow:disabled {
