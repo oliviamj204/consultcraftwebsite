@@ -1,6 +1,6 @@
 import React from 'react';
 import './about.css';
-import teamImage from './teamexp.jpg'; // Make sure to place the image in /src/assets/
+import teamImage from './teamexp.jpg'; 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import TeamCarousel from './teamcarousel';
@@ -108,7 +108,7 @@ const About = () => {
 
   <div className="our-story-image">
     <img src={require('./ourstry.jpg')} alt="SportsCove" />
-    {/* Replace with import if you're using ES6 module import style */}
+
   </div>
 </div>
 <div className="vision-mission-section">

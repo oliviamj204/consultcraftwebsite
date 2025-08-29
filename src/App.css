@@ -4,7 +4,7 @@ body {
   background-color: #000;
   color: #fff;
 }
-/* Prevent horizontal overflow */
+
 * {
   margin: 0;
   padding: 0;

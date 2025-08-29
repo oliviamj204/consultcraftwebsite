@@ -182,8 +182,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 50px; /* This line adds the needed space */
-  box-sizing: border-box; /* Ensures padding is calculated correctly */
+  padding: 0 50px; 
+  box-sizing: border-box; 
 }
 
 .vision-image img,

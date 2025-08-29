@@ -36,10 +36,10 @@ function AppContent() {
         <Route path="/termscondition" element={<TermsConditions />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/insights" element={<Insights />} />
-{/* <Route path="/privacypolicy" element={<PrivacyPolicy />} /> if you add PrivacyPolicy */}
 
 
-        {/* Dynamic Coach Profile */}
+
+        
         <Route path="/supercoaches/:coachId" element={<CoachProfile />} />
       </Routes>
 

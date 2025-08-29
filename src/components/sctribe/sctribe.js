@@ -26,12 +26,12 @@ export default function Sctribe() {
   };
 
   const dropdowns = {
-    Sports: ["Boxing", "Wrestling", "MMA", "KickBoxing", "KungFu", "Muay Thai"],
-    Wellness: ["Yoga", "Meditation", "Kundalini Activation"],
-    Experience: ["2+ years", "3+ years", "5+ years", "10+ years", "15+ years", "22+ years"],
-    Locations: ["USA", "Canada", "India", "Thailand", "UK", "UAE", "Cyprus"],
-    CoachType: ["Super", "Regular"],
-  };
+  Sports: ["Boxing", "Kickboxing", "Kung Fu", "MMA", "Muay Thai", "Wrestling"],
+  Wellness: ["Kundalini Activation", "Meditation", "Yoga"],
+  Experience: ["10+ years", "15+ years", "2+ years", "22+ years", "3+ years", "5+ years"],
+  Locations: ["Canada", "Cyprus", "India", "Thailand", "UAE", "UK", "USA"],
+  CoachType: ["Regular", "Super"],
+};
 
   const toggleDropdown = (name) => {
     setOpenDropdown(openDropdown === name ? null : name);

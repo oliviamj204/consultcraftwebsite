@@ -1,7 +1,7 @@
 /* === Outer Section === */
 .team-section {
   background-color: white;
-  /* 👇 Added horizontal padding here for consistent spacing */
+  
   padding: 60px 20px; 
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@
 .team-heading {
   font-size: 32px;
   font-weight: bold;
-  /* 👇 Increased from 40px to 60px for more space */
+
   margin-bottom: 60px; 
   text-align: center;
   color: #000;
@@ -27,15 +27,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* 👇 Remove the transform line that was here */
+  
 }
 
-/* In your teamcarousel.css file */
+
 
 .team-carousel-container {
   overflow: hidden;
-  /* 👇 Key change: Set a max-width to fit exactly 3 cards + 2 gaps */
-  /* Calculation: (360px * 3) + (20px * 2) = 1120px */
   max-width: 1120px;
   width: 100%;
 }
@@ -43,14 +41,14 @@
   display: flex;
   gap: 20px;
   transition: transform 0.5s ease;
-  /* 👇 Reduced padding to remove extra side space */
+  
   padding: 20px 0; 
 }
-/* Add this to your teamcarousel.css file */
+
 
 .carousel-spacer {
-  flex-shrink: 0; /* Prevents the spacer from shrinking */
-  width: 20px;    /* Creates the final bit of space */
+  flex-shrink: 0; 
+  width: 20px;    
 }
 /* === Team Card === */
 .team-card {
