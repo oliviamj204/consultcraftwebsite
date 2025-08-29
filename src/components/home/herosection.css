@@ -1,0 +1,150 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+
+.typed-text {
+  font-size: 5rem;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap; /* Prevents text wrapping */
+}
+
+.typed-container {
+  width: 320px; /* Fixed width to accommodate the longest string */
+  text-align: center; /* 💡 This is key for the visual centering */
+  display: inline-block;
+}
+
+.highlight {
+  color: #cfffa5;
+}
+
+.hero-subtext {
+  max-width: 90%;
+  font-size: 26px;
+  line-height: 1.6;
+  margin: 20px auto;
+  color: #ffffff;
+  text-align: center;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: white;
+  color: black;
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 1024px) {
+  .typed-text {
+    font-size: 3.5rem;
+  }
+  .typed-container {
+    width: 280px;
+  }
+  .hero-subtext {
+    font-size: 22px;
+    max-width: 90%;
+  }
+  .btn {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .typed-text {
+    font-size: 2.5rem;
+  }
+  .typed-container {
+    width: 200px;
+  }
+  .hero-subtext {
+    font-size: 18px;
+    max-width: 90%;
+    margin: 16px auto;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .typed-text {
+    font-size: 2rem;
+  }
+  .typed-container {
+    width: 180px;
+  }
+  .hero-subtext {
+    font-size: 16px;
+  }
+  .btn {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+}

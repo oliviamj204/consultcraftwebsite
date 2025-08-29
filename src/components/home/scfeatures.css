@@ -1,0 +1,91 @@
+.features-section {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #ffffff;
+  color: #000;
+}
+
+.launch-badge {
+  background-color: #b3f08e;
+  color: #000;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.main-title {
+  font-size: 64px;
+  font-weight: 900;
+  margin: 10px 0;
+  text-shadow: -6px 2px 2px #b3f08e;
+}
+
+.subtitle {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.feature {
+  max-width: 280px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #f9f9f9;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.feature p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .features {
+    gap: 20px;
+  }
+
+  .feature {
+    max-width: 100%;
+  }
+}

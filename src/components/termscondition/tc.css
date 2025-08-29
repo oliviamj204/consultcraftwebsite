@@ -1,0 +1,141 @@
+/* --- Terms & Conditions Container --- */
+.tc-container {
+  min-height: 100vh;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- Title & Updated Label --- */
+.tc-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.tc-updated {
+  font-size: 1.5rem;
+  color: #cfffa5; /* Accent color */
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* --- Content Paragraphs & Highlights --- */
+.tc-content p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.tc-content strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #cfffa5; /* Highlight color */
+}
+
+/* --- Scroll to Top Button --- */
+button[aria-label="Scroll to top"] {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #cfffa5;
+  color: #000;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+button[aria-label="Scroll to top"]:hover {
+  transform: translateY(-4px);
+}
+
+/* --- Footer --- */
+/* footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 3rem;
+}
+
+footer p {
+  margin: 0;
+} */
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 1024px) {
+  .tc-container {
+    padding: 1.5rem;
+    max-width: 750px;
+  }
+
+  .tc-updated {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tc-container {
+    padding: 1rem;
+  }
+
+  .tc-updated {
+    font-size: 1.3rem;
+  }
+
+  .tc-content p {
+    font-size: 0.95rem;
+  }
+
+  .tc-content strong {
+    font-size: 1rem;
+  }
+
+  button[aria-label="Scroll to top"] {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tc-container {
+    padding: 0.8rem;
+  }
+
+  .tc-updated {
+    font-size: 1.2rem;
+  }
+
+  .tc-content p {
+    font-size: 0.9rem;
+  }
+
+  .tc-content strong {
+    font-size: 0.95rem;
+  }
+
+  button[aria-label="Scroll to top"] {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

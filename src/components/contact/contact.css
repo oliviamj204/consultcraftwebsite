@@ -1,0 +1,250 @@
+/* Main Section */
+.contact-section {
+  background-color: #000; /* Black background */
+  color: #fff;
+  text-align: center;
+  padding: 100px 20px 60px;
+}
+
+/* Contact Top Content */
+.contact-content {
+  margin-bottom: 60px;
+}
+
+.contact-btn {
+  background-color: #555;
+  color: #fff;
+  padding: 10px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color: #777;
+}
+
+.contact-text {
+  font-size: 20px;
+  font-weight: 400;
+  color: #aaa;
+}
+
+.contact-text .highlight {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Contact Details + Form */
+.contact-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto;
+  background-attachment: fixed;
+  gap: 40px;
+  padding: 0px 20px;
+  text-align: left;
+  margin-top: -20px;
+}
+
+/* Left Side */
+.contactform-left {
+  flex: 1;
+}
+
+.contactform-left h2 {
+  font-size: 28px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.contactform-left .highlight {
+  color: #cfffa5; /* Accent highlight */
+  font-weight: 700;
+}
+
+.contact-info {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Add this CSS anywhere in your contact.css file */
+
+.info-grid {
+  display: flex; /* Arranges children side-by-side */
+  gap: 20px;     /* Adds space between the columns */
+  margin-top: 20px; /* Adds some space above this section */
+}
+
+.info-column {
+  flex: 1; /* Makes each column take up equal space */
+}
+
+.contact-info h3 {
+  margin: 16px 0 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  flex-shrink: 0; /* prevents icon from shrinking */
+}
+
+
+
+.contact-info p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  line-height: 1.4;
+  font-size: 16px;
+  color: #ccc;
+  margin: 6px 0;
+}
+
+
+/* Right Side Form */
+.contactform-right {
+  flex: 1;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row input {
+  flex: 1;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  font-size: 15px;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #888;
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form button {
+  background: linear-gradient(90deg, #cfffa5, #074048);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.contact-form button:hover {
+  opacity: 0.85;
+}
+
+/* =================== Responsive =================== */
+
+/* Tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .contact-section {
+    padding: 80px 20px 50px;
+  }
+  .contactform-left h2 {
+    font-size: 24px;
+  }
+  .contact-text {
+    font-size: 18px;
+  }
+}
+
+/* Stack columns (≤900px) */
+@media (max-width: 900px) {
+  .contact-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .contactform-left,
+  .contactform-right {
+    width: 100%;
+  }
+}
+
+/* Mobile (≤768px) */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 60px 15px 40px;
+  }
+  .contact-btn {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+  .contact-text {
+    font-size: 16px;
+  }
+  .contactform-left h2 {
+    font-size: 22px;
+  }
+  .form-row {
+    flex-direction: column; /* stack name + surname */
+  }
+}
+
+/* Small phones (≤480px) */
+@media (max-width: 480px) {
+  .contact-section {
+    padding: 50px 12px 30px;
+  }
+  .contact-text {
+    font-size: 14px;
+  }
+  .contactform-left h2 {
+    font-size: 20px;
+  }
+  .contact-info p {
+    font-size: 14px;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  .contact-form button {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}

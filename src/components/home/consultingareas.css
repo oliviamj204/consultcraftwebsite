@@ -1,0 +1,142 @@
+.consulting-carousel-wrapper {
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.consulting-carousel-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  color: #111;
+}
+
+.carousel-navigation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.consulting-carousel-items {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 10px 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.consulting-carousel-items::-webkit-scrollbar {
+  display: none;
+}
+.consulting-carousel-items {
+  scrollbar-width: none;
+}
+
+.consulting-carousel-item {
+  flex: 0 0 auto;
+  width: clamp(140px, 22vw, 200px);
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 20px;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.consulting-carousel-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  filter: brightness(0) invert(1);
+}
+
+.consulting-carousel-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Arrows */
+.consulting-carousel-arrow {
+  background-color: #111; /* Changed background for consistency */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px; /* Updated width */
+  height: 40px; /* Updated height */
+  cursor: pointer;
+  z-index: 10;
+  margin: 0 10px;
+  transition: background-color 0.3s;
+  display: flex; /* Added to center icon */
+  align-items: center; /* Added to center icon */
+  justify-content: center; /* Added to center icon */
+}
+
+.consulting-carousel-arrow:hover {
+  background-color: #333;
+}
+
+.consulting-carousel-arrow:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablets ≤1024px */
+@media (max-width: 1024px) {
+  .consulting-carousel-title {
+    font-size: 28px;
+  }
+  .consulting-carousel-item {
+    width: clamp(150px, 25vw, 180px);
+    padding: 18px;
+  }
+  .consulting-carousel-label {
+    font-size: 15px;
+  }
+}
+
+/* Mobile ≤768px */
+@media (max-width: 768px) {
+  .consulting-carousel-title {
+    font-size: 24px;
+  }
+  .consulting-carousel-item {
+    width: clamp(140px, 35vw, 160px);
+    padding: 14px;
+  }
+  .consulting-carousel-label {
+    font-size: 14px;
+  }
+  .consulting-carousel-items {
+    gap: 16px;
+    padding: 10px 12px;
+  }
+}
+
+/* Small phones ≤480px */
+@media (max-width: 480px) {
+  .consulting-carousel-title {
+    font-size: 20px;
+  }
+  .consulting-carousel-item {
+    width: clamp(120px, 45vw, 140px);
+    padding: 12px;
+  }
+  .consulting-carousel-label {
+    font-size: 13px;
+  }
+  .consulting-carousel-items {
+    gap: 12px;
+    padding: 8px 10px;
+  }
+  .consulting-carousel-arrow {
+    display: none; /* arrows hidden on small screens */
+  }
+}

@@ -1,0 +1,216 @@
+.consultcove-section {
+  background-color: #000;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+/* Top intro section */
+.consultcove-intro {
+  max-width: 800px;
+  margin: 0 auto 80px;
+}
+
+.coming-soon {
+  display: inline-block;
+  background-color: #4a4a4a;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.consultcove-title {
+  font-size: 64px;
+  font-weight: 900;
+  margin: 16px 0;
+  text-shadow: -6px 5px 2px #8DAFC2;
+}
+
+.consultcove-subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* Flex layout for content below */
+.consultcove-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: left;
+}
+
+/* Left text section */
+.consultcove-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.consultcove-heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.consultcove-paragraph {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 54px;
+}
+
+.consultcove-list {
+  list-style: disc;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 54px;
+}
+
+/* Right image section */
+.consultcove-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.consultcove-image img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+/* Buttons */
+.consultcove-buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.consultcove-btn {
+  background-color: white;
+  color: black;
+  padding: 12px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid black;
+  transition: all 0.3s ease;
+}
+
+.consultcove-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Optional utility buttons */
+.btn-outline {
+  background: transparent;
+  color: #000;
+  border: 2px solid #000;
+  padding: 10px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-filled {
+  background: #000;
+  color: #fff;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.btn-filled:hover {
+  background: #333;
+}
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+
+/* Tablets and small laptops */
+@media (max-width: 1024px) {
+  .consultcove-title {
+    font-size: 48px;
+  }
+
+  .consultcove-content {
+    gap: 30px;
+  }
+}
+
+/* Tablets and large phones */
+@media (max-width: 768px) {
+  .consultcove-title {
+    font-size: 40px;
+  }
+
+  .consultcove-subtitle {
+    font-size: 16px;
+  }
+
+  .consultcove-heading {
+    font-size: 20px;
+  }
+
+  .consultcove-content {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .consultcove-text {
+    text-align: center;
+  }
+
+  .consultcove-list {
+    text-align: left;
+  }
+
+  .consultcove-image {
+    margin-bottom: 24px;
+  }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+  .consultcove-title {
+    font-size: 32px;
+  }
+
+  .consultcove-paragraph,
+  .consultcove-subtitle,
+  .consultcove-list {
+    font-size: 15px;
+  }
+
+  .consultcove-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .consultcove-content {
+    padding: 0 10px;
+  }
+
+  .consultcove-section {
+    padding: 60px 12px;
+  }
+}

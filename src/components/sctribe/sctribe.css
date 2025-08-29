@@ -1,0 +1,245 @@
+/* Title & Subtitle Container */
+.sctribe-container {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 35px;
+}
+.sctribe-header {
+  font-size: 56px;
+  margin-bottom: 35px;
+}
+.sctribe-title {
+  font-size: 27px;
+  color: #CFFFA5;
+  margin-bottom: 50px;
+}
+
+/* Filter Bar */
+.sctribe-filter-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.filter-wrapper {
+  position: relative;
+}
+
+.filter-item {
+  background: transparent;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-image: linear-gradient(black, black),
+    linear-gradient(to right, #CFFFA5, #074048);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.filter-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  background: #111;
+  color: white;
+  top: 48px;
+  left: 0;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  z-index: 10;
+  padding: 6px 0;
+  min-width: 160px;
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.dropdown-item {
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: linear-gradient(to right, #CFFFA5, #074048);
+  color: black;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Coach Grid */
+.coach-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Coach Card */
+.coach-card {
+  width: 976px;
+  max-width: 100%;
+  height: 378px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex; /* image + details side by side */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.coach-card:hover {
+  transform: translateY(-4px);
+}
+
+.coach-image {
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coach-info {
+  width: 50%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.coach-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  overflow-x: auto;
+}
+
+.coach-meta span {
+  background: #eee;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.coach-name {
+  margin-top: 12px;
+  font-size: 1.6rem;
+  color: black;
+}
+
+.see-story-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #074048;
+  cursor: pointer;
+}
+
+/* Clear Filters Button */
+.clear-filters {
+  background: #cfffa5;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-left: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.clear-filters:hover {
+  background:#074048;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* === RESPONSIVE BREAKPOINTS === */
+
+/* Tablets <=1024px */
+@media (max-width: 1024px) {
+  .sctribe-header {
+    font-size: 48px;
+  }
+  .sctribe-title {
+    font-size: 24px;
+  }
+  .coach-card {
+    height: 320px;
+  }
+  .coach-name {
+    font-size: 1.4rem;
+  }
+  .coach-meta span {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+}
+
+/* Mobile <=768px */
+@media (max-width: 768px) {
+  .coach-card {
+    flex-direction: column; /* stack image on top */
+    height: auto;
+  }
+  .coach-image {
+    width: 100%;
+    height: 200px;
+  }
+  .coach-info {
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+  }
+  .coach-name {
+    font-size: 1.3rem;
+  }
+  .coach-meta {
+    justify-content: center;
+  }
+  .clear-filters {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+}
+
+/* Small phones <=480px */
+@media (max-width: 480px) {
+  .sctribe-header {
+    font-size: 36px;
+  }
+  .sctribe-title {
+    font-size: 20px;
+  }
+  .coach-image {
+    height: 160px;
+  }
+  .coach-name {
+    font-size: 1.1rem;
+  }
+  .coach-meta span {
+    font-size: 0.75rem;
+    padding: 2px 5px;
+  }
+  .see-story-btn {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}

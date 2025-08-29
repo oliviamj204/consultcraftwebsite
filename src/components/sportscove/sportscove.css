@@ -1,0 +1,234 @@
+.sportscove-hero {
+  width: 100%;
+  min-height: 90vh; /* Full viewport height */
+  background-image: url("./sportscove-bg.avif");
+  background-size: cover; /* keeps the full image */
+  background-position: center top -160px;
+  background-repeat: no-repeat;
+  /* background-color: #1e3a8a; fallback/overlay color (blue) */
+}
+
+
+.sportsCove-info {
+  padding: 60px 20px;
+  background-color: #f9f9f9; /* light background behind the card */
+  text-align: center;
+}
+
+.sportsCove-info h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  color: #000; /* black text for heading */
+}
+
+.sportsCove-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #cfffa5; /* solid white card */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.sportsCove-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #000; /* make paragraph text visible */
+}
+
+.sportsCove-card strong {
+  font-weight: 700; /* bold for emphasis */
+}
+
+.sc-steps-section {
+  background-color: #fff;
+  padding: 60px 20px;
+}
+
+.sc-steps-title {
+    color: #000;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
+.sc-steps-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.sc-steps-left {
+  flex: 1;
+  min-width: 300px;
+}
+
+.sc-step {
+  background: #cfffa5;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.step-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000; /* Change from white to black or dark gray */
+}
+
+.step-number {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.step-1 {
+  background: linear-gradient(90deg, #00f5ff, #07ffb5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.step-2 {
+  background: linear-gradient(90deg, #7a5cff, #a991ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.step-3 {
+  background: linear-gradient(90deg, #ff5ca8, #a991ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sc-step h3 {
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.sc-step p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+}
+
+.sc-steps-right {
+  flex: 1;
+  min-width: 300px;
+  /* height: 650px; <-- REMOVE THIS LINE */
+  display: flex;
+  justify-content: center;
+}
+
+.sc-video {
+  max-width: 100%;
+  max-height: 500px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+}
+
+
+.sc-feature-section {
+  background-color: #000;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.sc-feature-title {
+  position: sticky;
+   top: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.sc-feature-card {
+    position: sticky;
+  top: 80px;
+  display: flex;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  z-index: 1;
+  overflow: hidden;
+  transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+
+
+.sc-feature-left {
+  flex: 1;
+  background-color: #cfffa5;
+  color: #fff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.sc-feature-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #444444;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  width: 32px;     /* fixed width */
+  height: 32px;    /* fixed height */
+  border-radius: 6px; /* slight rounding, can set 50% for circle */
+}
+
+
+.sc-feature-heading {
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.sc-feature-description {
+  color: #074048;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.sc-feature-right {
+  flex: 1;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.sc-feature-right img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .sc-feature-card {
+    flex-direction: column;
+  }
+
+  .sc-feature-left,
+  .sc-feature-right {
+    flex: unset;
+    width: 100%;
+  }
+}
