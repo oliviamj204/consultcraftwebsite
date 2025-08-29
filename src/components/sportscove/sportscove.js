@@ -32,7 +32,7 @@ export default function Sportscove() {
 
       {/* Section: How SportsCove Works */}
       <section className="sc-steps-section">
-        <h2 className="sc-steps-title">HOW SPORTSCOVE WORKS ?</h2>
+        <h2 className="sc-steps-title">HOW SPORTSCOVE WORKS</h2>
         <div className="sc-steps-container">
           
           {/* Left side */}
