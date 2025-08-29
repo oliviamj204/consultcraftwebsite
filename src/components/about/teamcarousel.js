@@ -1,33 +1,40 @@
+// In TeamCarousel.js
+
 import React, { useState, useLayoutEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Linkedin, User } from 'lucide-react';
 import './teamcarousel.css';
 
 const TeamCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  // 👇 Store item dimensions in state for dynamic calculations
   const [viewSettings, setViewSettings] = useState({
     membersPerSlide: 4,
     lastIndex: 0,
-    itemWidth: 360, // Default card width
-    gap: 50,        // Default gap
+    itemWidth: 360,
+    gap: 20,
   });
 
   const trackRef = useRef(null);
   const containerRef = useRef(null);
 
+  // --- NEW: Refs for swipe functionality ---
+  const isDragging = useRef(false);
+  const startPos = useRef(0);
+  const currentTranslate = useRef(0);
+  const prevTranslate = useRef(0);
+
   const teamMembers = [
     // Your teamMembers array remains the same...
-    { id: 1, name: "Anubhav Prasad", title: "Founder & CEO", image: "/asset/team/anubhav.jpg", hasLinkedIn: true, linkedinUrl: "https://www.linkedin.com/in/anubhav-prasad-3a843759/" },
-    { id: 2, name: "Mukesh Prasad", title: "Director, India", image: "/asset/team/mukesh.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/mukesh-prasad-649a048a/" },
-    { id: 3, name: "Col. Ajay Singh(Retd.)", title: "Director, India", image: "/asset/team/ajay.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/col-ajay-singh-veteran-a9b765129/" },
-    { id: 4, name: "Tanner Smith", title: "Managing Partner USA & VP SportsCove", image: "/asset/team/tanner.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/tanner-smith-153682329/" },
-    { id: 5, name: "Andrew Tanner", title: "Managing Partner, USA", image: "/asset/team/andrew.jpg", hasLinkedIn: true, linkedinUrl:"" },
-    { id: 6, name: "Deepa Raj", title: "VP of Engineering & Technology", image: "/asset/team/deepa.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/deepa-raj-b30467121/" },
-    { id: 7, name: "Ira Prasad", title: "UX Designer", image: "/asset/team/ira.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/ira-prasad-5ba77016a/" },
-    { id: 8, name: "Lakshmi Pratap", title: "UX Designer", image: "/asset/team/lakshmi.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/lakshmi-pratap/" },
-    { id: 9, name: "Akhil Kumar", title: "Social Media Manager", image: "/asset/team/akhil.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/akhil-kumar-971a94100/" },
-    { id: 10, name: "Olivia Mary James", title: "Software Development Engineering Intern", image: "/asset/team/olivia.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/olivia-mary-james-533a98268/" },
-    { id: 11, name: "Poojitha Sharan", title: "Programs & Services Head", image: "/asset/team/poojitha.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/poojita-sharan/" },
+    { id: 1, name: "Anubhav Prasad", title: "Founder & CEO", image: "/asset/team/anubhav.jpg", hasLinkedIn: true, linkedinUrl: "https://www.linkedin.com/in/anubhav-prasad-3a843759/" },
+    { id: 2, name: "Mukesh Prasad", title: "Director, India", image: "/asset/team/mukesh.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/mukesh-prasad-649a048a/" },
+    { id: 3, name: "Col. Ajay Singh(Retd.)", title: "Director, India", image: "/asset/team/ajay.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/col-ajay-singh-veteran-a9b765129/" },
+    { id: 4, name: "Tanner Smith", title: "Managing Partner USA & VP SportsCove", image: "/asset/team/tanner.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/tanner-smith-153682329/" },
+    { id: 5, name: "Andrew Tanner", title: "Managing Partner, USA", image: "/asset/team/andrew.jpg", hasLinkedIn: true, linkedinUrl:"" },
+    { id: 6, name: "Deepa Raj", title: "VP of Engineering & Technology", image: "/asset/team/deepa.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/deepa-raj-b30467121/" },
+    { id: 7, name: "Ira Prasad", title: "UX Designer", image: "/asset/team/ira.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/ira-prasad-5ba77016a/" },
+    { id: 8, name: "Lakshmi Pratap", title: "UX Designer", image: "/asset/team/lakshmi.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/lakshmi-pratap/" },
+    { id: 9, name: "Akhil Kumar", title: "Social Media Manager", image: "/asset/team/akhil.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/akhil-kumar-971a94100/" },
+    { id: 10, name: "Olivia Mary James", title: "Software Development Engineering Intern", image: "/asset/team/olivia.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/olivia-mary-james-533a98268/" },
+    { id: 11, name: "Poojitha Sharan", title: "Programs & Services Head", image: "/asset/team/poojitha.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/poojita-sharan/" },
   ];
 
   useLayoutEffect(() => {
@@ -37,18 +44,16 @@ const TeamCarousel = () => {
         const itemWidth = trackRef.current.children[0]?.offsetWidth || 360;
         const gap = parseInt(window.getComputedStyle(trackRef.current).gap) || 20;
 
-        const membersPerSlide = Math.floor(containerWidth / (itemWidth + gap));
-        const newLastIndex = teamMembers.length - membersPerSlide;
+        const membersPerView = Math.floor(containerWidth / (itemWidth + gap));
+        const newLastIndex = teamMembers.length - membersPerView;
 
-        // 👇 Update the state with real-time dimensions
-        setViewSettings({ membersPerSlide, lastIndex: newLastIndex, itemWidth, gap });
+        setViewSettings({ membersPerSlide: membersPerView, lastIndex: newLastIndex, itemWidth, gap });
 
         if (currentIndex > newLastIndex) {
           setCurrentIndex(newLastIndex < 0 ? 0 : newLastIndex);
         }
       }
     };
-
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -61,6 +66,39 @@ const TeamCarousel = () => {
   const nextSlide = () => {
     setCurrentIndex(prev => Math.min(prev + 1, viewSettings.lastIndex));
   };
+  
+  // --- NEW: Touch event handlers ---
+  const handleTouchStart = (e) => {
+    isDragging.current = true;
+    startPos.current = e.touches[0].clientX;
+    prevTranslate.current = -currentIndex * (viewSettings.itemWidth + viewSettings.gap);
+    trackRef.current.style.transition = 'none'; // Disable transition for smooth dragging
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging.current) return;
+    const currentPosition = e.touches[0].clientX;
+    currentTranslate.current = currentPosition - startPos.current;
+    const newTranslate = prevTranslate.current + currentTranslate.current;
+    trackRef.current.style.transform = `translateX(${newTranslate}px)`;
+  };
+
+  const handleTouchEnd = () => {
+    isDragging.current = false;
+    trackRef.current.style.transition = 'transform 0.5s ease'; // Re-enable transition
+
+    const swipeThreshold = viewSettings.itemWidth / 4; // User must swipe at least 25% of a card's width
+
+    if (currentTranslate.current < -swipeThreshold) {
+      nextSlide();
+    } else if (currentTranslate.current > swipeThreshold) {
+      prevSlide();
+    } else {
+      // Snap back to the original position if swipe is not enough
+      trackRef.current.style.transform = `translateX(-${currentIndex * (viewSettings.itemWidth + viewSettings.gap)}px)`;
+    }
+  };
+
 
   return (
     <section className="team-section">
@@ -76,8 +114,11 @@ const TeamCarousel = () => {
           <div
             className="team-carousel-track"
             ref={trackRef}
+            // --- ADD THESE EVENT HANDLERS ---
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             style={{
-              // 👇 Use dynamic values from state for the transform
               transform: `translateX(-${currentIndex * (viewSettings.itemWidth + viewSettings.gap)}px)`,
             }}
           >
