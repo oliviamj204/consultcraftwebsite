@@ -746,7 +746,7 @@ export const coaches = {
     Sports:"MMA",
     Experience:"3+ years",
     Location:"India",
-    CoachType:"Regular",
+    CoachType:"Super",
     thumbnail:"/asset/thumbnails/Raghavendra Singh Shekhawat.png",
     // coverImage: "/asset/supercoaches/",
     // secondImage: "/asset/supercoaches/",
@@ -862,8 +862,8 @@ export const coaches = {
     // trainWith: "Train with Jitesh to achieve your sporting dreams."// trainWith: "Train with Akshay to improve your skills and achieve your fitness goals.",
   },
 
-  adithya: {
-    name: "Adithya Raj Sharma",
+  aditya: {
+    name: "Aditya Raj Sharma",
     // Sports:"Boxing",
     // Experience:"15+ years",
     // Location:"India",

@@ -62,7 +62,7 @@ const Navbar = () => {
             <li><NavLink to="/products/sportscove" onClick={closeAllMenus}>SportsCove</NavLink></li>
             <li><NavLink to="/products/consultcove" onClick={closeAllMenus}>ConsultCove</NavLink></li>
             <li><NavLink to="/about" onClick={closeAllMenus}>About</NavLink></li>
-            <li><NavLink to="/sctribe" onClick={closeAllMenus}>Sportscove Tribe</NavLink></li>
+            <li><NavLink to="/sctribe" onClick={closeAllMenus}>SportsCove Tribe</NavLink></li>
             {/* <li><NavLink to="/insights" onClick={closeAllMenus}>Insights</NavLink></li> */}
             <li><NavLink to="/contact" onClick={closeAllMenus}>Contact</NavLink></li>
           </ul>
@@ -90,20 +90,20 @@ const Navbar = () => {
                 className="dropdown-item"
                 onClick={closeAllMenus}
               >
-                Sportscove
+                SportsCove
               </NavLink>
               <NavLink
                 to="/products/consultcove"
                 className="dropdown-item"
                 onClick={closeAllMenus}
               >
-                Consultcove
+                ConsultCove
               </NavLink>
             </div>
           )}
         </li>
 
-        <li><NavLink to="/sctribe" className="nav-link" onClick={closeAllMenus}>Sportscove Tribe</NavLink></li>
+        <li><NavLink to="/sctribe" className="nav-link" onClick={closeAllMenus}>SportsCove Tribe</NavLink></li>
         {/* <li><NavLink to="/insights" className="nav-link" onClick={closeAllMenus}>Insights</NavLink></li> */}
         <li><NavLink to="/contact" className="nav-link" onClick={closeAllMenus}>Contact</NavLink></li>
       </ul>

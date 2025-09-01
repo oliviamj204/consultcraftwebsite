@@ -33,7 +33,7 @@
 }
 
 /*=============================================
-=         Team & Our Story Sections           =
+=        Team & Our Story Sections          =
 =============================================*/
 .team-experience-section,
 .our-story-section {
@@ -86,7 +86,7 @@
 }
 
 /*=============================================
-=              Core Values Section            =
+=             Core Values Section             =
 =============================================*/
 .core-values-section {
   background-color: #f5f5f5;
@@ -103,8 +103,8 @@
 
 .core-values-grid {
   display: grid;
-  /* AUTOMATIC wrapping grid. No media query needed! */
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* CHANGED: This now creates a fixed 2-column grid on larger screens */
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
   max-width: 1100px;
   margin: 0 auto;
@@ -187,7 +187,7 @@
 }
 
 /*=============================================
-=               Mobile Overrides              =
+=              Mobile Overrides               =
 =============================================*/
 
 
@@ -206,6 +206,11 @@
 
   /* Switch Vision/Mission to a single column */
   .vision-mission-section {
+    grid-template-columns: 1fr;
+  }
+
+  /* ADDED: This stacks the core values into a single column on mobile */
+  .core-values-grid {
     grid-template-columns: 1fr;
   }
 }

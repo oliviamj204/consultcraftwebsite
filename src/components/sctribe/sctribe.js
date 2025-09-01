@@ -26,12 +26,12 @@ export default function Sctribe() {
   };
 
   const dropdowns = {
-  Sports: ["Boxing", "Kickboxing", "Kung Fu", "MMA", "Muay Thai", "Wrestling"],
-  Wellness: ["Kundalini Activation", "Meditation", "Yoga"],
-  Experience: ["10+ years", "15+ years", "2+ years", "22+ years", "3+ years", "5+ years"],
-  Locations: ["Canada", "Cyprus", "India", "Thailand", "UAE", "UK", "USA"],
-  CoachType: ["Regular", "Super"],
-};
+    Sports: ["Boxing", "Kickboxing", "Kung Fu", "MMA", "Muay Thai", "Wrestling"],
+    Wellness: ["Kundalini Activation", "Meditation", "Yoga"],
+    Experience: ["10+ years", "15+ years", "2+ years", "22+ years", "3+ years", "5+ years"],
+    Locations: ["Canada", "Cyprus", "India", "Thailand", "UAE", "UK", "USA"],
+    CoachType: ["Regular", "Super"],
+  };
 
   const toggleDropdown = (name) => {
     setOpenDropdown(openDropdown === name ? null : name);
@@ -82,6 +82,7 @@ export default function Sctribe() {
     };
 
     return (
+      coach.thumbnail && // <-- ADDED THIS LINE to only include coaches with a thumbnail
       matchesSkill() &&
       hasExperience() &&
       (!filters.Locations || coach.Location === filters.Locations) &&
