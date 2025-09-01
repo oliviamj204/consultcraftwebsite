@@ -25,7 +25,7 @@ const About = () => {
           <h2>TEAM EXPERIENCE</h2>
           <p>
             Our strength lies in our diverse, world-class team spanning continents with exceptional expertise from
-            technology, sports, and business. Our global talent includes UK-educated UX designers and experienced engineers
+            technology, sports, and business. Our global talent includes UX designers and experienced engineers
             in India, strategic guidance from prestigious XLRI and Indian Armed Forces alumni with decades of leadership
             experience, and authentic sports expertise from champions and NCAA athletes to manage our U.S. operations.
           </p>
