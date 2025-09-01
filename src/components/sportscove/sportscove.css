@@ -225,6 +225,12 @@
   .sc-feature-card {
     flex-direction: column;
   }
+  .sportscove-hero {
+    /* Resets the position to be perfectly centered on smaller screens */
+    background-position: center center;
+    background-image: url("./phonever (2).jpg");
+    
+  }
 
   .sc-feature-left,
   .sc-feature-right {
