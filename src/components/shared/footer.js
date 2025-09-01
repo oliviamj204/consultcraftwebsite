@@ -84,9 +84,6 @@ const Footer = () => {
             <li><Link to="/termscondition" onClick={() => window.scrollTo(0, 0)}>T&C</Link></li>
             <li><Link to="/privacypolicy" onClick={() => window.scrollTo(0, 0)}>Privacy Policy</Link></li>
           </ul>
-          <div className="footer-bottom">
-            ConsultCraft Inc © 2024–2025 All Rights Reserved
-          </div>
         </div>
 
         {/* Right Section */}
@@ -100,6 +97,9 @@ const Footer = () => {
             <img src="/asset/destination.png" alt="Location" className="location-icon" />
             Canada - PO Box 73553, Vancouver RPO Downtown, BC, V6E 4L9, Canada
           </p>
+          <div className="footer-bottom">
+          ConsultCraft Inc © 2024–2025 All Rights Reserved
+        </div>
         </div>
 
       </div>
