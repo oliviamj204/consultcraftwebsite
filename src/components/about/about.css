@@ -8,6 +8,7 @@
   color: white;
   min-height: 100vh;
   overflow-x: hidden;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 .about-page {

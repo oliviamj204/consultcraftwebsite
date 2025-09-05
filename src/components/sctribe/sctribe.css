@@ -3,6 +3,7 @@
   text-align: center;
   margin-top: 40px;
   margin-bottom: 35px;
+  animation: fadeIn 0.8s ease-in-out;
 }
 .sctribe-header {
   font-size: 56px;
@@ -20,7 +21,7 @@
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 .filter-wrapper {
@@ -242,5 +243,81 @@
   .see-story-btn {
     font-size: 13px;
     padding: 6px 12px;
+  }
+}
+/* === TRIBE ANTHEM VIDEO SECTION === */
+
+.tribe-anthem-section {
+  width: 100%;
+  max-width: 976px; /* Match the width of the coach cards for alignment */
+  margin: 0 auto 100px auto; /* Center it and add space below */
+  text-align: center;
+}
+
+.anthem-headline {
+  font-size: 32px;
+  color: #CFFFA5; /* Use your brand's accent color */
+  margin-bottom: 30px;
+}
+
+/* This wrapper makes the video responsive */
+.video-responsive-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  border-radius: 12px; /* Optional: adds nice rounded corners */
+  background: #111;
+}
+
+/* This rule was for the iframe, you can keep it or remove it */
+.video-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* THIS IS THE MISSING PIECE YOU NEED TO ADD */
+.video-responsive-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Prevents the video from being stretched */
+}
+.video-credits {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #888; /* Muted gray color */
+  line-height: 1.6;
+}
+
+.video-credits p {
+  margin: 0;
+}
+
+.video-credits a {
+  color: #aaa; /* Slightly brighter gray for the link */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.video-credits a:hover {
+  color: #CFFFA5; /* Use your brand accent color on hover */
+  text-decoration: underline;
+}
+
+/* Adjust headline size on smaller screens */
+@media (max-width: 768px) {
+  .anthem-headline {
+    font-size: 28px;
+  }
+  .tribe-anthem-section {
+    padding: 0 15px; /* Add some side padding on mobile */
   }
 }

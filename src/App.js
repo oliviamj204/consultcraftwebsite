@@ -12,6 +12,7 @@ import Sctribe from './components/sctribe/sctribe';
 import TermsConditions from './components/termscondition/tc';
 import PrivacyPolicy from './components/privacypolicy/pp';
 import Insights from './components/insights/insights';
+import BeACoach from './components/beacoach/beacoach';
 
 import CoachProfile from './components/coachprofile/coachprofile';
 import './App.css';
@@ -36,6 +37,7 @@ function AppContent() {
         <Route path="/termscondition" element={<TermsConditions />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/insights" element={<Insights />} />
+        <Route path="/beacoach" element={<BeACoach />} />
 
 
 

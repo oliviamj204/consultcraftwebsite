@@ -63,7 +63,8 @@ const Navbar = () => {
             <li><NavLink to="/products/consultcove" onClick={closeAllMenus}>ConsultCove</NavLink></li>
             <li><NavLink to="/about" onClick={closeAllMenus}>About</NavLink></li>
             <li><NavLink to="/sctribe" onClick={closeAllMenus}>SportsCove Tribe</NavLink></li>
-            {/* <li><NavLink to="/insights" onClick={closeAllMenus}>Insights</NavLink></li> */}
+            {/* <li><NavLink to="/insights" onClick={closeAllMenus}>Insights</NavLink></li>
+            <li><NavLink to="/beacoach" onClick={closeAllMenus}>Be A Coach</NavLink></li> */}
             <li><NavLink to="/contact" onClick={closeAllMenus}>Contact</NavLink></li>
           </ul>
         </div>
@@ -105,6 +106,7 @@ const Navbar = () => {
 
         <li><NavLink to="/sctribe" className="nav-link" onClick={closeAllMenus}>SportsCove Tribe</NavLink></li>
         {/* <li><NavLink to="/insights" className="nav-link" onClick={closeAllMenus}>Insights</NavLink></li> */}
+        {/* <li><NavLink to="/beacoach" className="nav-link" onClick={closeAllMenus}>Be A Coach</NavLink></li> */}
         <li><NavLink to="/contact" className="nav-link" onClick={closeAllMenus}>Contact</NavLink></li>
       </ul>
     </nav>

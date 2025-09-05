@@ -3,6 +3,7 @@ import "./sctribe.css";
 import { ChevronDown } from "lucide-react";
 import { coaches } from "../../data/coachdata";
 import CoachCard from "./coachcard";
+import anthemVideo from "./Every minute v.1 .mp4";
 
 export default function Sctribe() {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -59,18 +60,13 @@ export default function Sctribe() {
 
     const matchesSkill = () => {
       if (!activeSkillFilter) return true;
-
-      // New data structure check
       if (coach.skills) {
         return Object.values(coach.skills).some(
           (skill) => skill.displayName === activeSkillFilter && skill.category === activeCategory
         );
       }
-      
-      // Fallback for old data structure
       if (filters.Sports) return coach.Sports === filters.Sports;
       if (filters.Wellness) return coach.Wellness === filters.Wellness;
-      
       return false;
     };
     
@@ -82,7 +78,7 @@ export default function Sctribe() {
     };
 
     return (
-      coach.thumbnail && // <-- ADDED THIS LINE to only include coaches with a thumbnail
+      coach.thumbnail &&
       matchesSkill() &&
       hasExperience() &&
       (!filters.Locations || coach.Location === filters.Locations) &&
@@ -124,6 +120,36 @@ export default function Sctribe() {
         </button>
       </div>
 
+            {/* START: Tribe Anthem Section */}
+      <div className="tribe-anthem-section">
+        <h2 className="anthem-headline">A CHAMPION'S MINDSET</h2>
+        <div className="video-responsive-wrapper">
+          <video
+            controls
+            width="100%"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            {/* STEP 2: Use the imported variable as the source */}
+            <source src={anthemVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {/* START: Add this new credits block */}
+  <div className="video-credits">
+    <p>
+      Video and Editing Credits:{" "}
+      <a href="https://www.instagram.com/jerrowmathullah/" target="_blank" rel="noopener noreferrer">
+        Tanner Jerrow
+      </a>
+    </p>
+    <p>Location Credits: Title Boxing Club, Greenwood, Seattle</p>
+  </div>
+  {/* END: Add this new credits block */}
+      </div>
+      {/* END: Tribe Anthem Section */}
       <div className="coach-grid">
         {filteredCoaches.length > 0 ? (
           filteredCoaches.map((coach) => (
