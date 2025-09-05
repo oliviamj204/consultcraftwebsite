@@ -75,12 +75,19 @@ export default function Contact() {
           <div className="contact-info">
             <h3>Office</h3>
             <div className="info-row">
-              <img src="/asset/destination.png" alt="Location" className="icon" />
-              <p>
-                US - 4520 W Oakeller Avenue <br />
-                Tampa, FL 33611 Suite #13348
-              </p>
-            </div>
+  <img src="/asset/destination.png" alt="Location" className="icon" />
+  {/* ---- START: UPDATED STRUCTURE ---- */}
+  <div className="contact-address-details">
+    <span className="contact-address-main">
+      US - 4520 W Oakeller Avenue<br />
+      Tampa, FL 33611
+    </span>
+    <span className="contact-address-suite">
+      Suite #13348
+    </span>
+  </div>
+  {/* ---- END: UPDATED STRUCTURE ---- */}
+</div>
             <div className="info-row">
               <img src="/asset/destination.png" alt="Location" className="icon" />
               <p>

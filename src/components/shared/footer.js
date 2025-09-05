@@ -93,11 +93,8 @@ const Footer = () => {
   <img src="/asset/destination.png" alt="Location" className="location-icon" />
   {/* ---- START: UPDATED STRUCTURE ---- */}
   <span className="address-main">
-    US - 4520 W Oakeller Avenue<br />
+    US - 4520 W Oakeller Avenue, Suite #13348<br />
     Tampa, FL 33611
-  </span>
-  <span className="address-suite">
-    Suite #13348
   </span>
   {/* ---- END: UPDATED STRUCTURE ---- */}
 </p>

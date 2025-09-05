@@ -223,6 +223,7 @@
 .address-suite {
   flex-shrink: 0; /* Prevents the suite number from being squished */
   white-space: nowrap; /* Ensures "Suite #13348" never breaks into two lines */
+  margin-right: 70px;
 }
 
 .location-icon {

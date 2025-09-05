@@ -92,12 +92,24 @@
   font-size: 16px;
   font-weight: bold;
 }
+/* Change 'center' to 'flex-start' for better vertical alignment */
 .info-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Changed from 'center' */
   gap: 0.75rem;
+  font-size: 16px;
+  color: #ccc;
   margin-bottom: 1.25rem;
   line-height: 1.4;
+}
+
+/* Remove the incorrect flex properties from the <p> tag style */
+.contact-info p {
+  line-height: 1.4;
+  font-size: 16px;
+  color: #ccc;
+  margin: 6px 0;
+  /* The 'display: flex' and related properties have been removed from here */
 }
 
 .icon {
@@ -109,7 +121,7 @@
 
 
 
-.contact-info p {
+/* .contact-info p {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
@@ -117,9 +129,26 @@
   font-size: 16px;
   color: #ccc;
   margin: 6px 0;
+} */
+
+/* Add these new rules for the address layout */
+.contact-address-details {
+  display: flex;
+  flex-wrap: wrap; /* Allows suite to wrap cleanly if needed */
+  flex-grow: 1;
+  align-items: baseline; /* Aligns text nicely */
+  gap: 0 8px; /* Adds a small horizontal gap */
 }
 
+.contact-address-main {
+  flex-grow: 1;
+}
 
+.contact-address-suite {
+  flex-shrink: 0;
+  white-space: nowrap; /* Prevents the suite number from breaking */
+  margin-right: 170px;
+}
 /* Right Side Form */
 .contactform-right {
   margin-top: 50px;
