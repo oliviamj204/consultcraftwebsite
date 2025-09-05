@@ -123,6 +123,7 @@ export default function Sctribe() {
             {/* START: Tribe Anthem Section */}
       <div className="tribe-anthem-section">
         <h2 className="anthem-headline">A CHAMPION'S MINDSET</h2>
+        <p className="anthem-attribution">— Tanner Smith, VP SportsCove</p>
         <div className="video-responsive-wrapper">
           <video
             controls

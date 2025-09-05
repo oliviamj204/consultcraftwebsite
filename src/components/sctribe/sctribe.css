@@ -259,6 +259,14 @@
   color: #CFFFA5; /* Use your brand's accent color */
   margin-bottom: 30px;
 }
+.anthem-attribution {
+  color: #d1d5db; /* Light gray, easy to read */
+  text-align: center;
+  font-style: italic;
+  font-size: 1rem;
+  margin-top: -15px;  /* Pulls it closer to the headline */
+  margin-bottom: 25px; /* Adds space above the video */
+}
 
 /* This wrapper makes the video responsive */
 .video-responsive-wrapper {
