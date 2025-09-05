@@ -90,19 +90,27 @@ const Footer = () => {
         <div className="footer-section right">
           <h3 className="footer-heading">Mailing Address</h3>
           <p className="footer-address">
-            <img src="/asset/destination.png" alt="Location" className="location-icon" />
-            US - 4520 W Oakeller Avenue Tampa, FL 33611 Suite #13348
-          </p>
+  <img src="/asset/destination.png" alt="Location" className="location-icon" />
+  {/* ---- START: UPDATED STRUCTURE ---- */}
+  <span className="address-main">
+    US - 4520 W Oakeller Avenue<br />
+    Tampa, FL 33611
+  </span>
+  <span className="address-suite">
+    Suite #13348
+  </span>
+  {/* ---- END: UPDATED STRUCTURE ---- */}
+</p>
           <p className="footer-address">
             <img src="/asset/destination.png" alt="Location" className="location-icon" />
             Canada - PO Box 73553, Vancouver RPO Downtown, BC, V6E 4L9, Canada
           </p>
-          <div className="footer-bottom">
-          ConsultCraft Inc © 2024–2025 All Rights Reserved
-        </div>
         </div>
 
       </div>
+          <div className="footer-bottom">
+      ConsultCraft Inc © 2024–2025 All Rights Reserved
+    </div>
     </footer>
   );
 };

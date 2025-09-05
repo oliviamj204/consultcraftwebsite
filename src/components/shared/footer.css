@@ -215,6 +215,15 @@
   margin-bottom: 1.25rem;
   line-height: 1.4;
 }
+/* Add these new rules to footer.css */
+.address-main {
+  flex-grow: 1; /* Allows the main address to take up available space */
+}
+
+.address-suite {
+  flex-shrink: 0; /* Prevents the suite number from being squished */
+  white-space: nowrap; /* Ensures "Suite #13348" never breaks into two lines */
+}
 
 .location-icon {
   width: 20px;
