@@ -1,6 +1,6 @@
 .coach-card {
   width: 976px;
-  max-width: 100%; /* ensures it doesn’t overflow on smaller screens */
+  max-width: 100%; /* ensures it doesn't overflow on smaller screens */
   height: 378px;
   background: transparent;
   display: flex;
@@ -127,13 +127,22 @@
 
   .coach-image {
     width: 100%;
-    /* --- FIX --- */
-    /* 1. Removed the fixed 'height: 200px' */
-    /* 2. Added a responsive aspect-ratio */
+    /* OPTION 1: Remove clip-path completely for clean rectangle */
     aspect-ratio: 16 / 10;
-    object-fit: cover; /* Ensures image content fills the shape */
-    /* 3. Added clip-path for the slanted/skewed effect */
-    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
+    object-fit: cover;
+    border-radius: 8px; /* Optional: adds rounded corners */
+    
+    /* OPTION 2: If you want to keep the slant but less aggressive, use this instead:
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+    */
+    
+    /* OPTION 3: Different slant direction:
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    clip-path: polygon(0 0, 100% 5%, 100% 100%, 0% 95%);
+    */
   }
 
   .coach-info {
@@ -157,16 +166,21 @@
   }
 }
 
-
 /* Small phones ≤480px */
 @media (max-width: 480px) {
   .coach-card {
     gap: 10px;
     padding: 8px;
   }
+  
   .coach-image {
-    height: 160px;
+    /* Make sure the image sizing is consistent on small phones too */
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 8px;
+    /* Remove any clip-path here too if using Option 1 */
   }
+  
   .coach-name {
     font-size: 20px;
   }
