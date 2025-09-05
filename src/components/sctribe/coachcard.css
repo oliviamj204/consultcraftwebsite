@@ -116,31 +116,47 @@
 /* Mobile ≤768px */
 @media (max-width: 768px) {
   .coach-card {
-    flex-direction: column; /* stack image on top */
-    height: auto;
-    gap: 15px;
-    padding: 10px;
+    flex-direction: column;   /* Stacks image on top of info */
+    height: auto;             /* Allows the card to grow vertically */
+    gap: 20px;                /* Adjusts space between image and info */
+    padding-bottom: 20px;     /* Adds some space at the bottom */
+    /* Removes styles that don't match the desired mobile look */
+    border: none;
+    box-shadow: none;
   }
+
   .coach-image {
     width: 100%;
-    height: 200px;
+    /* --- FIX --- */
+    /* 1. Removed the fixed 'height: 200px' */
+    /* 2. Added a responsive aspect-ratio */
+    aspect-ratio: 16 / 10;
+    object-fit: cover; /* Ensures image content fills the shape */
+    /* 3. Added clip-path for the slanted/skewed effect */
+    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
   }
+
   .coach-info {
-    padding: 10px 5px;
+    padding: 0 10px;
+    gap: 15px; /* Adds space between the tags, name, and button */
   }
+
   .coach-name {
     font-size: 22px;
   }
-  .coach-meta span {
+
+  .coach-meta span, .coach-meta a {
     font-size: 12px;
-    padding: 2px 6px;
+    padding: 4px 12px; /* Adjusted padding for better pill shape */
   }
+
   .see-story-btn {
-    width: 140px;
-    height: 40px;
-    font-size: 13px;
+    width: 156px;
+    height: 44px;
+    font-size: 14px;
   }
 }
+
 
 /* Small phones ≤480px */
 @media (max-width: 480px) {
