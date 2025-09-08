@@ -139,15 +139,12 @@ export default function Sctribe() {
           </video>
         </div>
         {/* START: Add this new credits block */}
-  <div className="video-credits">
+<div class="video-credits">
     <p>
-      Video and Editing Credits:{" "}
-      <a href="https://www.instagram.com/jerrowmathullah/" target="_blank" rel="noopener noreferrer">
-        Tanner Jerrow
-      </a>
-    </p>
-    <p>Location Credits: Title Boxing Club, Greenwood, Seattle</p>
-  </div>
+    Video: Tanner Smith, Edit: <a href="https://www.instagram.com/jerrowmathullah/" target="_blank" rel="noopener noreferrer">Jerrow</a>
+  </p>
+  <p>Location Credits: Title Boxing Club, Greenwood, Seattle</p>
+</div>
   {/* END: Add this new credits block */}
       </div>
       {/* END: Tribe Anthem Section */}
