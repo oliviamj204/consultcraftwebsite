@@ -109,26 +109,7 @@
   color: #555;
 }
 
-/* ====== Features Section (Middle) ====== */
-
-
-.feature h2 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.more-link {
-  font-size: 14px;
-  color: #007bff;
-  text-decoration: none;
-}
 /* ====== Features Section (Middle Blog Layout) ====== */
-
-/* This is the main container for the middle column */
 .feature-section {
   display: flex;
   flex-direction: column;
@@ -144,7 +125,12 @@
   align-items: center;
 }
 
-/* NEW: This is the card for each individual blog post */
+.more-link {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
 .feature-article-card {
   display: flex; /* Aligns image and text side-by-side */
   gap: 20px;
@@ -153,9 +139,20 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   overflow: hidden;
   border: 1px solid #eee;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* The image on the left side of the card */
+.feature-article-card.no-image {
+  display: block; /* Stack content vertically */
+  gap: 0;
+}
+
+.feature-article-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
 .feature-article-img {
   width: 250px; /* Fixed width for the image */
   height: auto;
@@ -163,11 +160,13 @@
   flex-shrink: 0; /* Prevents the image from shrinking */
 }
 
-/* The text content on the right side of the card */
 .feature-article-content {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  min-width: 0; /* Prevents flex item from growing beyond container */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .feature-article-tag {
@@ -185,6 +184,16 @@
   font-size: 20px;
   font-weight: 700;
   margin: 0 0 8px 0;
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .feature-article-content p {
@@ -192,6 +201,15 @@
   color: #444;
   line-height: 1.6;
   flex-grow: 1; /* Pushes the "Read More" link to the bottom */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .feature-article-read-more {
@@ -200,10 +218,13 @@
   color: #007bff;
   text-decoration: none;
   align-self: flex-end; /* Pushes link to the far right */
+  margin-top: 10px;
+  transition: color 0.2s ease;
 }
 
-
-
+.feature-article-read-more:hover {
+  color: #0056b3;
+}
 
 .read-more {
   font-size: 14px;
@@ -213,7 +234,6 @@
   margin-left: 10px;
 }
 
-
 /* ====== Updates Sidebar (Right) ====== */
 .updates-sidebar h3 {
   font-size: 16px;
@@ -221,48 +241,19 @@
   margin-bottom: 12px;
 }
 
-.update-card {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding-bottom: 10px;
-}
-
-.update-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.update-card h4 {
-  font-size: 14px;
-  font-weight: bold;
-  margin: 8px 10px 4px;
-}
-
-.update-card p {
-  font-size: 13px;
-  margin: 0 10px 6px;
-  color: #333;
-}
-
-.update-card .time {
-  display: block;
-  font-size: 12px;
-  color: #888;
-  margin: 0 10px;
-}
 .sports-bottom-container {
-  padding: 20px;
+  padding: 2rem 5%; /* Use percentage for responsive padding */
+  background-color: #fff;
+  color: #000;
   font-family: Arial, sans-serif;
 }
 
 .section-title {
-  font-size: 18px;
+  font-size: 1.5rem;
   font-weight: 700;
   margin: 15px 0;
+  margin-bottom: 1.5rem;
+  color: #333;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -365,134 +356,11 @@
 
 /* Tribe Scores */
 .scores-grid {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.score-card {
-  flex: 1;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  padding: 12px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.match-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-  font-weight: 600;
-}
-
-.match-header img {
-  width: 20px;
-  height: 20px;
-  margin-right: 6px;
-}
-
-.match-footer {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #555;
-  display: flex;
-  justify-content: space-between;
-}
-
-/* Accomplishments */
-.accomplishment-grid {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.accomplishment-card {
-  flex: 1;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #000;
-  color: #fff;
-  font-size: 13px;
-}
-
-.accomplishment-card img {
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-}
-
-.accomplishment-card p {
-  padding: 8px;
-}
-
-/* Latest News */
-.news-grid {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.news-card {
-  flex: 1;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.news-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.news-card p {
-  padding: 10px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.news-meta {
-  padding: 0 10px 10px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: #666;
-}
-
-.news-link {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.news-link:hover {
-  text-decoration: underline;
-}
-/* Add this to your existing insights.css file */
-
-.sports-bottom-container {
-  padding: 2rem 5%; /* Use percentage for responsive padding */
-  background-color: #fff;
-  color: #000;
-}
-
-.section-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  color: #333;
-}
-
-/* Scores Grid Styling */
-.scores-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
   max-height: none;
+  margin-bottom: 25px;
 }
 
 .score-card {
@@ -514,6 +382,7 @@
   align-items: center;
   margin-bottom: 0.5rem;
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .team {
@@ -526,6 +395,7 @@
 .team img {
   width: 24px;
   height: 24px;
+  margin-right: 6px;
 }
 
 .score {
@@ -554,23 +424,87 @@
   gap: 1rem;
 }
 
-.accomplishment-card, .news-card {
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  color: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.accomplishment-grid {
+  display: flex; /* Use flexbox for horizontal arrangement */
+  gap: 1rem;
+  overflow-x: auto; /* Allow horizontal scrolling if cards exceed width */
+  padding-bottom: 10px; /* Add some padding for scrollbar */
+  scroll-snap-type: x mandatory; /* Optional: for smoother scrolling experience */
 }
 
-.accomplishment-card img, .news-card img {
+
+.news-grid {
+  margin-bottom: 20px;
+}
+
+.news-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.news-card.no-image {
+  padding: 20px;
+}
+
+.news-card.no-image .news-content {
+  padding: 0;
+}
+
+.news-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.news-meta {
+  padding: 0 10px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.news-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.news-link:hover {
+  text-decoration: underline;
+}
+
+/* =================================================================== */
+/* STYLES FOR ACCOMPLISHMENT CAROUSEL */
+/* =================================================================== */
+
+.accomplishment-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: start;
+  width: 400px;  /* Fixed width for the card */
+  height: 400px; /* Fixed height for the card */
+  flex-shrink: 0; /* Prevent it from shrinking in a flex container */
+}
+
+.accomplishment-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
   filter: brightness(0.6);
+  transition: opacity 0.5s ease-in-out;
 }
 
-.accomplishment-card p, .news-card p {
+.accomplishment-card p {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -579,4 +513,141 @@
   margin: 0;
   font-weight: 500;
   background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  z-index: 5;
+}
+
+
+/* =================================================================== */
+/* STYLES FOR UPDATE CARD CAROUSEL (RIGHT SIDEBAR) */
+/* =================================================================== */
+
+.update-card {
+  position: relative;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  height: 350px; 
+}
+
+.update-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.6);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.update-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  z-index: 5;
+  color: #fff;
+}
+
+.update-card h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 4px 0;
+}
+
+.update-card p {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  color: #eee;
+}
+
+.update-card .time {
+  display: block;
+  font-size: 12px;
+  color: #bbb;
+  margin: 0;
+  font-weight: bold;
+}
+
+.update-card .carousel-dots {
+  bottom: 110px;
+}
+
+
+/* =================================================================== */
+/* SHARED STYLES FOR ALL CAROUSELS */
+/* =================================================================== */
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+.carousel-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+/* Default position for accomplishment card */
+.accomplishment-card .carousel-dots {
+    bottom: 80px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: white;
+}
+
+/* Ensure the description is still visible on top */
+.accomplishment-card p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  margin: 0;
+  font-weight: 500;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  z-index: 5; /* Lower z-index than buttons/dots */
 }
