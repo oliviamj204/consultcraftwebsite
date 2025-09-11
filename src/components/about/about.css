@@ -44,7 +44,7 @@
   justify-content: center;
   /* Fluid padding and gap */
   padding: clamp(60px, 8vw, 80px) clamp(20px, 5vw, 40px);
-  gap: clamp(40px, 6vw, 100px);
+  gap: clamp(30px, 6vw, 50px);
   background-color: white;
   color: black;
 }
