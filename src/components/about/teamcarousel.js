@@ -31,7 +31,7 @@ const TeamCarousel = () => {
     { id: 8, name: "Lakshmi Pratap", title: "UX Designer", image: "/asset/team/lakshmi.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/lakshmi-pratap/" },
     { id: 9, name: "Akhil Kumar", title: "Social Media Manager", image: "/asset/team/akhil.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/akhil-kumar-971a94100/" },
     { id: 10, name: "Olivia Mary James", title: "Software Development Engineering Intern", image: "/asset/team/olivia.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/olivia-mary-james-533a98268/" },
-    { id: 11, name: "Poojitha Sharan", title: "Programs & Services Head", image: "/asset/team/poojitha.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/poojita-sharan/" },
+    { id: 11, name: "Poojita Sharan", title: "Programs & Services Head", image: "/asset/team/poojitha.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/poojita-sharan/" },
   ];
 
   useLayoutEffect(() => {

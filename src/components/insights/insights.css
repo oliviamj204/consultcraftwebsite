@@ -113,7 +113,7 @@
 .feature-section {
   display: flex;
   flex-direction: column;
-  gap: 24px; /* Space between the articles */
+  gap: 24px;
 }
 
 .feature-section h2 {
@@ -132,7 +132,7 @@
 }
 
 .feature-article-card {
-  display: flex; /* Aligns image and text side-by-side */
+  display: flex;
   gap: 20px;
   background: #fff;
   border-radius: 12px;
@@ -144,7 +144,7 @@
 }
 
 .feature-article-card.no-image {
-  display: block; /* Stack content vertically */
+  display: block;
   gap: 0;
 }
 
@@ -154,17 +154,17 @@
 }
 
 .feature-article-img {
-  width: 250px; /* Fixed width for the image */
+  width: 250px;
   height: auto;
   object-fit: cover;
-  flex-shrink: 0; /* Prevents the image from shrinking */
+  flex-shrink: 0;
 }
 
 .feature-article-content {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  min-width: 0; /* Prevents flex item from growing beyond container */
+  min-width: 0;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -176,7 +176,7 @@
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 6px;
-  align-self: flex-start; /* Makes tag only as wide as its content */
+  align-self: flex-start;
   margin-bottom: 12px;
 }
 
@@ -200,7 +200,7 @@
   font-size: 15px;
   color: #444;
   line-height: 1.6;
-  flex-grow: 1; /* Pushes the "Read More" link to the bottom */
+  flex-grow: 1;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -217,21 +217,13 @@
   font-weight: 600;
   color: #007bff;
   text-decoration: none;
-  align-self: flex-end; /* Pushes link to the far right */
+  align-self: flex-end;
   margin-top: 10px;
   transition: color 0.2s ease;
 }
 
 .feature-article-read-more:hover {
   color: #0056b3;
-}
-
-.read-more {
-  font-size: 14px;
-  color: #00aaff;
-  text-decoration: none;
-  font-weight: bold;
-  margin-left: 10px;
 }
 
 /* ====== Updates Sidebar (Right) ====== */
@@ -242,7 +234,7 @@
 }
 
 .sports-bottom-container {
-  padding: 2rem 5%; /* Use percentage for responsive padding */
+  padding: 2rem 5%;
   background-color: #fff;
   color: #000;
   font-family: Arial, sans-serif;
@@ -299,184 +291,41 @@
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-.news-count {
-  font-size: 14px;
-  color: #666;
-  font-weight: normal;
-}
-
-.news-content {
-  padding: 10px;
-}
-
-.news-category {
-  background: #007bff;
-  color: white;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 8px;
-  display: inline-block;
-}
-
-.news-category.premium {
-  background: #28a745;
-  position: relative;
-}
-
-.news-category.premium::after {
-  content: "⭐";
-  margin-left: 4px;
-}
-
-.news-source {
-  font-size: 10px;
-  color: #888;
-  font-weight: normal;
-  text-transform: none;
-  display: block;
-  margin-top: 2px;
-}
-
-.news-card h4 {
-  margin: 0 0 8px 0;
-  font-size: 14px;
-  line-height: 1.3;
-}
-
-.news-card p {
-  margin: 0 0 10px 0;
-  font-size: 12px;
-  color: #555;
-  line-height: 1.4;
-  padding: 0;
-}
+.news-count { font-size: 14px; color: #666; font-weight: normal; }
+.news-content { padding: 10px; }
+.news-category { background: #007bff; color: white; font-size: 10px; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; font-weight: 600; margin-bottom: 8px; display: inline-block; }
+.news-category.premium { background: #28a745; position: relative; }
+.news-category.premium::after { content: "⭐"; margin-left: 4px; }
+.news-source { font-size: 10px; color: #888; font-weight: normal; text-transform: none; display: block; margin-top: 2px; }
+.news-card h4 { margin: 0 0 8px 0; font-size: 14px; line-height: 1.3; }
+.news-card p { margin: 0 0 10px 0; font-size: 12px; color: #555; line-height: 1.4; padding: 0; }
 
 /* Tribe Scores */
-.scores-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  max-height: none;
-  margin-bottom: 25px;
-}
-
-.score-card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.score-card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.match-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.team {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
-}
-
-.team img {
-  width: 24px;
-  height: 24px;
-  margin-right: 6px;
-}
-
-.score {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.match-footer {
-  margin-top: 1rem;
-  border-top: 1px solid #e0e0e0;
-  padding-top: 0.5rem;
-  font-size: 0.8rem;
-  color: #666;
-  display: flex;
-  justify-content: space-between;
-}
+.scores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; max-height: none; margin-bottom: 25px; }
+.score-card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem; background-color: #f9f9f9; transition: transform 0.2s, box-shadow 0.2s; }
+.score-card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.match-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 1rem; font-weight: 600; }
+.team { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
+.team img { width: 24px; height: 24px; margin-right: 6px; }
+.score { font-weight: bold; font-size: 1.1rem; }
+.match-footer { margin-top: 1rem; border-top: 1px solid #e0e0e0; padding-top: 0.5rem; font-size: 0.8rem; color: #666; display: flex; justify-content: space-between; }
 
 /* Accomplishments & News Grid Styling */
-.accomplishments, .latest-news {
-  margin-top: 3rem;
-}
+.accomplishments, .latest-news { margin-top: 3rem; }
 
-.accomplishment-grid, .news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-}
-
+/* MODIFIED: Removed flex and scroll properties to allow react-slick to control the layout */
 .accomplishment-grid {
-  display: flex; /* Use flexbox for horizontal arrangement */
-  gap: 1rem;
-  overflow-x: auto; /* Allow horizontal scrolling if cards exceed width */
-  padding-bottom: 10px; /* Add some padding for scrollbar */
-  scroll-snap-type: x mandatory; /* Optional: for smoother scrolling experience */
+    position: relative; /* Keep for positioning arrows/dots */
 }
 
-
-.news-grid {
-  margin-bottom: 20px;
-}
-
-.news-card {
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.news-card.no-image {
-  padding: 20px;
-}
-
-.news-card.no-image .news-content {
-  padding: 0;
-}
-
-.news-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  display: block;
-}
-
-.news-meta {
-  padding: 0 10px 10px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: #666;
-}
-
-.news-link {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.news-link:hover {
-  text-decoration: underline;
-}
+.news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 20px; }
+.news-card { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.news-card.no-image { padding: 20px; }
+.news-card.no-image .news-content { padding: 0; }
+.news-card img { width: 100%; height: 150px; object-fit: cover; display: block; }
+.news-meta { padding: 0 10px 10px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #666; }
+.news-link { color: #007bff; text-decoration: none; font-weight: 500; }
+.news-link:hover { text-decoration: underline; }
 
 /* =================================================================== */
 /* STYLES FOR ACCOMPLISHMENT CAROUSEL */
@@ -490,10 +339,9 @@
   color: #fff;
   font-size: 13px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  scroll-snap-align: start;
-  width: 400px;  /* Fixed width for the card */
-  height: 400px; /* Fixed height for the card */
-  flex-shrink: 0; /* Prevent it from shrinking in a flex container */
+  width: 100%;  /* Let the slider control the width */
+  height: 400px;
+  flex-shrink: 0;
 }
 
 .accomplishment-card img {
@@ -521,15 +369,19 @@
 /* STYLES FOR UPDATE CARD CAROUSEL (RIGHT SIDEBAR) */
 /* =================================================================== */
 
+/* The slider will add a wrapper, so we target the card inside it */
+.updates-sidebar .slick-slide > div {
+    padding: 0 5px; /* Add some horizontal spacing between slides if needed */
+}
+
 .update-card {
   position: relative;
   background: #000;
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   width: 100%;
-  height: 350px; 
+  height: 350px;
 }
 
 .update-card img {
@@ -552,35 +404,15 @@
   color: #fff;
 }
 
-.update-card h4 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0 0 4px 0;
-}
-
-.update-card p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-  color: #eee;
-}
-
-.update-card .time {
-  display: block;
-  font-size: 12px;
-  color: #bbb;
-  margin: 0;
-  font-weight: bold;
-}
-
-.update-card .carousel-dots {
-  bottom: 110px;
-}
+.update-card h4 { font-size: 16px; font-weight: bold; margin: 0 0 4px 0; }
+.update-card p { font-size: 14px; margin: 0 0 8px 0; color: #eee; }
+.update-card .time { display: block; font-size: 12px; color: #bbb; margin: 0; font-weight: bold; }
+.update-card .carousel-dots { bottom: 110px; }
 
 
 /* =================================================================== */
 /* SHARED STYLES FOR ALL CAROUSELS */
 /* =================================================================== */
-
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -599,29 +431,24 @@
   align-items: center;
   justify-content: center;
 }
-
-.carousel-btn:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.carousel-btn.prev {
-  left: 10px;
-}
-
-.carousel-btn.next {
-  right: 10px;
-}
+.carousel-btn:hover { background-color: rgba(0, 0, 0, 0.7); }
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
 
 .carousel-dots {
   position: absolute;
+  bottom: 10px; /* A more generic bottom position */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
   z-index: 10;
+  margin: 0;
+  padding: 0;
+  list-style: none; /* remove default list bullets */
 }
 
-/* Default position for accomplishment card */
+/* Specific position for accomplishment card */
 .accomplishment-card .carousel-dots {
     bottom: 80px;
 }
@@ -635,19 +462,33 @@
   transition: background-color 0.3s;
 }
 
-.dot.active {
+/* MODIFIED: This selector correctly targets the active dot rendered by react-slick */
+.carousel-dots .slick-active .dot {
   background-color: white;
 }
 
-/* Ensure the description is still visible on top */
-.accomplishment-card p {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  margin: 0;
-  font-weight: 500;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  z-index: 5; /* Lower z-index than buttons/dots */
+/* =================================================================== */
+/* RESPONSIVE STYLES */
+/* =================================================================== */
+
+@media (max-width: 1024px) {
+  .main-container { grid-template-columns: 1fr; }
+  .events-sidebar, .updates-sidebar { margin-bottom: 20px; }
+  .feature-article-img { width: 200px; }
+}
+
+@media (max-width: 768px) {
+  .header h1 { font-size: 32px; }
+  .header p { font-size: 16px; }
+  .feature-section h2 { font-size: 20px; }
+  .main-container { padding: 10px; gap: 15px; }
+  .sports-filter { padding: 10px; justify-content: center; }
+  .feature-article-card { flex-direction: column; }
+  .feature-article-img { width: 100%; height: 180px; }
+  .feature-article-content { padding: 15px; }
+  .feature-article-content h3 { font-size: 18px; }
+  .feature-article-content p { font-size: 14px; -webkit-line-clamp: 4; line-clamp: 4; }
+  .accomplishment-card { width: 100%; height: 300px; }
+  .update-card { height: 300px; }
+  .section-title { font-size: 1.25rem; }
 }
