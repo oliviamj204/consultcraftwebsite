@@ -77,19 +77,19 @@
 
 /* Add this CSS anywhere in your contact.css file */
 
-.info-grid {
-  display: flex; /* Arranges children side-by-side */
-  gap: 20px;     /* Adds space between the columns */
-  margin-top: 20px; /* Adds some space above this section */
-}
+/* .info-grid {
+  display: flex; 
+  gap: 20px;     
+  margin-top: 20px; 
+} */
 
-.info-column {
-  flex: 1; /* Makes each column take up equal space */
-}
+/* .info-column {
+  flex: 1; 
+} */
 
 .contact-info h3 {
   margin: 16px 0 8px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
 }
 /* Change 'center' to 'flex-start' for better vertical alignment */
@@ -99,7 +99,7 @@
   gap: 0.75rem;
   font-size: 16px;
   color: #ccc;
-  margin-bottom: 1.25rem;
+  /* margin-bottom: 1.25rem; */
   line-height: 1.4;
 }
 
@@ -231,6 +231,7 @@
   .contactform-left,
   .contactform-right {
     width: 100%;
+    margin-top: 0%;
   }
 }
 
@@ -265,8 +266,8 @@
   .contactform-left h2 {
     font-size: 20px;
   }
-  .contact-info p {
-    font-size: 14px;
+  .contact-info {
+    font-size: 10px;
   }
   .contact-form input,
   .contact-form textarea {

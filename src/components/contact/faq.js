@@ -10,30 +10,25 @@ const faqs = [
   {
     question: "Where is ConsultCraft Inc. headquartered and conducting operations?",
     answer:
-      "ConsultCraft Inc. is headquartered in Vancouver, BC, Canada. Our team is located remotely across North America and India (for 2024-2025), and we are the process of expanding presence in India with a 100% owned subsidiary entity, owned and managed by the parent company - ConsultCraft Inc. in Canada. More regions will be added as we expand."
+      "ConsultCraft Inc. is a global tech company building innovative web and mobile platforms that connect people in sports and business. Founded in 2024 in Vancouver, Canada with operations in India under the name Anviga Pvt Ltd and the U.S. as ConsultCraftInc. Our key products–SportsCove© and ConsultCove©–empower talent discovery and expert consulting. We leverage technology to bridge digital divides and drive meaningful global impact."
   },    
-  {
-    question: "What is ConsultCove?",
-    answer:
-      "ConsultCove is a multi-dimensional app designed to revolutionize the way entrepreneurs, business owners (SMB) and enterprises connect and collaborate with a decentralized global talent pool. It bridges the gap between demand and supply in the consulting ecosystem, fostering an environment where ideas can flourish and businesses can thrive."
-  },
-  {
-    question: "How does the matching algorithm in ConsultCove work?",
-    answer:
-      "ConsultCove's matching algorithm considers various criteria, including skills, experience, and project requirements, geographies, data restrictions, to seamlessly connect consultants and requesters for optimal collaboration."
-  },
-  {
-    question: "What are the key features of ConsultCove?",
-    answer:
-      "Key features of ConsultCove include a seamless user onboarding process, robust profile verification, a sophisticated matching algorithm, project collaboration tools, payment and contract management, feedback and review systems, and comprehensive customer support."
-  },
+  // {
+  //   question: "How does the matching algorithm in ConsultCove work?",
+  //   answer:
+  //     "ConsultCove's matching algorithm considers various criteria, including skills, experience, and project requirements, geographies, data restrictions, to seamlessly connect consultants and requesters for optimal collaboration."
+  // },
+  // {
+  //   question: "What are the key features of ConsultCove?",
+  //   answer:
+  //     "Key features of ConsultCove include a seamless user onboarding process, robust profile verification, a sophisticated matching algorithm, project collaboration tools, payment and contract management, feedback and review systems, and comprehensive customer support."
+  // },
   {
     question: "What is SportsCove?",
     answer:
-      "SportsCove is an app that connects a global community of sports enthusiasts, personal trainers, and fitness professionals, allowing them to barter knowledge, scout talent, and create business opportunities."
+      "SportsCove is an app that connects a global community of sports enthusiasts, coaches, and fitness professionals, allowing them to barter knowledge, scout talent, and create business opportunities."
   },
   {
-    question: "How can personal trainers benefit from SportsCove?",
+    question: "How can personal coaches benefit from SportsCove?",
     answer:
       "Personal trainers can connect with clients from smaller cities worldwide, offering virtual training sessions and expanding their client base beyond geographical limitation"
   },
@@ -41,6 +36,11 @@ const faqs = [
     question: "What are the main features of SportsCove?",
     answer:
       "SportsCove includes features such as virtual training sessions, talent scouting, recruitment opportunities, and community-building tools to enhance the sports and fitness experience."
+  },
+  {
+    question: "What is ConsultCove?",
+    answer:
+      "ConsultCove is a multi-dimensional app designed to revolutionize the way entrepreneurs, business owners (SMB) and enterprises connect and collaborate with a decentralized global talent pool. It bridges the gap between demand and supply in the consulting ecosystem, fostering an environment where ideas can flourish and businesses can thrive."
   },
   {
     question: "How does ConsultCraft Inc. ensure data security and user privacy?",

@@ -60,7 +60,7 @@ const TestimonialsTicker = () => {
 
   return (
     <section className="testimonials-section">
-      <h2 className="testimonials-title">WHAT OUR USERS ARE SAYING</h2>
+      <h2 className="testimonials-title">HEAR FROM OUR BETA USERS</h2>
       <div className="ticker-wrapper">
         <div
           className={`ticker ${paused ? 'paused' : ''}`}

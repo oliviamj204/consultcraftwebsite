@@ -4,25 +4,30 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./insights.css";
 
-// Custom Arrow component for the carousel to match your CSS
-function NextArrow(props) {
-  const { onClick } = props;
-  return (
-    <button className="carousel-btn next" onClick={onClick}>
-      &rarr;
-    </button>
-  );
-}
+// <-- MOVED HELPER FUNCTION AND CONSTANT OUTSIDE THE COMPONENT -->
+// This resolves the ESLint dependency warning because the function is now stable
+// and doesn't get redefined on every component render.
+const MIX_CATEGORIES = [
+  'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai', 'Cricket'
+];
 
-// Custom Arrow component for the carousel to match your CSS
-function PrevArrow(props) {
-  const { onClick } = props;
-  return (
-    <button className="carousel-btn prev" onClick={onClick}>
-      &larr;
-    </button>
-  );
-}
+const getMixedAllSportsNews = (newsArray, maxItems) => {
+  const pools = MIX_CATEGORIES.map(cat => newsArray.filter(n => n.category === cat));
+  const result = [];
+  let anyLeft = true;
+  while (anyLeft && (maxItems ? result.length < maxItems : true)) {
+    anyLeft = false;
+    for (let i = 0; i < pools.length; i++) {
+      if (maxItems && result.length >= maxItems) break;
+      const pool = pools[i];
+      if (pool.length > 0) {
+        result.push(pool.shift());
+        anyLeft = true;
+      }
+    }
+  }
+  return result;
+};
 
 
 export default function Insights() {
@@ -41,7 +46,7 @@ export default function Insights() {
   const [newsError, setNewsError] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All Sports');
 
-  // Carousel settings object that uses your custom arrow components and dot styles
+  // Carousel settings now apply to BOTH carousels
   const carouselSettings = {
     dots: true,
     infinite: true,
@@ -49,16 +54,13 @@ export default function Insights() {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    // This function tells the slider how to render the dots container
+    autoplaySpeed: 1500,
+    arrows: false,
     appendDots: dots => (
       <div>
         <ul className="carousel-dots">{dots}</ul>
       </div>
     ),
-    // This function tells the slider what to render for each individual dot
     customPaging: i => (
       <div className="dot"></div>
     )
@@ -73,27 +75,7 @@ export default function Insights() {
     });
   };
 
-  const MIX_CATEGORIES = [
-    'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai', 'Cricket'
-  ];
-
-  const getMixedAllSportsNews = (newsArray, maxItems) => {
-    const pools = MIX_CATEGORIES.map(cat => newsArray.filter(n => n.category === cat));
-    const result = [];
-    let anyLeft = true;
-    while (anyLeft && (maxItems ? result.length < maxItems : true)) {
-      anyLeft = false;
-      for (let i = 0; i < pools.length; i++) {
-        if (maxItems && result.length >= maxItems) break;
-        const pool = pools[i];
-        if (pool.length > 0) {
-          result.push(pool.shift());
-          anyLeft = true;
-        }
-      }
-    }
-    return result;
-  };
+  // <-- The getMixedAllSportsNews function was removed from here -->
 
   const sportsCategories = [
     'All Sports', 'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai', 'Cricket'
@@ -101,8 +83,8 @@ export default function Insights() {
 
   // Data for the right sidebar carousel
   const updates = [
-    { img: "/asset/events/1.jpg", title: "Rising Star Dominates the Ring", desc: "19-year-old phenom delivers a stunning knockout...", time: "2d" },
-    { img: "/asset/events/2.jpg", title: "Cricket Stars Shine Bright", desc: "Young talent takes center stage, thrilling fans...", time: "1d" },
+    { img: "/asset/events/1.jpg", title: "Lightweight Showdown in Tanzania" },
+    { img: "/asset/events/2.jpg"},
   ];
 
   // Data for the accomplishments carousel
@@ -110,12 +92,12 @@ export default function Insights() {
     {
       img: "/asset/events/1.jpg",
       alt: "Record",
-      text: "9.10 to 11:58 seconds - Moni Ehsan Lakshmi Sekar, India team sprint sensation"
+      text: "Chahal vs. Machemba: Title Fight"
     },
     {
       img: "/asset/events/2.jpg",
       alt: "Long Jump",
-      text: "Manvi Srivastav cut to 196 in the long jump standards in India"
+      text: "Lightweight Showdown in Tanzania"
     }
   ];
 
@@ -233,7 +215,7 @@ export default function Insights() {
     fetchSportsData();
     fetchSportsNews();
     fetchUpcomingEvents();
-  }, []);
+  }, []); // The dependency array can safely remain empty now.
 
   const handleFilterChange = (category) => {
     setActiveFilter(category);
@@ -323,10 +305,9 @@ export default function Insights() {
 
         <aside className="updates-sidebar">
           <h3>Supercoach Event Updates</h3>
-          {/*-- CAROUSEL IMPLEMENTED HERE --*/}
           <Slider {...carouselSettings}>
             {updates.map((item, i) => (
-              <div key={i}> {/* The key should be on the outer-most element in the map */}
+              <div key={i}>
                 <div className="update-card">
                     <img src={item.img} alt={item.title} />
                     <div className="update-card-content">
@@ -375,14 +356,15 @@ export default function Insights() {
 
         <section className="accomplishments">
           <h2 className="section-title">Sportscove Coaches’ Accomplishments</h2>
-          {/*-- CAROUSEL IMPLEMENTED HERE --*/}
           <div className="accomplishment-grid">
             <Slider {...carouselSettings}>
               {accomplishmentsData.map((item, i) => (
-                <div key={i}> {/* The key should be on the outer-most element in the map */}
+                <div key={i}>
                     <div className="accomplishment-card">
                         <img src={item.img} alt={item.alt} />
-                        <p>{item.text}</p>
+                        <div className="accomplishment-card-content">
+                            <h4>{item.text}</h4>
+                        </div>
                     </div>
                 </div>
               ))}

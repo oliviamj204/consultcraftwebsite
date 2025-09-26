@@ -120,6 +120,9 @@
   .testimonial-name {
     font-size: 1.3rem;
   }
+  .ticker {
+    animation-duration: 3s; /* Speeds up the animation from the default 10s */
+  }
 
   .testimonial-text {
     font-size: 0.95rem;
@@ -138,6 +141,9 @@
 
   .testimonial-name {
     font-size: 1.2rem;
+  }
+  .ticker {
+    animation-duration: 4s; /* Speeds up the animation from the default 10s */
   }
 
   .testimonial-text {

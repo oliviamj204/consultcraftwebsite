@@ -13,7 +13,7 @@ const About = () => {
         <h1 className="about-title">ABOUT US</h1>
         <p className="about-description">
           ConsultCraft Inc. is a global tech company building innovative web and mobile platforms that connect people in
-          sports, business, and education. Founded in 2024 in Vancouver with operations in India and the U.S., our key
+          sports and business. Founded in 2024 in Vancouver, Canada with operations in India under the name Anviga Pvt Ltd and the U.S. as ConsultCraftInc. Our key
           products–SportsCove© and ConsultCove©–empower talent discovery and expert consulting. We leverage technology to
           bridge digital divides and drive meaningful global impact.
         </p>
@@ -94,7 +94,7 @@ const About = () => {
   <div className="our-story-text">
     <h2>OUR STORY</h2>
     <p>
-      At ConsultCraft Inc., we recognized a fundamental problem in the global coaching industry: despite being worth over $16 billion,
+      At ConsultCraft Inc., we recognized a fundamental problem in the global coaching and consultation industry: despite being worth over $16 billion USD,
       talented coaches worldwide were trapped by geographical limitations, losing up to 40% of their earnings to middlemen, and struggling
       to scale beyond their local reach. We knew there had to be a better way.
     </p>

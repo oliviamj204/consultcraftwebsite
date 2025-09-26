@@ -12,7 +12,7 @@ export default function Sctribe() {
     Wellness: "",
     Experience: "",
     Locations: "",
-    CoachType: ""
+    CoachType: "" // The state key remains 'CoachType' for logic
   });
 
   const clearFilters = () => {
@@ -29,9 +29,13 @@ export default function Sctribe() {
   const dropdowns = {
     Sports: ["Boxing", "Kickboxing", "Kung Fu", "MMA", "Muay Thai", "Wrestling"],
     Wellness: ["Kundalini Activation", "Meditation", "Yoga"],
-    Experience: ["10+ years", "15+ years", "2+ years", "22+ years", "3+ years", "5+ years"],
+    // START CHANGE 1: The experience array is now sorted numerically.
+    Experience: ["2+ years", "3+ years", "5+ years", "10+ years", "15+ years", "22+ years"].sort(
+        (a, b) => parseInt(a) - parseInt(b)
+    ),
+    // END CHANGE 1
     Locations: ["Canada", "Cyprus", "India", "Thailand", "UAE", "UK", "USA"],
-    CoachType: ["Regular", "Super"],
+    CoachType: ["Regular", "Super"], // The key remains 'CoachType'
   };
 
   const toggleDropdown = (name) => {
@@ -98,7 +102,10 @@ export default function Sctribe() {
               className="filter-item"
               onClick={() => toggleDropdown(category)}
             >
-              {filters[category] || category} <ChevronDown size={18} />
+              {/* START CHANGE 2: Display "Coach Type" with a space for the UI, but use "CoachType" for logic. */}
+              {filters[category] || (category === 'CoachType' ? 'Coach Type' : category)}{' '}
+              {/* END CHANGE 2 */}
+              <ChevronDown size={18} />
             </div>
             {openDropdown === category && (
               <div className="dropdown-menu">
@@ -120,7 +127,7 @@ export default function Sctribe() {
         </button>
       </div>
 
-            {/* START: Tribe Anthem Section */}
+      {/* START: Tribe Anthem Section */}
       <div className="tribe-anthem-section">
         <h2 className="anthem-headline">A CHAMPION'S MINDSET</h2>
         <p className="anthem-attribution">— Tanner Smith, VP SportsCove</p>
@@ -139,13 +146,13 @@ export default function Sctribe() {
           </video>
         </div>
         {/* START: Add this new credits block */}
-<div class="video-credits">
-    <p>
-    Video: Tanner Smith, Edit: <a href="https://www.instagram.com/jerrowmathullah/" target="_blank" rel="noopener noreferrer">Jerrow</a>
-  </p>
-  <p>Location Credits: Title Boxing Club, Greenwood, Seattle</p>
-</div>
-  {/* END: Add this new credits block */}
+        <div className="video-credits">
+            <p>
+            Video: Tanner Smith, Edit: <a href="https://www.instagram.com/jerrowmathullah/" target="_blank" rel="noopener noreferrer">Jerrow</a>
+            </p>
+            <p>Location Credits: Title Boxing Club, Greenwood, Seattle</p>
+        </div>
+        {/* END: Add this new credits block */}
       </div>
       {/* END: Tribe Anthem Section */}
       <div className="coach-grid">

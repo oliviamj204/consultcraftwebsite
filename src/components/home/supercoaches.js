@@ -19,7 +19,7 @@ const SuperCoachesSection = () => {
 
       <h2 className="super-title">OUR SUPER COACHES</h2>
       <p className="super-description">
-        Hand picked Champions, Mentors of the Future. Our Super Coaches are elite athletes and master trainers
+        Hand picked Champions. Our Super Coaches are elite athletes and master trainers
         dedicated to unlocking every athlete’s full potential.
       </p>
     </section>

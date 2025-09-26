@@ -57,7 +57,7 @@ export default function TermsPage() {
           </p>
 
           <p>
-            1.3 The Platform is owned, registered and operated by ConsultCraft LLC, a Limited Liability Company registered/incorporated under the provisions of the laws of Delaware, USA and having its registered office at 4520 W OAKELLAR AVENUE, 13348, TAMPA, FL, 33611 (“Company”).
+            1.3 The Platform is owned, registered and operated by ConsultCraft LLC, a Limited Liability Company registered/incorporated under the provisions of the laws of Florida, USA and having its registered office at 4520 W OAKELLAR AVENUE, 13348, TAMPA, FL, 33611 (“Company”).
           </p>
 
           <p>
@@ -402,7 +402,7 @@ export default function TermsPage() {
           <p>16. GOVERNING LAW</p>
 
           <p>
-            16.1 This Terms of Use document shall be governed by and constructed in accordance with the applicable laws of the State of Delaware, USA without reference to conflict of laws principles. Any disputes arising or reliefs sought in relation to, or under, this Terms of Use and the Privacy Policy, shall be subject to the exclusive jurisdiction of the courts of Delaware, USA.
+            16.1 This Terms of Use document shall be governed by and constructed in accordance with the applicable laws of the State of Florida, USA without reference to conflict of laws principles. Any disputes arising or reliefs sought in relation to, or under, this Terms of Use and the Privacy Policy, shall be subject to the exclusive jurisdiction of the courts of Florida, USA.
           </p>
 
           <p>17. GRIEVANCE OFFICER</p>

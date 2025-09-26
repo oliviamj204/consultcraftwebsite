@@ -238,6 +238,40 @@
   z-index: 50;
 }
 
+/* --- Add this to your coachprofile.css file --- */
+
+/* This makes the content box scrollable if the text is too long */
+.card-content {
+  max-height: 75vh;  /* Limit the height of the content box to 75% of the screen's height */
+  overflow-y: auto;  /* Add a vertical scrollbar ONLY when the content overflows */
+  padding-right: 10px; /* Add a little space for the scrollbar */
+}
+
+/* --- Optional: Custom Scrollbar Styling --- */
+/* This makes the scrollbar look cleaner and match your dark theme */
+
+/* The scrollbar track */
+.card-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* The track (the part the scrollbar moves along) */
+.card-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* The scrollbar handle itself */
+.card-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+/* The handle on hover */
+.card-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
 /* --- Responsive Breakpoints --- */
 
 /* Tablet (≤1024px) */
@@ -260,14 +294,22 @@
 @media (max-width: 768px) {
   .overlap-card {
     padding: 24px;
-    text-align: center;
-    align-items: flex-end; /* text lower */
+    align-items: center;      /* Vertically centers the text block */
+    justify-content: center;  /* Horizontally centers the text block */
   }
 
   .card-content {
     max-width: 90%;
     padding: 0 10px;
-    text-align: center;
+    text-align: center;       /* Centers the text inside the block */
+  }
+  .cover {
+    padding: 20px;
+    /* The general .overlap-card rule now handles alignment */
+  }
+  .cover-text {
+    text-align: center;       /* Overrides the desktop left-alignment */
+    padding-bottom: 5vh;      /* Adds breathing room from the bottom edge */
   }
 
   .card-content h1 {
@@ -289,6 +331,7 @@
   .cover {
     padding: 20px;
     align-items: flex-end;
+    padding-bottom: 15vh;
   }
 
   .back-button {
@@ -303,10 +346,11 @@
 @media (max-width: 480px) {
   .overlap-card {
     padding: 16px;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: center;      /* Horizontally centers the content */
+    align-items: flex-start;      /* Aligns content to the TOP of the section */
+    padding-top: 20vh;            /* Adds space from the top for readability */
   }
-
+  
   .card-content h1 {
     font-size: 1.8rem;
     letter-spacing: 1px;
@@ -331,10 +375,21 @@
 
   .cover-text {
     max-width: 100%;
+    text-align: center; /* Ensure text is centered */
   }
 
+  .cover {
+    align-items: flex-end;      /* Pushes cover content to the bottom */
+    padding-bottom: 12vh;       /* Adds space from the bottom edge */
+  }
   .back-button {
     padding: 5px 7px;
     font-size: 0.75rem;
   }
+}
+
+.train .card-content {
+  max-height: none;       /* Removes the height limit */
+  overflow-y: visible;    /* Prevents the scrollbar from appearing */
+  padding-right: 0;       /* Removes the extra padding for the scrollbar */
 }

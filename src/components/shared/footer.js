@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
-import { Link } from 'react-router-dom'; // <-- 1. useNavigate is no longer needed
+import React, { useState } from 'react'; // <-- 1. Imported useState
+import { Link } from 'react-router-dom';
 import './footer.css';
 import { FaYoutube, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
-  // 2. The handleLogoClick function is removed from here
+  // 2. Added state to manage the dropdown visibility
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <footer className="footer">
@@ -15,7 +16,6 @@ const Footer = () => {
         {/* Left Section */}
         <div className="footer-section left">
           <div className="logo-section">
-            {/* 3. Replaced div with a Link component for standard navigation */}
             <Link 
               to="/" 
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -49,7 +49,6 @@ const Footer = () => {
               >
                 <FaYoutube />
               </a>
-
               <a 
                 href="https://www.instagram.com/consultcraft.inc/" 
                 className="footer-social-icon instagram" 
@@ -59,7 +58,6 @@ const Footer = () => {
               >
                 <FaInstagram />
               </a>
-
               <a 
                 href="https://www.linkedin.com/company/consultcraft-inc/posts/?feedView=all" 
                 className="footer-social-icon linkedin" 
@@ -79,7 +77,31 @@ const Footer = () => {
           <ul className="footer-links">
             <li><Link to="/" onClick={() => window.scrollTo(0, 0)}>Home</Link></li>
             <li><Link to="/about" onClick={() => window.scrollTo(0, 0)}>About</Link></li>
-            <li><Link to="/products/sportscove" onClick={() => window.scrollTo(0, 0)}>Products</Link></li>
+            
+            {/* --- START: UPDATED PRODUCTS DROPDOWN --- */}
+            <li 
+              className="dropdown-container"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+            >
+              <span className="products-dropdown-trigger">Products</span>
+              {isDropdownOpen && (
+                <ul className="products-dropdown-menu">
+                  <li>
+                    <Link to="/products/sportscove" onClick={() => window.scrollTo(0, 0)}>
+                      SportsCove
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/products/consultcove" onClick={() => window.scrollTo(0, 0)}>
+                      ConsultCove
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            {/* --- END: UPDATED PRODUCTS DROPDOWN --- */}
+
             <li><Link to="/contact" onClick={() => window.scrollTo(0, 0)}>Contact</Link></li>
             <li><Link to="/termscondition" onClick={() => window.scrollTo(0, 0)}>T&C</Link></li>
             <li><Link to="/privacypolicy" onClick={() => window.scrollTo(0, 0)}>Privacy Policy</Link></li>
@@ -90,14 +112,12 @@ const Footer = () => {
         <div className="footer-section right">
           <h3 className="footer-heading">Mailing Address</h3>
           <p className="footer-address">
-  <img src="/asset/destination.png" alt="Location" className="location-icon" />
-  {/* ---- START: UPDATED STRUCTURE ---- */}
-  <span className="address-main">
-    US - 4520 W Oakeller Avenue, Suite #13348<br />
-    Tampa, FL 33611
-  </span>
-  {/* ---- END: UPDATED STRUCTURE ---- */}
-</p>
+            <img src="/asset/destination.png" alt="Location" className="location-icon" />
+            <span className="address-main">
+              US - 4520 W Oakeller Avenue, Suite #13348<br />
+              Tampa, FL 33611
+            </span>
+          </p>
           <p className="footer-address">
             <img src="/asset/destination.png" alt="Location" className="location-icon" />
             Canada - PO Box 73553, Vancouver RPO Downtown, BC, V6E 4L9, Canada
@@ -106,8 +126,8 @@ const Footer = () => {
 
       </div>
           <div className="footer-bottom">
-      ConsultCraft Inc © 2024–2025 All Rights Reserved
-    </div>
+        ConsultCraft Inc © 2024–2025 All Rights Reserved
+      </div>
     </footer>
   );
 };

@@ -10,10 +10,11 @@
   z-index: 100;
 }
 
-/* Logo + Brand */
+/* --- Logo + Brand --- */
 .navbar-logo {
   display: flex;
   align-items: center;
+  cursor: pointer; /* Added for better UX since it's clickable */
 }
 
 .navbar-logo img {
@@ -27,7 +28,7 @@
   font-size: 20px;
 }
 
-/* Links Container */
+/* --- Desktop Links --- */
 .navbar-links {
   list-style: none;
   display: flex;
@@ -37,7 +38,6 @@
   padding: 0;
 }
 
-/* Individual Links */
 .nav-link {
   position: relative;
   color: white;
@@ -73,103 +73,63 @@
   width: 100%;
 }
 
-/* Dropdown */
-
-/* The container for the "Products" link (the <li> element) */
-/* The navigation link that triggers the dropdown */
+/* --- Desktop Dropdown --- */
 .nav-link.dropdown {
-  position: relative; /* Required for positioning the dropdown-menu */
+  position: relative;
 }
 
-/* The dropdown menu container */
 .dropdown-menu {
-  /* No 'display: none' needed here */
-  display: flex; /* It should be a flex container when it renders */
+  display: flex;
+  flex-direction: column; 
   position: absolute;
   top: 100%;
   left: 0;
   z-index: 1000;
-  
-  /* --- Row Layout --- */
-  flex-direction: column; 
   width: max-content;
-  
-  /* --- Styling --- */
   background-color: black;
   border: 1px solid #333;
   border-radius: 6px;
   padding: 8px;
+  margin-top: 8px; /* Added some space from the "Products" link */
 }
 
-
-/* This class is used to show the dropdown (usually toggled with JavaScript) */
-.dropdown-menu.show {
-  display: flex; 
-}
-
-/* An individual item inside the dropdown */
 .dropdown-item {
   color: white;
   text-decoration: none;
   padding: 8px 16px;
-  border-radius: 4px; /* Apply radius here for consistent hover effect */
-  white-space: nowrap; /* Prevent items from wrapping to a new line */
+  border-radius: 4px;
+  white-space: nowrap;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* Hover effect for an individual item */
 .dropdown-item:hover {
   background: linear-gradient(to right, #CFFFA5, #074048);
   color: black;
 }
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: row;          /* keep items in a row */
-    justify-content: space-between; /* push logo left, hamburger right */
-    align-items: center;
-    width: 100%;
-  }
 
-  .navbar-links {
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    display: none; /* hide links initially for hamburger */
-  }
-
-  .navbar-links.active {
-    display: flex;
-  }
-
-  .nav-link {
-    justify-content: center;
-    width: 100%;
-  }
-}
-
-/* Hamburger icon */
+/* --- Hamburger & Mobile Menu --- */
+/* --- Hamburger & Mobile Menu --- */
 .hamburger {
-  display: none;
+  display: none; /* Hidden by default */
   font-size: 1.8rem;
   cursor: pointer;
-  z-index: 101;
+  z-index: 101; /* <-- CORRECTED VALUE */
   color: white;
-  margin-left: auto; /* push it to the far right */
 }
-
 
 .mobile-overlay {
   position: fixed;
   top: 0;
-  left: 0;            /* cover whole screen */
+  left: 0;
   width: 100%;
   height: 100%;
-  background: #111;   /* dark background */
+  background: #111;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   z-index: 2000;
+  animation: fadeIn 0.3s ease;
 }
 
 .mobile-links {
@@ -192,32 +152,57 @@
 }
 
 .mobile-links li a:hover {
-  color: #CFFFA5; /* same green highlight */
+  color: #CFFFA5;
 }
+
 .close-btn {
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 32px; /* Matched to navbar padding for alignment */
   font-size: 2rem;
   color: white;
   cursor: pointer;
   z-index: 2100;
 }
 
+/* --- Mobile Sub-menu Styles (for SportsCove Tribe) --- */
+.mobile-sub-menu {
+  list-style: none;
+  padding-left: 20px; /* Creates the indentation */
+  margin-top: 12px;
+  margin-bottom: 0;
+}
 
-/* Hamburger visibility for mobile */
+.mobile-sub-menu li a {
+  font-size: 0.9em; /* Makes sub-link text smaller */
+  opacity: 0.85;
+}
+
+.mobile-sub-menu li::before {
+  content: '—'; /* Adds a dash marker */
+  margin-right: 8px;
+  color: #a0a0a0;
+}
+/* --- End Sub-menu Styles --- */
+
+/* --- Responsive Breakpoint --- */
 @media (max-width: 768px) {
+  /* Hide desktop links and show hamburger */
+  .navbar-links {
+    display: none;
+  }
   .hamburger {
     display: block;
   }
-
-  .navbar-links {
-    display: none; /* hide desktop links */
+  
+  /* Adjust navbar padding for smaller screens */
+  .navbar {
+    padding: 16px 24px;
   }
 }
 
-/* Animation */
+/* --- Animation --- */
 @keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

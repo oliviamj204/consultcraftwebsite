@@ -311,11 +311,18 @@
 .match-footer { margin-top: 1rem; border-top: 1px solid #e0e0e0; padding-top: 0.5rem; font-size: 0.8rem; color: #666; display: flex; justify-content: space-between; }
 
 /* Accomplishments & News Grid Styling */
-.accomplishments, .latest-news { margin-top: 3rem; }
+.accomplishments, .latest-news { margin-bottom: 3rem;}
 
-/* MODIFIED: Removed flex and scroll properties to allow react-slick to control the layout */
+/* MODIFIED: Constrain the carousel container and center it */
 .accomplishment-grid {
-    position: relative; /* Keep for positioning arrows/dots */
+  position: relative;
+  max-width: 400px; /* This should match the card width */
+  /* margin: 0 auto;   This centers the container */
+}
+
+/* MODIFIED: Removed padding as it's not needed for a single-card view */
+.accomplishment-grid .slick-slide > div {
+  padding: 0;
 }
 
 .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 20px; }
@@ -328,63 +335,30 @@
 .news-link:hover { text-decoration: underline; }
 
 /* =================================================================== */
-/* STYLES FOR ACCOMPLISHMENT CAROUSEL */
+/* STYLES FOR UPDATE & ACCOMPLISHMENT CARDS (NOW IDENTICAL) */
 /* =================================================================== */
 
-.accomplishment-card {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #000;
-  color: #fff;
-  font-size: 13px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;  /* Let the slider control the width */
-  height: 400px;
-  flex-shrink: 0;
-}
-
-.accomplishment-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.6);
-  transition: opacity 0.5s ease-in-out;
-}
-
-.accomplishment-card p {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  margin: 0;
-  font-weight: 500;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  z-index: 5;
-}
-
-
-/* =================================================================== */
-/* STYLES FOR UPDATE CARD CAROUSEL (RIGHT SIDEBAR) */
-/* =================================================================== */
-
-/* The slider will add a wrapper, so we target the card inside it */
-.updates-sidebar .slick-slide > div {
-    padding: 0 5px; /* Add some horizontal spacing between slides if needed */
-}
-
-.update-card {
+.update-card{
   position: relative;
   background: #000;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width: 100%;
-  height: 350px;
+  width: 300px;
+  height: 400px;
+}
+.accomplishment-card {
+  position: relative;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 400px;
+  height: 450px;
 }
 
-.update-card img {
+.update-card img,
+.accomplishment-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -393,7 +367,8 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.update-card-content {
+.update-card-content,
+.accomplishment-card-content {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -404,40 +379,34 @@
   color: #fff;
 }
 
-.update-card h4 { font-size: 16px; font-weight: bold; margin: 0 0 4px 0; }
-.update-card p { font-size: 14px; margin: 0 0 8px 0; color: #eee; }
-.update-card .time { display: block; font-size: 12px; color: #bbb; margin: 0; font-weight: bold; }
-.update-card .carousel-dots { bottom: 110px; }
-
-
-/* =================================================================== */
-/* SHARED STYLES FOR ALL CAROUSELS */
-/* =================================================================== */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.4);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  font-size: 18px;
-  cursor: pointer;
-  z-index: 10;
-  transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.update-card h4,
+.accomplishment-card h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 4px 0;
 }
-.carousel-btn:hover { background-color: rgba(0, 0, 0, 0.7); }
-.carousel-btn.prev { left: 10px; }
-.carousel-btn.next { right: 10px; }
+
+.update-card p {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  color: #eee;
+}
+
+.update-card .time {
+  display: block;
+  font-size: 12px;
+  color: #bbb;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* =================================================================== */
+/* STYLES FOR CAROUSEL DOTS */
+/* =================================================================== */
 
 .carousel-dots {
   position: absolute;
-  bottom: 10px; /* A more generic bottom position */
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -445,12 +414,7 @@
   z-index: 10;
   margin: 0;
   padding: 0;
-  list-style: none; /* remove default list bullets */
-}
-
-/* Specific position for accomplishment card */
-.accomplishment-card .carousel-dots {
-    bottom: 80px;
+  list-style: none;
 }
 
 .dot {
@@ -462,7 +426,6 @@
   transition: background-color 0.3s;
 }
 
-/* MODIFIED: This selector correctly targets the active dot rendered by react-slick */
 .carousel-dots .slick-active .dot {
   background-color: white;
 }
@@ -488,7 +451,7 @@
   .feature-article-content { padding: 15px; }
   .feature-article-content h3 { font-size: 18px; }
   .feature-article-content p { font-size: 14px; -webkit-line-clamp: 4; line-clamp: 4; }
-  .accomplishment-card { width: 100%; height: 300px; }
-  .update-card { height: 300px; }
+  .update-card, .accomplishment-card { height: 300px; width: 100%; } /* Make card full width on mobile */
+  .accomplishment-grid { max-width: 100%; } /* Allow grid to be full width on mobile */
   .section-title { font-size: 1.25rem; }
 }

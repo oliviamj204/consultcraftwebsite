@@ -75,19 +75,17 @@ export default function Contact() {
           <div className="contact-info">
             <h3>Office</h3>
             <div className="info-row">
-  <img src="/asset/destination.png" alt="Location" className="icon" />
-  {/* ---- START: UPDATED STRUCTURE ---- */}
-  <div className="contact-address-details">
-    <span className="contact-address-main">
-      US - 4520 W Oakeller Avenue<br />
-      Tampa, FL 33611
-    </span>
-    <span className="contact-address-suite">
-      Suite #13348
-    </span>
-  </div>
-  {/* ---- END: UPDATED STRUCTURE ---- */}
-</div>
+              <img src="/asset/destination.png" alt="Location" className="icon" />
+              <div className="contact-address-details">
+                <span className="contact-address-main">
+                  US - 4520 W Oakeller Avenue<br />
+                  Tampa, FL 33611
+                </span>
+                <span className="contact-address-suite">
+                  Suite #13348
+                </span>
+              </div>
+            </div>
             <div className="info-row">
               <img src="/asset/destination.png" alt="Location" className="icon" />
               <p>
@@ -95,27 +93,29 @@ export default function Contact() {
                 Vancouver RPO Downtown, BC, V6E 4L9, Canada
               </p>
             </div>
-            {/* This is the new wrapper for your two columns */}
-<div className="info-grid">
-  {/* Column 1: Mail */}
-  <div className="info-column">
-    <h3>Mail</h3>
-    <p>sc-support@consultcraftinc.com</p>
-    <p>info@consultcraftinc.com</p>
-  </div>
-  {/* Column 2: Contact */}
-  <div className="info-column">
-    <h3>Contact</h3>
-    <p>+1 (206) 457-6678</p>
-    <p>+91-7070175888</p>
-  </div>
-</div>
+
+            {/* --- START: UPDATED CONTACT SECTION --- */}
+            {/* The old two-column grid has been replaced with this single section. */}
+            <div className="info-column">
+                <h3>Contact Us</h3>
+                <div className="info-row">
+                    {/* <img src="/asset/mail.png" alt="Mail" className="icon" /> */}
+                    <p>sc-support@consultcraftinc.com</p>
+                </div>
+                <div className="info-row">
+                    {/* <img src="/asset/mail.png" alt="Mail" className="icon" /> */}
+                    <p>info@consultcraftinc.com</p>
+                </div>
+            </div>
+            {/* --- END: UPDATED CONTACT SECTION --- */}
+
           </div>
         </div>
 
         {/* Right Side */}
         <div className="contactform-right">
           <form className="contact-form" onSubmit={handleSubmit}>
+            {/* Form inputs remain the same */}
             <div className="form-row">
               <input
                 type="text"

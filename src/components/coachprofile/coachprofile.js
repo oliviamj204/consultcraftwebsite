@@ -96,16 +96,7 @@ export default function CoachProfile() {
     <source src={coach.trainVideo} type="video/mp4" />
     Your browser does not support the video tag.
   </video>
-  <div className="card-content train-content"> {/* Added a new class */}
-    <div className="train-title-container">
-      <span className="train-subtitle">TRAIN WITH</span>
-      <h2 className="train-coach-name">{coach.name}</h2>
-      <span className="train-subtitle">on</span>
-      <h3 className="train-platform-name">SPORTSCOVE</h3>
-    </div>
-    {/* Optional: You can keep the description paragraph below the title */}
-    <p className="train-description">{coach.trainWith}</p> 
-  </div>
+  {/* / */}
 </section>
       </section>
     </div>
