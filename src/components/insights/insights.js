@@ -29,9 +29,9 @@ const getMixedAllSportsNews = (newsArray, maxItems) => {
   return result;
 };
 
-// ++ NEW COMPONENT FOR THE YOUTUBE VIDEO ++
+
 function YouTubeLive() {
-  const videoId = "pdr9npWLqLA"; // Example YouTube live video
+  const videoId = "m7q56YaTGzI"; // Example YouTube live video
   const [videoError, setVideoError] = useState(false);
 
   const handleVideoError = () => {
