@@ -5,10 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import "./insights.css";
 
 // <-- MOVED HELPER FUNCTION AND CONSTANT OUTSIDE THE COMPONENT -->
-// This resolves the ESLint dependency warning because the function is now stable
-// and doesn't get redefined on every component render.
 const MIX_CATEGORIES = [
-  'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai', 'Cricket'
+  'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai',
+  'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai',
+  'Cricket'
 ];
 
 const getMixedAllSportsNews = (newsArray, maxItems) => {
@@ -29,33 +29,341 @@ const getMixedAllSportsNews = (newsArray, maxItems) => {
   return result;
 };
 
+// ++ NEW COMPONENT FOR THE YOUTUBE VIDEO ++
+function YouTubeLive() {
+  const videoId = "pdr9npWLqLA"; // Example YouTube live video
+  const [videoError, setVideoError] = useState(false);
+
+  const handleVideoError = () => {
+    setVideoError(true);
+  };
+
+  useEffect(() => {
+    const fixYouTubeOverlays = () => {
+      const container = document.querySelector('.youtube-live-container');
+      if (container) {
+        const overlays = container.querySelectorAll('.cued-overlay, .ytmCuedOverlayHost, .ytmWatchPlayerControlsHost, .ytmVideoCoverHost');
+        overlays.forEach(overlay => {
+          overlay.style.position = 'absolute';
+          overlay.style.top = '0';
+          overlay.style.left = '0';
+          overlay.style.width = '100%';
+          overlay.style.height = '100%';
+          overlay.style.zIndex = '1';
+          overlay.style.pointerEvents = 'auto';
+        });
+      }
+    };
+
+    fixYouTubeOverlays();
+    window.addEventListener('resize', fixYouTubeOverlays);
+    
+    const observer = new MutationObserver(fixYouTubeOverlays);
+    const container = document.querySelector('.youtube-live-container');
+    if (container) {
+      observer.observe(container, { childList: true, subtree: true });
+    }
+
+    return () => {
+      window.removeEventListener('resize', fixYouTubeOverlays);
+      observer.disconnect();
+    };
+  }, []);
+
+  if (videoError) {
+    return (
+      <div className="youtube-live-container">
+        <div className="youtube-responsive-wrapper">
+          <div className="youtube-live-wrapper error">
+            <div className="youtube-error-content">
+              <div className="youtube-error-icon">🎥</div>
+              <div className="youtube-error-title">Live Sports Stream</div>
+              <div className="youtube-error-subtitle">Video temporarily unavailable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="youtube-live-container">
+      <div className="youtube-responsive-wrapper">
+        <div className="youtube-live-wrapper">
+          <iframe
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=0&mute=1&modestbranding=1&rel=0&showinfo=0`}
+            title="YouTube live stream"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+            onError={handleVideoError}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Photo Gallery Component
+function PhotoGallery() {
+  const [activePerson, setActivePerson] = useState(null);
+  const [showPhotosPopup, setShowPhotosPopup] = useState(false);
+  const [personPhotos, setPersonPhotos] = useState([]);
+  const [personWinnings, setPersonWinnings] = useState([]);
+
+  const peopleData = [
+    { 
+      name: 'Lionel', 
+      directory: 'lionel', 
+      displayName: 'Lionel Hupping',
+      photos: ['Lionel07.jpg','lionel02.png','Lionel08.webp','Lionel09.webp'],
+      winnings: [ 'Muay Thai' ]
+    },
+    { 
+      name: 'Neeraj', 
+      directory: 'neeraj', 
+      displayName: 'Neeraj NJ',
+      photos: ['Neeraj06.jpeg', 'Neeraj13 (1).jpeg','Neeraj12.jpeg','Neeraj07 (1).jpeg'],
+      winnings: [ 'Muay Thai' ]
+    },
+    { 
+      name: 'Prasanth', 
+      directory: 'prasanth', 
+      displayName: 'Prashant Jha',
+      photos: ['Prasanth Jha08.jpg', 'Prasanth Jha09.jpeg','Prasanth Jha07.jpeg'],
+      winnings: [ 'MMA', 'Muay Thai' ]
+    },
+    { 
+      name: 'Raghav', 
+      directory: 'raghav', 
+      displayName: 'Raghav Jamwal',
+      photos: ['Raghav02 (1).jpg','Raghav04 (1).jpeg','Raghav04.jpg','Raghav06.jpeg'],
+      winnings: [
+        'A four-time National Gold Medalist in grappling.',
+        'Won a Bronze Medal at the Asian Grappling Championships.',
+        'Captained Team India to a third-place finish at the 2023 Asian Grappling Championships in Astana, Kazakhstan.',
+        'Achieved a #29 ranking in Asia in Modern Pentathlon, coming close to Olympic qualification.',
+        'Earned a Bronze Medal in Muay Thai'
+      ]
+    },
+    { 
+      name: 'Surya', 
+      directory: 'surya', 
+      displayName: 'Surya Sagar',
+      photos: ['Surya01.jpg', 'Surya10.jpg','Surya03.jpg','Surya12.jpg'],
+      winnings: [ 'Muay Thai' ]
+    },
+    { 
+      name: 'Raghavendra', 
+      directory: 'raghavendra', 
+      displayName: 'Raghavendra Singh Shekhawat',
+      photos: ['Raghav03 (1).jpeg','Raghav04 (2).jpeg','Raghav11 (2).jpg'],
+      winnings: [
+        'Raghavendra “Desert Devil” Singh Shekhawat holds an undefeated professional MMA record of 2-0-0.',
+        'He is ranked #25 in Pro Men’s Featherweight in Asia South.',
+        'He is also ranked #1,307 in the Asia Pacific region.',
+        'He has competed in top Indian MMA organizations including Ronin FC, Kombat Creed Championship (KCC), and GC, with connections to Matrix Fight Night.',
+        'His fighting style reflects his Rajasthani warrior heritage, combining strategic patience with explosive finishing ability.',
+        'Known by the moniker “Desert Devil,” he is recognized for his discipline, honor, and technical excellence in MMA.'
+      ]
+    },
+    { 
+      name: 'Kuldeep Tarkar', 
+      directory: 'kuldeep', 
+      displayName: 'Kuldeep Tarkar',
+      photos: ['IMG_0211.JPG','IMG_1361.PNG','IMG_1465.JPG','IMG_2992.JPG'],
+      winnings: [
+        'Kuldeep Tarkar holds a professional boxing record of 3 wins and 1 loss (3-1-0).',
+        'He is a national-level amateur boxing achiever who successfully transitioned into professional boxing.',
+        'He has competed under major promotions such as Grassroot Boxing Promotions & Management and Susegado Strike.',
+        'His career reflects a combination of technical precision, ring intelligence, and mental toughness.',
+        'He represents one of India’s most accomplished boxers, with success across both amateur and professional levels.'
+      ]
+    },
+    { 
+      name: 'Hardeep Singh Dhillon', 
+      directory: 'hardeep', 
+      displayName: 'Hardeep Singh Dhillon',
+      photos: ['Hardeep01.jpeg','Hardeep02.jpeg','Hardeep02.jpg','Hardeep03.jpg'],
+      winnings: [
+        'Hardeep Singh became the first Indian heavyweight Greco-Roman wrestler to qualify for the Olympics, earning his spot at the Rio 2016 Olympics in the 98kg category.',
+        'He won a Gold Medal at the 2013 Commonwealth Wrestling Championships.',
+        'He secured a Silver Medal at the 2016 Asian Wrestling Championships.',
+        'He represented India at the Rio 2016 Olympics, competing against Turkey’s Cenk Ildem in the round of 16.',
+        'His achievements established him among Asia’s top Greco-Roman wrestling competitors.'
+      ]
+    },
+    { 
+      name: 'Dylan Lockard', 
+      directory: 'dylan', 
+      displayName: 'Dylan Lockard',
+      photos: ['Dylan (2).webp','Dylan03 (2).webp','Dylan04 (1).jpg'],
+      winnings: [
+        'Dylan Lockard holds an impressive professional MMA record of 7 wins and 2 losses (7-2-0).',
+        'He is ranked #14 Pro Men’s Lightweight in New England.',
+        'He competed on Dana White’s Contender Series in 2019, showcasing his skills in front of UFC President Dana White.',
+        'He has fought in top regional organizations such as Classic Entertainment & Sports (CES) MMA, New England Fights (NEF), and Combat Zone.',
+        'He trains out of New England Cartel in Danville, New Hampshire.',
+        'His career reflects UFC-level experience and recognition as one of New England’s most accomplished fighters.'
+      ]
+    },
+    { 
+      name: 'Asim Bin Al Dayani', 
+      directory: 'asim', 
+      displayName: 'Asim Bin Al Dayani',
+      photos: ['IMG_3189.MOV','IMG_3224.JPG','IMG_3255 (1).JPG'],
+      winnings: [
+        'Asim Bin Saleh Al Dayani is a 5× Muay Thai National Champion.',
+        'He is also a 2× Kickboxing National Champion.',
+        'He has competed in 24 bouts, achieving 19 victories.',
+        'He has won WMC State and National titles in Muay Thai.',
+        'He represented India at the UAE Muay Thai Nation Championship, where he secured a podium finish.',
+        'He has competed across Muay Thai, Kickboxing, and MMA, demonstrating exceptional versatility and skill.',
+        'His accomplishments make him one of India’s most decorated and versatile strikers.'
+      ]
+    },
+    { 
+      name: 'Anil Mehta', 
+      directory: 'anil', 
+      displayName: 'Anil Mehta',
+      photos: ['Anil Mehta fight 2.png','Anil Mehta Fight Thumnbail.png','Anil01 (1).png','Anil04 (1).jpg'],
+      winnings: [
+        'Anil Mehta transitioned from being a police officer to becoming one of India’s top Muay Thai talents.',
+        'He trained in Thailand, immersing himself in authentic Muay Thai culture and techniques.',
+        'He learned from world-class trainers and sparring partners in Thailand.',
+        'He has been an advocate for Indian fighters, raising awareness about visa challenges that restrict access to training in Thailand.',
+        'His journey reflects dedication, courage, and a commitment to mastering the art of eight limbs.'
+      ]
+    }
+  ];
+
+  const handleTabClick = (person) => {
+    const photoUrls = person.photos.map(photo => `/asset/New folder/${person.directory}/${photo}`);
+    
+    setActivePerson(person);
+    setPersonPhotos(photoUrls);
+    setPersonWinnings(person.winnings || []);
+    setShowPhotosPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPhotosPopup(false);
+    setActivePerson(null);
+    setPersonPhotos([]);
+    setPersonWinnings([]);
+  };
+
+  // Split coaches into two rows for the staggered layout
+  const topRowCoaches = peopleData.slice(0, 5);
+  const bottomRowCoaches = peopleData.slice(5);
+
+  return (
+    <div className="photo-gallery">
+      <div className="gallery-container">
+        <div className="gallery-tabs-wrapper">
+          <div className="gallery-tab-row">
+            {topRowCoaches.map((person) => (
+              <button 
+                key={person.name} 
+                className={`gallery-tab ${activePerson?.name === person.name ? 'active' : ''}`}
+                onClick={() => handleTabClick(person)}
+              >
+                {person.displayName}
+              </button>
+            ))}
+          </div>
+          <div className="gallery-tab-row">
+            {bottomRowCoaches.map((person) => (
+              <button 
+                key={person.name} 
+                className={`gallery-tab ${activePerson?.name === person.name ? 'active' : ''}`}
+                onClick={() => handleTabClick(person)}
+              >
+                {person.displayName}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {showPhotosPopup && (
+        <div className="photos-popup-overlay" onClick={closePopup}>
+          <div className="photos-popup-container" onClick={(e) => e.stopPropagation()}>
+            <div className="photos-popup-header">
+              <h3>{activePerson?.displayName}'s Gallery</h3>
+              <button className="popup-close-btn" onClick={closePopup}>×</button>
+            </div>
+            <div className="photos-popup-content">
+              <div className="popup-body-split">
+                <div className="popup-info-panel">
+                  <h4>Accomplishments</h4>
+                  {personWinnings.length > 0 ? (
+                    <ul>
+                      {personWinnings.map((win, index) => (
+                        <li key={index}>🏆 {win}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>No accomplishments listed.</p>
+                  )}
+                </div>
+                <div className="popup-photos-panel">
+                  {personPhotos.length > 0 ? (
+                    <div className="photos-popup-grid">
+                      {personPhotos.map((photo, index) => (
+                        <div key={index} className="popup-photo-item">
+                          <img 
+                            src={photo} 
+                            alt={`${activePerson?.displayName} ${index + 1}`}
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                              e.target.parentElement.style.display = 'none';
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="no-photos-message">No photos available for {activePerson?.displayName}</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Insights() {
-  const [latestScores, setLatestScores] = useState([]);
-  const [allScores, setAllScores] = useState([]);
-  const [showAllScores, setShowAllScores] = useState(false);
   const [latestNews, setLatestNews] = useState([]);
   const [allNews, setAllNews] = useState([]);
   const [displayedNews, setDisplayedNews] = useState([]);
   const [showAllNews, setShowAllNews] = useState(false);
   const [events, setEvents] = useState([]);
   const [features, setFeatures] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [newsLoading, setNewsLoading] = useState(true);
   const [newsError, setNewsError] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All Sports');
+  const [wellnessData, setWellnessData] = useState([]);
+  const [activeWellnessTab, setActiveWellnessTab] = useState('Performance');
+  const [wellnessLoading, setWellnessLoading] = useState(true);
 
-  // Carousel settings now apply to BOTH carousels
   const carouselSettings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 3000,
     arrows: false,
+    swipeToSlide: true,
+    touchThreshold: 5,
+    swipe: true,
+    lazyLoad: 'ondemand',
     appendDots: dots => (
       <div>
         <ul className="carousel-dots">{dots}</ul>
@@ -75,61 +383,16 @@ export default function Insights() {
     });
   };
 
-  // <-- The getMixedAllSportsNews function was removed from here -->
-
   const sportsCategories = [
-    'All Sports', 'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai', 'Cricket'
+    'All Sports', 'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai'
   ];
 
-  // Data for the right sidebar carousel
   const updates = [
     { img: "/asset/events/1.jpg", title: "Lightweight Showdown in Tanzania" },
     { img: "/asset/events/2.jpg"},
   ];
 
-  // Data for the accomplishments carousel
-  const accomplishmentsData = [
-    {
-      img: "/asset/events/1.jpg",
-      alt: "Record",
-      text: "Chahal vs. Machemba: Title Fight"
-    },
-    {
-      img: "/asset/events/2.jpg",
-      alt: "Long Jump",
-      text: "Lightweight Showdown in Tanzania"
-    }
-  ];
-
   useEffect(() => {
-    const fetchSportsData = async () => {
-      try {
-        const allScoresData = [];
-        const leagueIds = [4328, 4329, 4330, 4331, 4332, 4334, 4335, 4336];
-        for (const leagueId of leagueIds) {
-          try {
-            const response = await fetch(`https://www.thesportsdb.com/api/v1/json/3/eventspastleague.php?id=${leagueId}`);
-            if (response.ok) {
-              const data = await response.json();
-              const events = (data.events || []).slice(0, 5);
-              allScoresData.push(...events);
-            }
-          } catch {
-            // ignore errors for individual leagues
-          }
-        }
-        const validScores = allScoresData.filter(event => 
-          event.intHomeScore !== null && event.intAwayScore !== null
-        ).sort((a, b) => new Date(b.dateEvent) - new Date(a.dateEvent));
-        setAllScores(validScores);
-        setLatestScores(validScores.slice(0, 3));
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     const fetchSportsNews = async () => {
         try {
             const allSportsNews = [];
@@ -189,33 +452,95 @@ export default function Insights() {
 
     const fetchUpcomingEvents = async () => {
       try {
-        const allUpcomingEvents = [];
-        const leagueIds = [4328, 4329, 4330, 4331];
-        for (const leagueId of leagueIds) {
-          try {
-            const eventResponse = await fetch(`https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=${leagueId}`);
-            if (eventResponse.ok) {
-              const eventData = await eventResponse.json();
-              const events = (eventData.events || []).slice(0, 2).map(event => ({
-                title: event.strEvent || `${event.strHomeTeam} vs ${event.strAwayTeam}`,
-                subtitle: `${event.strHomeTeam || 'TBD'} vs ${event.strAwayTeam || 'TBD'}`,
-                time: event.strTime ? new Date(`2000-01-01 ${event.strTime}`).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : 'TBD',
-                location: event.strVenue || event.strCountry || "TBD", date: event.dateEvent, sport: event.strSport || 'Sports'
-              }));
-              allUpcomingEvents.push(...events);
-            }
-          } catch { /* ignore */ }
-        }
-        const sortedEvents = allUpcomingEvents.filter(event => event.date && new Date(event.date) > new Date()).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 4);
-        setEvents(sortedEvents.length > 0 ? sortedEvents : [{ title: "No upcoming events found.", subtitle: "", time: "", location: "", sport: "" }]);
+        const upcomingCombat = [
+          { title: 'UFC Fight Night', subtitle: 'Allen vs. Evloev', time: '8:00 PM', location: 'Las Vegas, NV', date: '2025-11-15', sport: 'MMA' },
+          { title: 'Top Rank Boxing', subtitle: 'Shakur Stevenson vs. Navarrete', time: '10:00 PM', location: 'New York, NY', date: '2025-12-05', sport: 'Boxing' },
+          { title: 'ONE Fight Night', subtitle: 'Rodtang vs. Superlek', time: '7:00 PM', location: 'Singapore', date: '2025-10-25', sport: 'Muay Thai' },
+          { title: 'Bellator 315', subtitle: 'Amosov vs. Jackson', time: '9:00 PM', location: 'Dublin, Ireland', date: '2025-11-01', sport: 'MMA' }
+        ].filter(e => e.date && new Date(e.date) > new Date())
+         .sort((a, b) => new Date(a.date) - new Date(b.date))
+         .slice(0, 4);
+        setEvents(upcomingCombat.length > 0 ? upcomingCombat : [{ title: 'Combat events coming soon', subtitle: '', time: 'TBD', location: 'TBD', sport: 'Combat Sports' }]);
       } catch {
-        setEvents([{ title: "Events Loading...", subtitle: "Please wait", time: "TBD", location: "TBD", sport: "Sports" }]);
+        setEvents([{ title: 'Events Loading...', subtitle: 'Please wait', time: 'TBD', location: 'TBD', sport: 'Combat Sports' }]);
       }
     };
-    fetchSportsData();
+
+    const fetchWellnessData = async () => {
+      try {
+        const response = await fetch('/asset/readingmaterails-20.csv');
+        const csvText = await response.text();
+        
+        const parseCSVLine = (line) => {
+          const result = [];
+          let current = '';
+          let inQuotes = false;
+          
+          for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') {
+              inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+              result.push(current.trim());
+              current = '';
+            } else {
+              current += char;
+            }
+          }
+          result.push(current.trim());
+          return result;
+        };
+        
+        const lines = csvText.split('\n').filter(line => line.trim());
+        const headers = parseCSVLine(lines[0]);
+        
+        const wellnessArticles = [];
+        for (let i = 1; i < lines.length; i++) {
+          const values = parseCSVLine(lines[i]);
+          if (values.length >= 5 && values[1]) {
+            const article = {};
+            headers.forEach((header, index) => {
+              article[header] = values[index] || '';
+            });
+            
+            const cleanArticle = {
+              id: article[''] || `article-${i}`,
+              tab: article.tab,
+              headline: article.headline,
+              summary: article.summary,
+              tags: article.tags,
+              source_label: article.source_label,
+              content_type: article.content_type,
+              est_read_sec: parseInt(article.est_read_sec) || 20,
+              extract: article.extract || ''
+            };
+            
+            wellnessArticles.push(cleanArticle);
+          }
+        }
+        
+        const groupedData = {};
+        const categories = ['Performance', 'Training', 'Recovery', 'Community'];
+        
+        categories.forEach(cat => {
+          groupedData[cat] = wellnessArticles
+            .filter(item => item.tab === cat)
+            .slice(0, 6);
+        });
+        
+        setWellnessData(groupedData);
+      } catch (err) {
+        console.error('Error fetching wellness data:', err);
+        setWellnessData({});
+      } finally {
+        setWellnessLoading(false);
+      }
+    };
+
     fetchSportsNews();
     fetchUpcomingEvents();
-  }, []); // The dependency array can safely remain empty now.
+    fetchWellnessData();
+  }, []);
 
   const handleFilterChange = (category) => {
     setActiveFilter(category);
@@ -243,10 +568,6 @@ export default function Insights() {
     }
   };
 
-  const toggleViewMoreScores = () => {
-    setShowAllScores(!showAllScores);
-    setLatestScores(showAllScores ? allScores.slice(0, 3) : allScores.slice(0, 12));
-  };
   const toggleViewMoreNews = () => {
     setShowAllNews(!showAllNews);
     setDisplayedNews(showAllNews ? latestNews.slice(0, 6) : latestNews);
@@ -287,19 +608,77 @@ export default function Insights() {
         </aside>
 
         <main className="feature-section">
-          <h2>Latest Sports Features <a href="/" className="more-link">More Features →</a></h2>
+          <YouTubeLive />
+          
+          <section className="wellness-reading-section">
+            <h2>Sports and Wellness Oriented Reading</h2>
+            
+            <div className="wellness-tabs">
+              {['Performance', 'Training', 'Recovery', 'Community'].map((category) => (
+                <button
+                  key={category}
+                  className={`wellness-tab ${activeWellnessTab === category ? 'active' : ''}`}
+                  onClick={() => setActiveWellnessTab(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <div className="wellness-content">
+              {wellnessLoading && <p>Loading wellness articles...</p>}
+              {!wellnessLoading && (
+                <div className="wellness-cards-container">
+                  <div className="wellness-cards-scroll">
+                    {wellnessData[activeWellnessTab]?.map((article, index) => (
+                      <div key={article.id || index} className="wellness-reading-card">
+                        <div className="wellness-card-header">
+                          <span className="wellness-tab-badge">{article.tab || 'General'}</span>
+                        </div>
+                        <h3 className="wellness-card-title">{article.headline || 'Untitled'}</h3>
+                        <p className="wellness-card-summary">{article.summary || 'No summary available'}</p>
+                        <div className="wellness-card-tags">
+                          {article.tags ? article.tags.split(',').slice(0, 4).map((tag, i) => (
+                            <span key={i} className="wellness-tag">{tag.trim()}</span>
+                          )) : null}
+                        </div>
+                        <div className="wellness-card-footer">
+                          <span className="wellness-label">{article.source_label || ''}</span>
+                          <button className="wellness-read-btn">Read Article</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+
+          <section className="photo-gallery-section">
+            <h2>SportsCove Super Coaches in Action</h2>
+            <PhotoGallery />
+          </section>
+
+          <h2>Headlines</h2>
           {newsLoading && <p>Loading latest sports news...</p>}
           {newsError && <p>Error loading news: {newsError}</p>}
           {features.map((item, i) => (
-            <article className="feature-article-card" key={i}>
+            <a 
+              href={item.url || "#"} 
+              className="feature-article-card" 
+              key={i}
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               <img src={item.img} alt={item.title} className="feature-article-img" onError={(e) => {e.target.src = '/asset/boxing.jpg'}} />
               <div className="feature-article-content">
                 <span className="feature-article-tag">{item.sport}</span>
                 <h3>{item.title}</h3>
                 {item.desc ? <p>{item.desc}</p> : null}
-                <a href={item.url || "#"} className="feature-article-read-more" target="_blank" rel="noopener noreferrer">Read More →</a>
+                <span className="feature-article-read-more">Read More →</span>
               </div>
-            </article>
+            </a>
           ))}
         </main>
 
@@ -323,55 +702,6 @@ export default function Insights() {
       </div>
 
       <div className="sports-bottom-container">
-        <section className="tribe-scores">
-          <div className="section-header">
-            <h2 className="section-title">Latest Tribe Scores</h2>
-            {allScores.length > 3 && (
-              <button className="view-more-btn" onClick={toggleViewMoreScores}>
-                {showAllScores ? 'View Less' : `View More (${allScores.length - 3} more)`}
-              </button>
-            )}
-          </div>
-          <div className="scores-grid">
-            {loading && <p>Loading scores...</p>}
-            {error && <p>{error}</p>}
-            {latestScores.map((match) => (
-              <div key={match.idEvent} className="score-card">
-                <div className="match-header">
-                  <span className="team"><img src={match.strHomeTeamBadge} alt={match.strHomeTeam} /> {match.strHomeTeam}</span>
-                  <span className="score">{match.intHomeScore}</span>
-                </div>
-                <div className="match-header">
-                  <span className="team"><img src={match.strAwayTeamBadge} alt={match.strAwayTeam} /> {match.strAwayTeam}</span>
-                  <span className="score">{match.intAwayScore}</span>
-                </div>
-                <div className="match-footer">
-                  <p>{match.strLeague}</p>
-                  <span className="date">{new Date(match.dateEvent).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="accomplishments">
-          <h2 className="section-title">Sportscove Coaches’ Accomplishments</h2>
-          <div className="accomplishment-grid">
-            <Slider {...carouselSettings}>
-              {accomplishmentsData.map((item, i) => (
-                <div key={i}>
-                    <div className="accomplishment-card">
-                        <img src={item.img} alt={item.alt} />
-                        <div className="accomplishment-card-content">
-                            <h4>{item.text}</h4>
-                        </div>
-                    </div>
-                </div>
-              ))}
-            </Slider>
-          </div>
-        </section>
-
         <section className="latest-news">
           <h2 className="section-title">
             Latest News - {activeFilter}
@@ -384,12 +714,11 @@ export default function Insights() {
               <p>No news found for {activeFilter}. Try selecting a different category.</p>
             )}
             {displayedNews.map((newsItem, index) => (
-              <div key={`${newsItem.url}-${index}`} className="news-card clickable-card" onClick={() => window.open(newsItem.url, '_blank')}>
+              <a key={`${newsItem.url}-${index}`} className="news-card clickable-card" href={newsItem.url} target="_blank" rel="noopener noreferrer">
                 <img src={newsItem.urlToImage || '/asset/boxing.jpg'} alt={newsItem.title} onError={(e) => {e.target.src = '/asset/boxing.jpg'}}/>
                 <div className="news-content">
                   <span className={`news-category ${newsItem.priority === 'high' ? 'premium' : ''}`}>
                     {newsItem.category || activeFilter}
-                    <span className="news-source">via {typeof newsItem.source === 'object' ? (newsItem.source?.name || 'Google News') : (newsItem.source || 'Google News')}</span>
                   </span>
                   <h4>{newsItem.title}</h4>
                   {newsItem.description ? <p>{newsItem.description}</p> : null}
@@ -398,7 +727,7 @@ export default function Insights() {
                     <span className="news-link">Click to Read More</span>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
           {!newsLoading && latestNews.length > 6 && (
