@@ -212,7 +212,7 @@ function PhotoGallery() {
       name: 'Asim Bin Al Dayani', 
       directory: 'asim', 
       displayName: 'Asim Bin Al Dayani',
-      photos: ['IMG_3189.MOV','IMG_3224.JPG','IMG_3255 (1).JPG'],
+      photos: ['IMG_3224.JPG','IMG_3255 (1).JPG'],
       winnings: [
         'Asim Bin Saleh Al Dayani is a 5× Muay Thai National Champion.',
         'He is also a 2× Kickboxing National Champion.',
