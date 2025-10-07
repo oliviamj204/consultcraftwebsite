@@ -24,13 +24,13 @@ const TeamCarousel = () => {
     { id: 1, name: "Anubhav Prasad", title: "Founder & CEO", image: "/asset/team/anubhav.jpg", hasLinkedIn: true, linkedinUrl: "https://www.linkedin.com/in/anubhav-prasad-3a843759/" },
     { id: 2, name: "Mukesh Prasad", title: "Director, India", image: "/asset/team/mukesh.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/mukesh-prasad-649a048a/" },
     { id: 3, name: "Col. Ajay Singh(Retd.)", title: "Director, India", image: "/asset/team/ajay.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/col-ajay-singh-veteran-a9b765129/" },
-    { id: 4, name: "Tanner Smith", title: "Managing Partner USA & VP SportsCove", image: "/asset/team/tanner.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/tanner-smith-153682329/" },
+    { id: 4, name: "Tanner Smith", title: "Managing Partner (USA) & VP - SportsCove", image: "/asset/team/tanner.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/tanner-smith-153682329/" },
     { id: 5, name: "Andrew Tanner", title: "Managing Partner, USA", image: "/asset/team/andrew.jpg", hasLinkedIn: true, linkedinUrl:"" },
-    { id: 6, name: "Deepa Raj", title: "VP of Engineering & Technology", image: "/asset/team/deepa.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/deepa-raj-b30467121/" },
+    { id: 6, name: "Deepa Raj", title: "VP - Engineering and Technology", image: "/asset/team/deepa.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/deepa-raj-b30467121/" },
     { id: 7, name: "Ira Prasad", title: "UX Designer", image: "/asset/team/ira.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/ira-prasad-5ba77016a/" },
     { id: 8, name: "Lakshmi Pratap", title: "UX Designer", image: "/asset/team/lakshmi.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/lakshmi-pratap/" },
-    { id: 10, name: "Olivia Mary James", title: "Software Development Engineering Intern", image: "/asset/team/olivia.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/olivia-mary-james-533a98268/" },
-    { id: 11, name: "Poojita Sharan", title: "Programs & Services Head", image: "/asset/team/poojitha.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/poojita-sharan/" },
+    { id: 10, name: "Olivia Mary James", title: "Software Developer", image: "/asset/team/olivia.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/olivia-mary-james-533a98268/" },
+    { id: 11, name: "Poojita Sharan", title: "Program & Services Head", image: "/asset/team/poojitha.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/poojita-sharan/" },
   ];
 
   useLayoutEffect(() => {
