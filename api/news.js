@@ -1,16 +1,10 @@
 
 
 export default async function handler(req, res) {
-    // Enable CORS - Allow requests from your domain and Vercel preview URLs
+    // Enable CORS - Allow all origins for now (can restrict later)
     res.setHeader('Access-Control-Allow-Credentials', true);
-    // Allow both your domain and any Vercel deployment URL
-    const origin = req.headers.origin;
-    if (origin && (origin.includes('consultcraftinc.com') || origin.includes('vercel.app'))) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    } else {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-    }
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
     res.setHeader(
         'Access-Control-Allow-Headers',
         'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
