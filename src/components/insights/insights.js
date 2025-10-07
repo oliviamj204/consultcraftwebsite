@@ -403,7 +403,11 @@ export default function Insights() {
             };
             const fetchNewsFromSerpAPI = async (query, category) => {
               try {
-                const response = await fetch(`http://localhost:5000/api/news?query=${encodeURIComponent(query)}&category=${encodeURIComponent(category)}`);
+                // Use relative URL for production (Vercel), localhost for development
+                const apiUrl = process.env.NODE_ENV === 'production' 
+                  ? '/api/news' 
+                  : 'http://localhost:5000/api/news';
+                const response = await fetch(`${apiUrl}?query=${encodeURIComponent(query)}&category=${encodeURIComponent(category)}`);
                 if (!response.ok) throw new Error(`Backend proxy request failed: ${response.status}`);
                 const data = await response.json();
                 if (!data.success) throw new Error(data.error || 'Backend proxy returned error');

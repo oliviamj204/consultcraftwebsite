@@ -6,9 +6,9 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable CORS for all routes
+
 app.use(cors({
-    origin: 'http://localhost:3000', // React app URL
+    origin: ['http://localhost:3000', 'https://consultcraftinc.com'], 
     credentials: true
 }));
 
