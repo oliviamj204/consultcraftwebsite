@@ -1,1 +1,2 @@
 # SportsCove - ConsultCraft Website
+fixed
