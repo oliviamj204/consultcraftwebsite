@@ -28,7 +28,7 @@ const HeroSection = () => {
           strings={[
         "<span class='highlight'>Anything,</span>",
         "<span class='highlight'>Anytime,</span>",
-        "<span class='highlight'>from Anyone</span>"
+        "<span class='highlight'>from Anyone.</span>"
       ]}
           typeSpeed={50}
           backSpeed={30}
