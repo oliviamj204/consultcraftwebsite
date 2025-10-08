@@ -12,6 +12,7 @@ import Sctribe from './components/sctribe/sctribe';
 import TermsConditions from './components/termscondition/tc';
 // Correctly importing your privacy policy component
 import ScPrivacyPolicy from './components/sportscove/privacypolicy'; 
+import TermsAndConditions from './components/sportscove/termsandconditions'; // Import the new Terms component
 import Insights from './components/insights/insights';
 import BeACoach from './components/beacoach/beacoach';
 
@@ -37,9 +38,11 @@ function AppContent() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/termscondition" element={<TermsConditions />} />
         
-        {/* === CORRECTED ROUTE PATH === */}
-        {/* This now matches the URL you want to create */}
+        {/* Route for the SportsCove Privacy Policy */}
         <Route path="/sportscove/privacypolicy" element={<ScPrivacyPolicy />} />
+
+        {/* === NEW ROUTE FOR TERMS & CONDITIONS === */}
+        <Route path="/sportscove/termsandconditions" element={<TermsAndConditions />} />
 
         <Route path="/insights" element={<Insights />} />
         <Route path="/beacoach" element={<BeACoach />} />
