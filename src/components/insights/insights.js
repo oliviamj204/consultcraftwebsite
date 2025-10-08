@@ -168,23 +168,6 @@ function PhotoGallery() {
         'Known by the moniker “Desert Devil,” he is recognized for his discipline, honor, and technical excellence in MMA.'
       ]
     },
-
-    { 
-      name: 'Animish Dighe', 
-      directory: 'animish', 
-      displayName: 'Animish Dighe',
-      photos: ['Animish Dighe - Muay Thai 3.JPG','Animish Dighe - Muay Thai 8.JPG','Animish Dighe - Muay Thai 11.JPG','Animish Dighe Profile Shot.png'],
-      winnings: [
-        'Animesh Dighe is one of India’s top Muay Thai and MMA athletes, holding multiple national and state titles.',
-        'He is the World Muay Thai Council (WMC) National Champion (2024), the Kerala State Title Holder (2023), and the Maharashtra State Title Holder (2022).',
-        'He represented India at the 2021 World Muay Thai Championship in Bangkok, Thailand, reaching the quarterfinals (Top 16) in the under-71 kg category.',
-        'A 3× National Gold Medalist in Karate and Black Belt from the Shotokan School of Karate, he has also won State-level Gold in Brazilian Jiu-Jitsu (Maharashtra).',
-        'He has represented Maharashtra in Muay Thai Nationals and competed at the state level in Boxing and Taekwondo.',
-        'With a professional fight record of 10–2–0, he competes in the Middleweight (Muay Thai) and Lightweight (MMA) categories.',
-        'Trained in Muay Thai, Boxing, Kickboxing, Wrestling, Brazilian Jiu-Jitsu, and Karate, Animesh embodies versatility and excellence in combat sports.',
-        'His journey reflects discipline, adaptability, and a relentless pursuit of mastery across multiple martial arts.'
-      ]
-    },
     { 
       name: 'Kuldeep Tarkar', 
       directory: 'kuldeep', 
@@ -600,7 +583,7 @@ export default function Insights() {
         <h1>SPORTS INSIGHTS</h1>
         <p>Insights that fuel your sports journey</p>
       </header>
-      
+
       <div className="main-container">
         <aside className="events-sidebar">
           <h3>Events Calendar</h3>
