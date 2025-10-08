@@ -600,14 +600,7 @@ export default function Insights() {
         <h1>SPORTS INSIGHTS</h1>
         <p>Insights that fuel your sports journey</p>
       </header>
-      <div className="sports-filter">
-        {sportsCategories.map((category) => (
-          <button key={category} className={activeFilter === category ? 'active' : ''} onClick={() => handleFilterChange(category)}>
-            {category}
-          </button>
-        ))}
-      </div>
-
+      
       <div className="main-container">
         <aside className="events-sidebar">
           <h3>Events Calendar</h3>
@@ -679,6 +672,14 @@ export default function Insights() {
             <h2>SportsCove Super Coaches in Action</h2>
             <PhotoGallery />
           </section>
+
+          <div className="sports-filter">
+            {sportsCategories.map((category) => (
+              <button key={category} className={activeFilter === category ? 'active' : ''} onClick={() => handleFilterChange(category)}>
+                {category}
+              </button>
+            ))}
+          </div>
 
           <h2>Headlines</h2>
           {newsLoading && <p>Loading latest sports news...</p>}
