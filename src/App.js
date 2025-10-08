@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/shared/navbar';
 import Footer from './components/shared/footer';
 
@@ -10,17 +10,18 @@ import Sportscove from './components/sportscove/sportscove';
 import Consultcove from './components/consultcove/consultcove';
 import Sctribe from './components/sctribe/sctribe';
 import TermsConditions from './components/termscondition/tc';
-import PrivacyPolicy from './components/privacypolicy/pp';
+// Correctly importing your privacy policy component
+import ScPrivacyPolicy from './components/sportscove/privacypolicy'; 
 import Insights from './components/insights/insights';
 import BeACoach from './components/beacoach/beacoach';
 
 import CoachProfile from './components/coachprofile/coachprofile';
 import './App.css';
 
+// AppContent remains the same, but the Router is removed from the App component itself
 function AppContent() {
   const location = useLocation();
 
-  // Hide Navbar/Footer for special pages if needed
   const hideLayout = location.pathname.startsWith('/supercoaches/');
 
   return (
@@ -35,12 +36,13 @@ function AppContent() {
         <Route path="/sctribe" element={<Sctribe />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/termscondition" element={<TermsConditions />} />
-        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        
+        {/* === CORRECTED ROUTE PATH === */}
+        {/* This now matches the URL you want to create */}
+        <Route path="/sportscove/privacypolicy" element={<ScPrivacyPolicy />} />
+
         <Route path="/insights" element={<Insights />} />
         <Route path="/beacoach" element={<BeACoach />} />
-
-
-
         
         <Route path="/supercoaches/:coachId" element={<CoachProfile />} />
       </Routes>
@@ -50,10 +52,10 @@ function AppContent() {
   );
 }
 
+// App now only renders AppContent. The Router is in index.js
 export default function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AppContent />
   );
 }
+
