@@ -577,6 +577,28 @@ export default function Insights() {
     setDisplayedNews(showAllNews ? latestNews.slice(0, 6) : latestNews);
   };
 
+  // DEFINE THE EVENTS CALENDAR JSX AS A REUSABLE CONSTANT
+  const eventsCalendarComponent = (
+    <aside className="events-sidebar">
+      <h3>Events Calendar</h3>
+      <div className="date-picker"><span>{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span></div>
+      <ul>
+        {events.length > 0 ? events.map((event, i) => (
+          <li key={i} className="event-card">
+            <h4 className="event-title">{event.title}</h4>
+            <p>{event.subtitle}</p>
+            <div className="event-details">
+              <span>{event.time}</span>
+              <span>{event.location}</span>
+            </div>
+          </li>
+        )) : (
+          <li className="event-card"><h4 className="event-title">Loading events...</h4></li>
+        )}
+      </ul>
+    </aside>
+  );
+
   return (
     <div className="insights-page">
       <header className="header">
@@ -585,24 +607,10 @@ export default function Insights() {
       </header>
 
       <div className="main-container">
-        <aside className="events-sidebar">
-          <h3>Events Calendar</h3>
-          <div className="date-picker"><span>{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span></div>
-          <ul>
-            {events.length > 0 ? events.map((event, i) => (
-              <li key={i} className="event-card">
-                <h4 className="event-title">{event.title}</h4>
-                <p>{event.subtitle}</p>
-                <div className="event-details">
-                  <span>{event.time}</span>
-                  <span>{event.location}</span>
-                </div>
-              </li>
-            )) : (
-              <li className="event-card"><h4 className="event-title">Loading events...</h4></li>
-            )}
-          </ul>
-        </aside>
+        {/* === WRAPPER FOR DESKTOP VIEW === */}
+        <div className="events-sidebar-wrapper-desktop">
+          {eventsCalendarComponent}
+        </div>
 
         <main className="feature-section">
           <YouTubeLive />
@@ -655,6 +663,11 @@ export default function Insights() {
             <h2>SportsCove Super Coaches in Action</h2>
             <PhotoGallery />
           </section>
+
+          {/* === WRAPPER FOR MOBILE VIEW (NEW POSITION) === */}
+          <div className="events-sidebar-wrapper-mobile">
+            {eventsCalendarComponent}
+          </div>
 
           <div className="sports-filter">
             {sportsCategories.map((category) => (
