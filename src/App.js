@@ -10,6 +10,7 @@ import Sportscove from './components/sportscove/sportscove';
 import Consultcove from './components/consultcove/consultcove';
 import Sctribe from './components/sctribe/sctribe';
 import TermsConditions from './components/termscondition/tc';
+import PrivacyPolicy from './components/privacypolicy/pp';
 // Correctly importing your privacy policy component
 import ScPrivacyPolicy from './components/sportscove/privacypolicy'; 
 import TermsAndConditions from './components/sportscove/termsandconditions'; // Import the new Terms component
@@ -37,6 +38,8 @@ function AppContent() {
         <Route path="/sctribe" element={<Sctribe />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/termscondition" element={<TermsConditions />} />
+         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        
         
         {/* Route for the SportsCove Privacy Policy */}
         <Route path="/sportscove/privacypolicy" element={<ScPrivacyPolicy />} />
