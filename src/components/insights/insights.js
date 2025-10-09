@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./insights.css";
 
-// <-- MOVED HELPER FUNCTION AND CONSTANT OUTSIDE THE COMPONENT -->
+// HELPER FUNCTION AND CONSTANT
 const MIX_CATEGORIES = [
   'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai',
   'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai',
@@ -29,9 +29,8 @@ const getMixedAllSportsNews = (newsArray, maxItems) => {
   return result;
 };
 
-
 function YouTubeLive() {
-  const videoId = "m7q56YaTGzI"; // Example YouTube live video
+  const videoId = "m7q56YaTGzI";
   const [videoError, setVideoError] = useState(false);
 
   const handleVideoError = () => {
@@ -238,6 +237,9 @@ function PhotoGallery() {
     }
   ];
 
+  // Sort the data alphabetically by displayName
+  peopleData.sort((a, b) => a.displayName.localeCompare(b.displayName));
+
   const handleTabClick = (person) => {
     const photoUrls = person.photos.map(photo => `/asset/New folder/${person.directory}/${photo}`);
     
@@ -254,36 +256,19 @@ function PhotoGallery() {
     setPersonWinnings([]);
   };
 
-  // Split coaches into two rows for the staggered layout
-  const topRowCoaches = peopleData.slice(0, 5);
-  const bottomRowCoaches = peopleData.slice(5);
-
   return (
     <div className="photo-gallery">
       <div className="gallery-container">
-        <div className="gallery-tabs-wrapper">
-          <div className="gallery-tab-row">
-            {topRowCoaches.map((person) => (
-              <button 
-                key={person.name} 
-                className={`gallery-tab ${activePerson?.name === person.name ? 'active' : ''}`}
-                onClick={() => handleTabClick(person)}
-              >
-                {person.displayName}
-              </button>
-            ))}
-          </div>
-          <div className="gallery-tab-row">
-            {bottomRowCoaches.map((person) => (
-              <button 
-                key={person.name} 
-                className={`gallery-tab ${activePerson?.name === person.name ? 'active' : ''}`}
-                onClick={() => handleTabClick(person)}
-              >
-                {person.displayName}
-              </button>
-            ))}
-          </div>
+        <div className="gallery-tabs-grid">
+          {peopleData.map((person) => (
+            <button 
+              key={person.name} 
+              className={`gallery-tab ${activePerson?.name === person.name ? 'active' : ''}`}
+              onClick={() => handleTabClick(person)}
+            >
+              {person.displayName}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -403,7 +388,6 @@ export default function Insights() {
             };
             const fetchNewsFromSerpAPI = async (query, category) => {
               try {
-                // Use relative URL for production (Vercel), localhost for development
                 const apiUrl = process.env.NODE_ENV === 'production' 
                   ? '/api/news' 
                   : 'http://localhost:5000/api/news';
@@ -577,7 +561,6 @@ export default function Insights() {
     setDisplayedNews(showAllNews ? latestNews.slice(0, 6) : latestNews);
   };
 
-  // DEFINE THE EVENTS CALENDAR JSX AS A REUSABLE CONSTANT
   const eventsCalendarComponent = (
     <aside className="events-sidebar">
       <h3>Events Calendar</h3>
@@ -607,7 +590,6 @@ export default function Insights() {
       </header>
 
       <div className="main-container">
-        {/* === WRAPPER FOR DESKTOP VIEW === */}
         <div className="events-sidebar-wrapper-desktop">
           {eventsCalendarComponent}
         </div>
@@ -617,7 +599,6 @@ export default function Insights() {
           
           <section className="wellness-reading-section">
             <h2>Sports and Wellness Oriented Reading</h2>
-            
             <div className="wellness-tabs">
               {['Performance', 'Training', 'Recovery', 'Community'].map((category) => (
                 <button
@@ -629,7 +610,6 @@ export default function Insights() {
                 </button>
               ))}
             </div>
-
             <div className="wellness-content">
               {wellnessLoading && <p>Loading wellness articles...</p>}
               {!wellnessLoading && (
@@ -664,7 +644,6 @@ export default function Insights() {
             <PhotoGallery />
           </section>
 
-          {/* === WRAPPER FOR MOBILE VIEW (NEW POSITION) === */}
           <div className="events-sidebar-wrapper-mobile">
             {eventsCalendarComponent}
           </div>

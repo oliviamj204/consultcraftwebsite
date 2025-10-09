@@ -1,3 +1,4 @@
+/* ====== General Page Layout ====== */
 .insights-page {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background: #fff;
@@ -82,7 +83,6 @@
 }
 
 /* ====== Events Sidebar ====== */
-/* REMOVED grid-area FROM THIS RULE */
 .events-sidebar {
   background: #f7f7f7;
   border-radius: 10px;
@@ -133,12 +133,10 @@
   color: #555;
 }
 
-/* ADDED: This new class is now the grid item for the desktop layout */
 .events-sidebar-wrapper-desktop {
   grid-area: events;
 }
 
-/* ADDED: Hide the mobile wrapper by default */
 .events-sidebar-wrapper-mobile {
   display: none;
 }
@@ -163,62 +161,7 @@
   align-items: center;
 }
 
-/* ====== Wellness Blog Section ====== */
-.wellness-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.wellness-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border: 1px solid #eee;
-}
-
-.wellness-card-content {
-  padding: 16px;
-}
-
-.wellness-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-  font-size: 12px;
-  color: #666;
-}
-
-.wellness-tab {
-  background: #111;
-  color: #fff;
-  border-radius: 999px;
-  padding: 3px 8px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.wellness-headline {
-  margin: 8px 0 6px 0;
-  font-size: 18px;
-  line-height: 1.35;
-}
-
-.wellness-summary {
-  margin: 0 0 10px 0;
-  color: #444;
-}
-
-.wellness-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
-.wellness-tag { background: #f0f2f5; color: #333; border-radius: 6px; padding: 2px 8px; font-size: 12px; }
-
-.wellness-footer { display: flex; justify-content: space-between; align-items: center; }
-.wellness-source { font-size: 12px; color: #666; }
-.wellness-cta { text-decoration: none; color: #007bff; font-weight: 600; }
-.wellness-cta:hover { text-decoration: underline; }
-
-/* ====== Sports and Wellness Oriented Reading ====== */
+/* ====== Wellness Reading Section ====== */
 .wellness-reading-section {
   margin-bottom: 2rem;
   width: 100%;
@@ -281,23 +224,10 @@
   max-width: 100%;
 }
 
-.wellness-cards-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-
-.wellness-cards-scroll::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 3px;
-}
-
-.wellness-cards-scroll::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
-}
-
-.wellness-cards-scroll::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
-}
+.wellness-cards-scroll::-webkit-scrollbar { height: 6px; }
+.wellness-cards-scroll::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 3px; }
+.wellness-cards-scroll::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+.wellness-cards-scroll::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
 
 .wellness-reading-card {
   min-width: 340px;
@@ -327,7 +257,6 @@
   margin-bottom: 16px;
 }
 
-/* Tab content in black oval shape */
 .wellness-tab-badge {
   background: #000;
   color: #fff;
@@ -339,24 +268,6 @@
   letter-spacing: 0.3px;
 }
 
-.wellness-content-type {
-  background: linear-gradient(135deg, #000 0%, #333 100%);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.wellness-read-time {
-  font-size: 11px;
-  color: #888;
-  font-weight: 500;
-}
-
-/* Headlines in bold */
 .wellness-card-title {
   font-size: 18px;
   font-weight: 700;
@@ -365,7 +276,6 @@
   color: #1a1a1a;
 }
 
-/* Summary as explanation below title (non-bold) */
 .wellness-card-summary {
   font-size: 14px;
   font-weight: 400;
@@ -379,7 +289,6 @@
   overflow: hidden;
 }
 
-/* Tags in small oval shapes */
 .wellness-card-tags {
   display: flex;
   gap: 8px;
@@ -407,7 +316,6 @@
   margin-top: auto;
 }
 
-/* Label content in left corner, small text */
 .wellness-label {
   color: #777;
   font-weight: 400;
@@ -415,11 +323,6 @@
   line-height: 1.3;
   flex: 1;
   margin-right: 12px;
-}
-
-.wellness-source {
-  color: #666;
-  font-weight: 500;
 }
 
 .wellness-read-btn {
@@ -440,17 +343,6 @@
   transform: translateY(-1px);
 }
 
-.wellness-preview {
-  color: #007bff;
-  font-weight: 600;
-}
-
-.more-link {
-  font-size: 14px;
-  color: #007bff;
-  text-decoration: none;
-}
-
 .feature-article-card {
   display: flex;
   gap: 20px;
@@ -466,20 +358,10 @@
   color: inherit;
 }
 
-.feature-article-card.no-image {
-  display: block;
-  gap: 0;
-}
-
 .feature-article-card:hover {
   box-shadow: 0 8px 25px rgba(0,0,0,0.2);
   transform: translateY(-3px);
   border-color: #007bff;
-}
-
-.feature-article-card:hover .feature-article-read-more {
-  color: #0056b3;
-  text-decoration: underline;
 }
 
 .feature-article-img {
@@ -495,7 +377,6 @@
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .feature-article-tag {
@@ -519,10 +400,6 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 .feature-article-content p {
@@ -535,10 +412,6 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
 }
 
 .feature-article-read-more {
@@ -548,12 +421,6 @@
   text-decoration: none;
   align-self: flex-end;
   margin-top: 10px;
-  transition: color 0.2s ease, text-decoration 0.2s ease;
-  display: inline-block;
-}
-
-.feature-article-read-more:hover {
-  color: #0056b3;
 }
 
 /* ====== Updates Sidebar (Right) ====== */
@@ -573,19 +440,11 @@
 .section-title {
   font-size: 1.5rem;
   font-weight: 700;
-  margin: 15px 0;
-  margin-bottom: 1.5rem;
+  margin: 15px 0 1.5rem 0;
   color: #333;
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
 }
 
 .view-more-container {
@@ -611,72 +470,20 @@
   border-color: #999;
 }
 
-.clickable-card {
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
 .clickable-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* ====== News & General Cards ====== */
+/* ====== News Grid ====== */
 .news-count { 
   font-size: 14px; 
   color: #666; 
   font-weight: normal; 
 }
 
-.news-content { 
-  padding: 10px; 
-}
-
-.news-category { 
-  background: #007bff; 
-  color: white; 
-  font-size: 10px; 
-  padding: 2px 6px; 
-  border-radius: 4px; 
-  text-transform: uppercase; 
-  font-weight: 600; 
-  margin-bottom: 8px; 
-  display: inline-block; 
-}
-
-.news-category.premium { 
-  background: #28a745; 
-  position: relative; 
-}
-
-
-.news-card h4 { 
-  margin: 0 0 8px 0; 
-  font-size: 14px; 
-  line-height: 1.3; 
-}
-
-.news-card p { 
-  margin: 0 0 10px 0; 
-  font-size: 12px; 
-  color: #555; 
-  line-height: 1.4; 
-  padding: 0; 
-}
-
-/* ====== Accomplishments & News ====== */
-.accomplishments, 
 .latest-news { 
   margin-bottom: 2rem;
-}
-
-.accomplishment-grid {
-  position: relative;
-  max-width: 400px;
-}
-
-.accomplishment-grid .slick-slide > div {
-  padding: 0;
 }
 
 .news-grid { 
@@ -696,19 +503,41 @@
   display: block;
 }
 
-.news-card.no-image { 
-  padding: 20px; 
-}
-
-.news-card.no-image .news-content { 
-  padding: 0; 
-}
-
 .news-card img { 
   width: 100%; 
   height: 150px; 
   object-fit: cover; 
   display: block; 
+}
+
+.news-content { 
+  padding: 10px; 
+}
+
+.news-category { 
+  background: #007bff; 
+  color: white; 
+  font-size: 10px; 
+  padding: 2px 6px; 
+  border-radius: 4px; 
+  text-transform: uppercase; 
+  font-weight: 600; 
+  margin-bottom: 8px; 
+  display: inline-block; 
+}
+
+.news-card h4 { 
+  margin: 0 0 8px 0; 
+  font-size: 14px; 
+  line-height: 1.3; 
+}
+
+.news-card p { 
+  margin: 0 0 10px 0; 
+  font-size: 12px; 
+  color: #555; 
+  line-height: 1.4; 
+  padding: 0; 
 }
 
 .news-meta { 
@@ -726,11 +555,7 @@
   font-weight: 500; 
 }
 
-.news-link:hover { 
-  text-decoration: underline; 
-}
-
-/* ====== Update & Accomplishment Cards ====== */
+/* ====== Update Card (Carousel) ====== */
 .update-card {
   position: relative;
   background: #000;
@@ -741,28 +566,15 @@
   height: 400px;
 }
 
-.accomplishment-card {
-  position: relative;
-  background: #000;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  width: 400px;
-  height: 450px;
-}
-
-.update-card img,
-.accomplishment-card img {
+.update-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   filter: brightness(0.6);
-  transition: opacity 0.5s ease-in-out;
 }
 
-.update-card-content,
-.accomplishment-card-content {
+.update-card-content {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -773,31 +585,16 @@
   color: #fff;
 }
 
-.update-card h4,
-.accomplishment-card h4 {
+.update-card h4 {
   font-size: 16px;
   font-weight: bold;
   margin: 0 0 4px 0;
-}
-
-.accomplishment-card p {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-  color: #eee;
 }
 
 .update-card p {
   font-size: 14px;
   margin: 0 0 8px 0;
   color: #eee;
-}
-
-.update-card .time {
-  display: block;
-  font-size: 12px;
-  color: #bbb;
-  margin: 0;
-  font-weight: bold;
 }
 
 /* ====== Carousel Dots ====== */
@@ -820,7 +617,6 @@
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .carousel-dots .slick-active .dot {
@@ -830,44 +626,17 @@
 /* ====== YouTube Live ====== */
 .youtube-live-container {
   margin-bottom: 1.5rem;
-  max-width: 100%;
   width: 100%;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
-  contain: layout style;
-}
-
-.youtube-responsive-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
 }
 
 .youtube-live-wrapper {
   position: relative;
   width: 100%;
-  max-width: 100%;
   overflow: hidden;
   border-radius: 8px;
   background: #000;
-  min-height: 200px;
-  max-height: 500px;
-  box-sizing: border-box;
-  contain: layout style size;
-  
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
   height: 0;
-  padding-bottom: 56.25%;
-  aspect-ratio: 16 / 9;
-}
-
-@supports (aspect-ratio: 16 / 9) {
-  .youtube-live-wrapper {
-    height: auto;
-    padding-bottom: 0;
-  }
 }
 
 .youtube-live-wrapper.error {
@@ -875,41 +644,11 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  max-width: 100%;
-  box-sizing: border-box;
-  height: 0;
-  padding-bottom: 56.25%;
-  aspect-ratio: 16 / 9;
-}
-
-@supports (aspect-ratio: 16 / 9) {
-  .youtube-live-wrapper.error {
-    height: auto;
-    padding-bottom: 0;
-  }
-}
-
-.youtube-error-content {
-  text-align: center;
   color: #fff;
+  text-align: center;
   padding: 16px;
-}
-
-.youtube-error-icon {
-  font-size: 28px;
-  line-height: 1;
-}
-
-.youtube-error-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-top: 6px;
-}
-
-.youtube-error-subtitle {
-  font-size: 14px;
-  opacity: 0.85;
-  margin-top: 4px;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .youtube-live-wrapper iframe {
@@ -919,41 +658,9 @@
   width: 100%;
   height: 100%;
   border: 0;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  box-sizing: border-box;
-  contain: layout style;
 }
 
-.youtube-live-wrapper iframe[src*="youtube.com"] {
-  pointer-events: auto;
-  max-width: 100% !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.youtube-live-container * {
-  box-sizing: border-box;
-  max-width: 100%;
-}
-
-.youtube-live-container iframe,
-.youtube-live-container object,
-.youtube-live-container embed {
-  max-width: 100% !important;
-  width: 100% !important;
-  overflow: hidden !important;
-}
-
-.youtube-live-wrapper {
-  contain: layout style paint;
-}
-
-/* =================================================================== */
-/* PHOTO GALLERY STYLES (NEW DARK/LIME THEME) */
-/* =================================================================== */
-
+/* ====== Photo Gallery Section ====== */
 .photo-gallery-section {
   margin: 60px 0;
   padding: 60px 20px;
@@ -975,18 +682,13 @@
   padding: 10px;
 }
 
-.gallery-tabs-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
-
-.gallery-tab-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.gallery-tabs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .gallery-tab {
@@ -1001,6 +703,7 @@
   transition: all 0.3s ease;
   min-width: 150px;
   text-align: center;
+  height: 100%;
 }
 
 .gallery-tab:hover {
@@ -1013,11 +716,9 @@
 .gallery-tab.active {
   background: #cfffa5;
   color: #074048;
-  border-color: #cfffa5;
-  transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(207, 255, 165, 0.3);
 }
 
+/* --- Popup Styles --- */
 .photos-popup-overlay {
   position: fixed;
   top: 0;
@@ -1065,13 +766,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #cfffa5;
 }
 
 .photos-popup-header h3 {
   margin: 0;
   font-size: 1.5rem;
-  font-weight: 600;
 }
 
 .popup-close-btn {
@@ -1083,11 +782,7 @@
   border-radius: 50%;
   font-size: 22px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: all 0.3s ease;
-  line-height: 1;
 }
 
 .popup-close-btn:hover {
@@ -1101,7 +796,6 @@
   overflow: hidden;
   padding: 20px;
   display: flex;
-  background: #f4f7f6;
 }
 
 .popup-body-split {
@@ -1122,10 +816,7 @@
 
 .popup-info-panel h4 {
   font-size: 1.25rem;
-  font-weight: 600;
   color: #074048;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #cfffa5;
   margin-bottom: 15px;
 }
 
@@ -1161,33 +852,13 @@
   aspect-ratio: 4 / 5;
   border-radius: 12px;
   overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: pointer;
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  border: 3px solid transparent;
-}
-
-.popup-photo-item:hover {
-  transform: scale(1.03) translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-  border-color: #cfffa5;
 }
 
 .popup-photo-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-}
-
-.no-photos-message {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #6c757d;
-  padding: 40px;
-  background: #e9ecef;
-  border-radius: 8px;
-  margin-top: 20px;
 }
 
 /* =================================================================== */
@@ -1199,31 +870,14 @@
     grid-template-columns: 1fr;
     grid-template-areas:
       "main"
-      /* "events" is no longer needed here as it moves inside "main" */
       "updates";
     padding: 15px;
   }
 
-  /* ADDED: Hide the desktop wrapper on smaller screens */
-  .events-sidebar-wrapper-desktop {
-    display: none;
-  }
-
-  /* ADDED: Show the mobile wrapper and give it some space */
-  .events-sidebar-wrapper-mobile {
-    display: block;
-    margin-top: 20px; /* Adjust spacing as needed */
-  }
-
-  /* ADDED: Allow the calendar to take up the full width inside the main column on mobile */
-  .events-sidebar-wrapper-mobile .events-sidebar {
-     max-width: 100%;
-  }
-
-  .feature-article-img { width: 200px; }
-  .sports-bottom-container { padding: 2rem 3%; }
-  .youtube-live-wrapper { max-height: 400px; min-height: 180px; }
-  .news-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .events-sidebar-wrapper-desktop { display: none; }
+  .events-sidebar-wrapper-mobile { display: block; margin-top: 20px; }
+  .events-sidebar-wrapper-mobile .events-sidebar { max-width: 100%; }
+  .gallery-tabs-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 992px) {
@@ -1234,92 +888,29 @@
     border-right: none;
     border-bottom: 1px solid #dee2e6;
     padding-right: 0;
-    padding-bottom: 15px;
     margin-bottom: 15px;
   }
 }
 
 @media (max-width: 768px) {
-  .insights-page .header { padding: 20px 15px 15px; }
   .insights-page .header h1 { font-size: 28px; }
-  .insights-page .header p { font-size: 14px; }
-  .sports-filter { padding: 8px 15px; overflow-x: auto; }
-  .sports-filter button { font-size: 12px; padding: 6px 10px; white-space: nowrap; flex-shrink: 0; }
-  .main-container { padding: 10px; gap: 15px; }
-  .feature-section { gap: 15px; }
-  .feature-section h2 { font-size: 18px; flex-direction: column; align-items: flex-start; }
-  .wellness-reading-section h2 { font-size: 18px; }
-  .wellness-tabs { overflow-x: auto; gap: 4px; }
-  .wellness-tab { font-size: 12px; padding: 6px 12px; white-space: nowrap; flex-shrink: 0; }
-  .wellness-reading-card { min-width: 300px; padding: 16px; }
-  .wellness-card-title { font-size: 16px; }
-  .wellness-card-summary { font-size: 13px; -webkit-line-clamp: 3; line-clamp: 3; }
-  .wellness-tag { font-size: 10px; }
-  .wellness-label { font-size: 10px; }
-  .wellness-read-btn { font-size: 10px; padding: 6px 12px; }
+  .sports-filter { overflow-x: auto; }
+  .main-container, .feature-section { gap: 15px; }
+  .feature-section h2, .wellness-reading-section h2 { font-size: 18px; }
+  .wellness-tabs { overflow-x: auto; }
   .feature-article-card { flex-direction: column; }
   .feature-article-img { width: 100%; height: 180px; }
-  .feature-article-content { padding: 12px; }
-  .feature-article-content h3 { font-size: 16px; }
-  .feature-article-content p { font-size: 13px; -webkit-line-clamp: 3; line-clamp: 3; }
-  .update-card, .accomplishment-card { height: 280px; width: 100%; }
-  .accomplishment-grid { max-width: 100%; }
-  .sports-bottom-container { padding: 1rem 10px; }
-  .section-title { font-size: 1.1rem; }
   .news-grid { grid-template-columns: 1fr; }
-  .updates-sidebar { padding: 10px; }
-  .event-card { padding: 10px; }
-  .event-title { font-size: 13px; }
-  .event-card p { font-size: 12px; }
-  .event-details { font-size: 11px; }
-  .news-card img { height: 120px; }
-  .news-content { padding: 8px; }
-  .news-card h4 { font-size: 13px; }
-  .news-card p { font-size: 11px; }
-  .news-meta { padding: 0 8px 8px 8px; font-size: 10px; }
-  .youtube-live-container { margin-bottom: 1rem; }
-  .youtube-live-wrapper { border-radius: 6px; min-height: 150px; max-height: 250px; }
+  .gallery-tabs-grid { grid-template-columns: repeat(2, 1fr); }
   .photo-gallery-section { padding: 40px 15px; }
   .photo-gallery-section h2 { font-size: 1.75rem; }
-  .gallery-tab { padding: 10px 20px; font-size: 0.9rem; min-width: 120px; }
-  .photos-popup-container { width: 95%; height: 85vh; }
-  .photos-popup-header h3 { font-size: 1.25rem; }
-  .popup-close-btn { width: 35px; height: 35px; font-size: 20px; }
-  .photos-popup-content { padding: 15px; }
-  .photos-popup-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+  .gallery-tab { padding: 10px 20px; font-size: 0.9rem; }
 }
 
 @media (max-width: 480px) {
   .insights-page .header h1 { font-size: 24px; }
-  .insights-page .header p { font-size: 12px; }
-  .sports-filter { gap: 4px; padding: 6px 10px; }
-  .sports-filter button { font-size: 11px; padding: 5px 8px; }
-  .main-container { padding: 8px; gap: 12px; }
-  .feature-section { gap: 12px; }
-  .feature-section h2 { font-size: 16px; }
-  .wellness-reading-section h2 { font-size: 16px; }
-  .wellness-tab { font-size: 11px; padding: 5px 8px; }
-  .wellness-reading-card { min-width: 260px; padding: 10px; }
-  .wellness-card-title { font-size: 13px; }
-  .wellness-card-summary { font-size: 12px; }
   .feature-article-img { height: 150px; }
-  .feature-article-content { padding: 10px; }
-  .feature-article-content h3 { font-size: 14px; }
-  .feature-article-content p { font-size: 12px; -webkit-line-clamp: 2; line-clamp: 2; }
-  .section-title { font-size: 1rem; }
-  .update-card, .accomplishment-card { height: 250px; }
-  .sports-bottom-container { padding: 0.8rem 8px; }
-  .news-card img { height: 100px; }
-  .news-content { padding: 6px; }
-  .news-card h4 { font-size: 12px; }
-  .news-card p { font-size: 10px; }
-  .news-meta { font-size: 9px; padding: 0 6px 6px 6px; }
-  .event-card { padding: 8px; }
-  .event-title { font-size: 12px; }
-  .event-card p { font-size: 11px; }
-  .event-details { font-size: 10px; }
+  .gallery-tabs-grid { grid-template-columns: 1fr; gap: 15px; }
   .photo-gallery-section h2 { font-size: 1.5rem; }
-  .gallery-tab-row { gap: 10px; }
-  .gallery-tab { padding: 10px 15px; font-size: 0.8rem; min-width: 100px; }
-  .photos-popup-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gallery-tab { font-size: 0.8rem; }
 }
