@@ -75,7 +75,7 @@ const Navbar = () => {
 
             <li><NavLink to="/products/consultcove" onClick={closeAllMenus}>ConsultCove</NavLink></li>
             <li><NavLink to="/about" onClick={closeAllMenus}>About</NavLink></li>
-            <li><NavLink to="/insights" onClick={closeAllMenus}>Insights</NavLink></li>
+            {/* <li><NavLink to="/insights" onClick={closeAllMenus}>Insights</NavLink></li> */}
             <li><NavLink to="/contact" onClick={closeAllMenus}>Contact</NavLink></li>
           </ul>
         </div>
