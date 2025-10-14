@@ -117,7 +117,7 @@ const Navbar = () => {
         </li>
 
         <li><NavLink to="/sctribe" className="nav-link" onClick={closeAllMenus}>SportsCove Tribe</NavLink></li>
-        <li><NavLink to="/insights" className="nav-link" onClick={closeAllMenus}>Insights</NavLink></li>
+        {/* <li><NavLink to="/insights" className="nav-link" onClick={closeAllMenus}>Insights</NavLink></li> */}
         {/* <li><NavLink to="/beacoach" className="nav-link" onClick={closeAllMenus}>Be a Coach</NavLink></li> */}
         <li><NavLink to="/contact" className="nav-link" onClick={closeAllMenus}>Contact</NavLink></li>
       </ul>
