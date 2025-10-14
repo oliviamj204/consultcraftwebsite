@@ -4,31 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./insights.css";
 
-// HELPER FUNCTION AND CONSTANT
-const MIX_CATEGORIES = [
-  'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai',
-  'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai',
-  'Cricket'
-];
-
-const getMixedAllSportsNews = (newsArray, maxItems) => {
-  const pools = MIX_CATEGORIES.map(cat => newsArray.filter(n => n.category === cat));
-  const result = [];
-  let anyLeft = true;
-  while (anyLeft && (maxItems ? result.length < maxItems : true)) {
-    anyLeft = false;
-    for (let i = 0; i < pools.length; i++) {
-      if (maxItems && result.length >= maxItems) break;
-      const pool = pools[i];
-      if (pool.length > 0) {
-        result.push(pool.shift());
-        anyLeft = true;
-      }
-    }
-  }
-  return result;
-};
-
 function YouTubeLive() {
   const videoId = "m7q56YaTGzI";
   const [videoError, setVideoError] = useState(false);
@@ -234,6 +209,23 @@ function PhotoGallery() {
         'He has been an advocate for Indian fighters, raising awareness about visa challenges that restrict access to training in Thailand.',
         'His journey reflects dedication, courage, and a commitment to mastering the art of eight limbs.'
       ]
+    },
+
+    { 
+      name: 'Animish Dighe', 
+      directory: 'animish', 
+      displayName: 'Animish Dighe',
+      photos: ['Animish Dighe - Muay Thai 3.JPG','Animish Dighe - Muay Thai 8.JPG','Animish Dighe - Muay Thai 11.JPG','Animish Dighe Profile Shot.png'],
+      winnings: [
+        'Animesh Dighe is one of India’s top Muay Thai and MMA athletes, holding multiple national and state titles.',
+        'He is the World Muay Thai Council (WMC) National Champion (2024), the Kerala State Title Holder (2023), and the Maharashtra State Title Holder (2022).',
+        'He represented India at the 2021 World Muay Thai Championship in Bangkok, Thailand, reaching the quarterfinals (Top 16) in the under-71 kg category.',
+        'A 3× National Gold Medalist in Karate and Black Belt from the Shotokan School of Karate, he has also won State-level Gold in Brazilian Jiu-Jitsu (Maharashtra).',
+        'He has represented Maharashtra in Muay Thai Nationals and competed at the state level in Boxing and Taekwondo.',
+        'With a professional fight record of 10–2–0, he competes in the Middleweight (Muay Thai) and Lightweight (MMA) categories.',
+        'Trained in Muay Thai, Boxing, Kickboxing, Wrestling, Brazilian Jiu-Jitsu, and Karate, Animesh embodies versatility and excellence in combat sports.',
+        'His journey reflects discipline, adaptability, and a relentless pursuit of mastery across multiple martial arts.'
+      ]
     }
   ];
 
@@ -323,137 +315,66 @@ function PhotoGallery() {
 }
 
 export default function Insights() {
-  const [latestNews, setLatestNews] = useState([]);
-  const [allNews, setAllNews] = useState([]);
-  const [displayedNews, setDisplayedNews] = useState([]);
-  const [showAllNews, setShowAllNews] = useState(false);
-  const [events, setEvents] = useState([]);
-  const [features, setFeatures] = useState([]);
-  const [newsLoading, setNewsLoading] = useState(true);
-  const [newsError, setNewsError] = useState(null);
-  const [activeFilter, setActiveFilter] = useState('All Sports');
   const [wellnessData, setWellnessData] = useState([]);
   const [activeWellnessTab, setActiveWellnessTab] = useState('Performance');
   const [wellnessLoading, setWellnessLoading] = useState(true);
+  const [coachVideos, setCoachVideos] = useState([]);
+  const [videosLoading, setVideosLoading] = useState(true);
+  const [expandedCoach, setExpandedCoach] = useState('Animish'); // Default expanded
 
   const carouselSettings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: false,
+    arrows: true,
+    swipeToSlide: true,
+    draggable: true,
+    touchMove: true,
+    swipe: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: true,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+        }
+      }
+    ]
+  };
+
+  const updatesCarouselSettings = {
     dots: true,
     infinite: true,
-    speed: 300,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     arrows: false,
     swipeToSlide: true,
-    touchThreshold: 5,
-    swipe: true,
-    lazyLoad: 'ondemand',
-    appendDots: dots => (
-      <div>
-        <ul className="carousel-dots">{dots}</ul>
-      </div>
-    ),
-    customPaging: i => (
-      <div className="dot"></div>
-    )
   };
-
-  const sanitizeFeatures = (featureArray) => {
-    if (!Array.isArray(featureArray)) return [];
-    return featureArray.filter(item => {
-      if (!item || typeof item !== 'object') return false;
-      if (item.hasOwnProperty('name') && item.hasOwnProperty('icon')) return false;
-      return item.title && item.sport;
-    });
-  };
-
-  const sportsCategories = [
-    'All Sports', 'MMA', 'Boxing', 'Wrestling', 'Brazilian Jiu Jitsu', 'Muay Thai'
-  ];
 
   const updates = [
-    { img: "/asset/events/1.jpg", title: "Lightweight Showdown in Tanzania" },
+    { img: "/asset/events/1.jpg" },
     { img: "/asset/events/2.jpg"},
+    { img: "/asset/events/3.jpg"},
+    { img: "/asset/events/4.jpg"},
+    { img: "/asset/events/5.jpg"}
   ];
 
   useEffect(() => {
-    const fetchSportsNews = async () => {
-        try {
-            const allSportsNews = [];
-            const sportQueries = {
-              'MMA': ['MMA news', 'UFC news'], 'Boxing': ['boxing news', 'boxing match'],
-              'Wrestling': ['WWE news', 'professional wrestling'], 'Brazilian Jiu Jitsu': ['brazilian jiu jitsu', 'BJJ news'],
-              'Muay Thai': ['muay thai news', 'muay thai fight'], 'Cricket': ['cricket news', 'cricket match']
-            };
-            const fetchNewsFromSerpAPI = async (query, category) => {
-              try {
-                const apiUrl = process.env.NODE_ENV === 'production' 
-                  ? '/api/news' 
-                  : 'http://localhost:5000/api/news';
-                const response = await fetch(`${apiUrl}?query=${encodeURIComponent(query)}&category=${encodeURIComponent(category)}`);
-                if (!response.ok) throw new Error(`Backend proxy request failed: ${response.status}`);
-                const data = await response.json();
-                if (!data.success) throw new Error(data.error || 'Backend proxy returned error');
-                return data.articles.map(item => ({
-                  title: item.title, description: (item.snippet && item.snippet.trim() && item.snippet.trim().toLowerCase() !== 'no description available') ? item.snippet.trim() : '',
-                  urlToImage: item.thumbnail || "/asset/boxing.jpg", url: item.link, publishedAt: item.date,
-                  source: (item.source && item.source.name) || 'Google News', category: category, priority: 'high'
-                }));
-              } catch { return []; }
-            };
-            for (const [category, queries] of Object.entries(sportQueries)) {
-              for (const query of queries.slice(0, 2)) {
-                try {
-                  const articles = await fetchNewsFromSerpAPI(query + ' sports', category);
-                  allSportsNews.push(...articles);
-                  await new Promise(resolve => setTimeout(resolve, 300));
-                } catch { /* ignore */ }
-              }
-            }
-            const uniqueNews = Array.from(new Set(allSportsNews.map(a => a.title.substring(0,50)))).map(title => allSportsNews.find(a => a.title.substring(0,50) === title));
-            const sortedNews = uniqueNews.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-            setAllNews(sortedNews);
-            const mixedAllSports = getMixedAllSportsNews(sortedNews, 50);
-            const initialNews = mixedAllSports.slice(0, 15);
-            setLatestNews(initialNews);
-            setDisplayedNews(initialNews.slice(0, 6));
-            const newsFeatures = mixedAllSports.slice(15, 20).map(article => ({
-              img: article.urlToImage || "/asset/boxing.jpg", sport: article.category || "Sports News", title: article.title,
-              desc: (article.description && article.description.trim()) || '', url: article.url
-            }));
-            if (newsFeatures.length < 5) {
-              const additionalFeatures = sortedNews.slice(0, 5 - newsFeatures.length).map(article => ({
-                img: article.urlToImage || "/asset/boxing.jpg", sport: article.category || "Sports News", title: article.title,
-                desc: (article.description && article.description.trim()) || '', url: article.url
-              }));
-              setFeatures(sanitizeFeatures([...newsFeatures, ...additionalFeatures]));
-            } else {
-              setFeatures(sanitizeFeatures(newsFeatures));
-            }
-          } catch (err) {
-            setNewsError(err.message);
-          } finally {
-            setNewsLoading(false);
-          }
-    };
-
-    const fetchUpcomingEvents = async () => {
-      try {
-        const upcomingCombat = [
-          { title: 'UFC Fight Night', subtitle: 'Allen vs. Evloev', time: '8:00 PM', location: 'Las Vegas, NV', date: '2025-11-15', sport: 'MMA' },
-          { title: 'Top Rank Boxing', subtitle: 'Shakur Stevenson vs. Navarrete', time: '10:00 PM', location: 'New York, NY', date: '2025-12-05', sport: 'Boxing' },
-          { title: 'ONE Fight Night', subtitle: 'Rodtang vs. Superlek', time: '7:00 PM', location: 'Singapore', date: '2025-10-25', sport: 'Muay Thai' },
-          { title: 'Bellator 315', subtitle: 'Amosov vs. Jackson', time: '9:00 PM', location: 'Dublin, Ireland', date: '2025-11-01', sport: 'MMA' }
-        ].filter(e => e.date && new Date(e.date) > new Date())
-         .sort((a, b) => new Date(a.date) - new Date(b.date))
-         .slice(0, 4);
-        setEvents(upcomingCombat.length > 0 ? upcomingCombat : [{ title: 'Combat events coming soon', subtitle: '', time: 'TBD', location: 'TBD', sport: 'Combat Sports' }]);
-      } catch {
-        setEvents([{ title: 'Events Loading...', subtitle: 'Please wait', time: 'TBD', location: 'TBD', sport: 'Combat Sports' }]);
-      }
-    };
-
     const fetchWellnessData = async () => {
       try {
         const response = await fetch('/asset/readingmaterails-20.csv');
@@ -525,62 +446,96 @@ export default function Insights() {
       }
     };
 
-    fetchSportsNews();
-    fetchUpcomingEvents();
+    const fetchCoachVideos = async () => {
+      try {
+        setVideosLoading(true);
+        
+        // Check cache first
+        const CACHE_KEY = 'coachVideos_cache';
+        const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+        
+        const cachedData = localStorage.getItem(CACHE_KEY);
+        if (cachedData) {
+          try {
+            const { videos, timestamp } = JSON.parse(cachedData);
+            const cacheAge = Date.now() - timestamp;
+            
+            if (cacheAge < CACHE_DURATION) {
+              console.log(`Using cached videos (${Math.round(cacheAge / 1000 / 60)} minutes old)`);
+              setCoachVideos(videos);
+              setVideosLoading(false);
+              return;
+            } else {
+              console.log('Cache expired, fetching fresh data...');
+            }
+          } catch (error) {
+            console.error('Error parsing cache:', error);
+            localStorage.removeItem(CACHE_KEY);
+          }
+        }
+        
+        // YouTube Data API v3 endpoint
+        const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+        const CHANNEL_ID = 'UCxl5QbYGSTCLZDcb1XxoW1A'; // Animish's channel
+        const maxResults = 50; // Maximum allowed by YouTube API per request
+        
+        console.log('Fetching YouTube videos with API key:', YOUTUBE_API_KEY ? 'Key exists' : 'Key missing');
+        
+        if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'YOUR_YOUTUBE_API_KEY_HERE') {
+          console.error('YouTube API key is not configured!');
+          setCoachVideos([]);
+          setVideosLoading(false);
+          return;
+        }
+        
+        const url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${maxResults}&type=video`;
+        
+        console.log('Fetching from YouTube API...');
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        console.log('YouTube API response:', data);
+        
+        if (data.error) {
+          console.error('YouTube API Error:', data.error);
+          setCoachVideos([]);
+        } else if (data.items) {
+          const videos = data.items.map(item => ({
+            id: item.id.videoId,
+            title: item.snippet.title,
+            thumbnail: item.snippet.thumbnails.medium.url,
+            publishedAt: item.snippet.publishedAt,
+            description: item.snippet.description
+          }));
+          console.log(`Successfully fetched ${videos.length} videos from API`);
+          
+          // Save to cache
+          localStorage.setItem(CACHE_KEY, JSON.stringify({
+            videos,
+            timestamp: Date.now()
+          }));
+          console.log('Videos cached for 6 hours');
+          
+          setCoachVideos(videos);
+        } else {
+          console.warn('No videos found in response');
+          setCoachVideos([]);
+        }
+      } catch (err) {
+        console.error('Error fetching coach videos:', err);
+        setCoachVideos([]);
+      } finally {
+        setVideosLoading(false);
+      }
+    };
+
     fetchWellnessData();
+    fetchCoachVideos();
   }, []);
 
-  const handleFilterChange = (category) => {
-    setActiveFilter(category);
-    setShowAllNews(false);
-    if (category === 'All Sports') {
-      const mixedAllSports = getMixedAllSportsNews(allNews, 50);
-      const newsToShow = mixedAllSports.slice(0, 15);
-      setLatestNews(newsToShow);
-      setDisplayedNews(newsToShow.slice(0, 6));
-      const allSportsFeatures = mixedAllSports.slice(15, 20).map(article => ({
-        img: article.urlToImage || "/asset/boxing.jpg", sport: article.category || "Sports News", title: article.title,
-        desc: (article.description && article.description.trim()) || '', url: article.url
-      }));
-      setFeatures(sanitizeFeatures(allSportsFeatures));
-    } else {
-      const filteredNews = allNews.filter(news => news.category === category);
-      const newsToShow = filteredNews.slice(0, 12);
-      setLatestNews(newsToShow);
-      setDisplayedNews(newsToShow.slice(0, 6));
-      const categoryFeatures = filteredNews.slice(0, 5).map(article => ({
-        img: article.urlToImage || "/asset/boxing.jpg", sport: article.category || category, title: article.title,
-        desc: (article.description && article.description.trim()) || '', url: article.url
-      }));
-      setFeatures(sanitizeFeatures(categoryFeatures));
-    }
+  const toggleCoach = (coachName) => {
+    setExpandedCoach(expandedCoach === coachName ? null : coachName);
   };
-
-  const toggleViewMoreNews = () => {
-    setShowAllNews(!showAllNews);
-    setDisplayedNews(showAllNews ? latestNews.slice(0, 6) : latestNews);
-  };
-
-  const eventsCalendarComponent = (
-    <aside className="events-sidebar">
-      <h3>Events Calendar</h3>
-      <div className="date-picker"><span>{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span></div>
-      <ul>
-        {events.length > 0 ? events.map((event, i) => (
-          <li key={i} className="event-card">
-            <h4 className="event-title">{event.title}</h4>
-            <p>{event.subtitle}</p>
-            <div className="event-details">
-              <span>{event.time}</span>
-              <span>{event.location}</span>
-            </div>
-          </li>
-        )) : (
-          <li className="event-card"><h4 className="event-title">Loading events...</h4></li>
-        )}
-      </ul>
-    </aside>
-  );
 
   return (
     <div className="insights-page">
@@ -590,12 +545,30 @@ export default function Insights() {
       </header>
 
       <div className="main-container">
-        <div className="events-sidebar-wrapper-desktop">
-          {eventsCalendarComponent}
-        </div>
-
         <main className="feature-section">
-          <YouTubeLive />
+          {/* YouTube Live and Updates Side by Side */}
+          <div className="youtube-updates-container">
+            <div className="youtube-live-wrapper">
+              <YouTubeLive />
+            </div>
+            <aside className="updates-sidebar">
+              <h3>Supercoach Event Updates</h3>
+              <Slider {...updatesCarouselSettings}>
+                {updates.map((item, i) => (
+                  <div key={i}>
+                    <div className="update-card">
+                        <img src={item.img} alt={item.title} />
+                        <div className="update-card-content">
+                            <h4>{item.title}</h4>
+                            <p>{item.desc}</p>
+                            <span className="time">{item.time}</span>
+                        </div>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </aside>
+          </div>
           
           <section className="wellness-reading-section">
             <h2>Sports and Wellness Oriented Reading</h2>
@@ -644,97 +617,66 @@ export default function Insights() {
             <PhotoGallery />
           </section>
 
-          <div className="events-sidebar-wrapper-mobile">
-            {eventsCalendarComponent}
-          </div>
-
-          <div className="sports-filter">
-            {sportsCategories.map((category) => (
-              <button key={category} className={activeFilter === category ? 'active' : ''} onClick={() => handleFilterChange(category)}>
-                {category}
-              </button>
-            ))}
-          </div>
-
-          <h2>Headlines</h2>
-          {newsLoading && <p>Loading latest sports news...</p>}
-          {newsError && <p>Error loading news: {newsError}</p>}
-          {features.map((item, i) => (
-            <a 
-              href={item.url || "#"} 
-              className="feature-article-card" 
-              key={i}
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <img src={item.img} alt={item.title} className="feature-article-img" onError={(e) => {e.target.src = '/asset/boxing.jpg'}} />
-              <div className="feature-article-content">
-                <span className="feature-article-tag">{item.sport}</span>
-                <h3>{item.title}</h3>
-                {item.desc ? <p>{item.desc}</p> : null}
-                <span className="feature-article-read-more">Read More →</span>
+          {/* Watch the Coaches Section */}
+          <section className="watch-coaches-section">
+            <h2>Watch the Coaches</h2>
+            
+            {/* Collapsible Coach Flap */}
+            <div className="coach-flap-container">
+              <div 
+                className={`coach-flap ${expandedCoach === 'Animish' ? 'expanded' : ''}`}
+                onClick={() => toggleCoach('Animish')}
+              >
+                <span className="coach-flap-name">Animish Dighe</span>
+                <span className="coach-flap-icon">{expandedCoach === 'Animish' ? '▼' : '▶'}</span>
               </div>
-            </a>
-          ))}
-        </main>
-
-        <aside className="updates-sidebar">
-          <h3>Supercoach Event Updates</h3>
-          <Slider {...carouselSettings}>
-            {updates.map((item, i) => (
-              <div key={i}>
-                <div className="update-card">
-                    <img src={item.img} alt={item.title} />
-                    <div className="update-card-content">
-                        <h4>{item.title}</h4>
-                        <p>{item.desc}</p>
-                        <span className="time">{item.time}</span>
+              
+              {expandedCoach === 'Animish' && (
+                <div className="coach-videos-wrapper">
+                  {videosLoading && <p className="loading-text">Loading coach videos...</p>}
+                  
+                  {!videosLoading && coachVideos.length > 0 && (
+                    <div className="coach-videos-scroll">
+                      {coachVideos.map((video) => (
+                        <div key={video.id} className="video-card">
+                          <a 
+                            href={`https://www.youtube.com/watch?v=${video.id}`} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="video-thumbnail-link"
+                          >
+                            <img 
+                              src={video.thumbnail} 
+                              alt={video.title} 
+                              className="video-thumbnail"
+                            />
+                            <div className="play-button-overlay">
+                              <div className="play-icon">▶</div>
+                            </div>
+                          </a>
+                          <div className="video-info">
+                            <h4 className="video-title">{video.title}</h4>
+                            <p className="video-date">
+                              {new Date(video.publishedAt).toLocaleDateString('en-US', { 
+                                year: 'numeric', 
+                                month: 'short', 
+                                day: 'numeric' 
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
+                  )}
+                  
+                  {!videosLoading && coachVideos.length === 0 && (
+                    <p className="no-videos-text">No videos available at the moment.</p>
+                  )}
                 </div>
-              </div>
-            ))}
-          </Slider>
-        </aside>
-      </div>
-
-      <div className="sports-bottom-container">
-        <section className="latest-news">
-          <h2 className="section-title">
-            Latest News - {activeFilter}
-            {latestNews.length > 0 && <span className="news-count">({latestNews.length} articles)</span>}
-          </h2>
-          <div className="news-grid">
-            {newsLoading && <p>Loading {activeFilter.toLowerCase()} news...</p>}
-            {newsError && <p>Error loading news: {newsError}</p>}
-            {!newsLoading && displayedNews.length === 0 && (
-              <p>No news found for {activeFilter}. Try selecting a different category.</p>
-            )}
-            {displayedNews.map((newsItem, index) => (
-              <a key={`${newsItem.url}-${index}`} className="news-card clickable-card" href={newsItem.url} target="_blank" rel="noopener noreferrer">
-                <img src={newsItem.urlToImage || '/asset/boxing.jpg'} alt={newsItem.title} onError={(e) => {e.target.src = '/asset/boxing.jpg'}}/>
-                <div className="news-content">
-                  <span className={`news-category ${newsItem.priority === 'high' ? 'premium' : ''}`}>
-                    {newsItem.category || activeFilter}
-                  </span>
-                  <h4>{newsItem.title}</h4>
-                  {newsItem.description ? <p>{newsItem.description}</p> : null}
-                  <div className="news-meta">
-                    <small>{new Date(newsItem.publishedAt).toLocaleDateString()}</small>
-                    <span className="news-link">Click to Read More</span>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-          {!newsLoading && latestNews.length > 6 && (
-            <div className="view-more-container">
-              <button className="view-more-btn" onClick={toggleViewMoreNews}>
-                {showAllNews ? `View Less (showing ${displayedNews.length} of ${latestNews.length})` : `View More (${latestNews.length - 6} more articles)`}
-              </button>
+              )}
             </div>
-          )}
-        </section>
+          </section>
+        </main>
       </div>
     </div>
   );

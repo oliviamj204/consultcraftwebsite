@@ -29,7 +29,7 @@ const TeamCarousel = () => {
     { id: 6, name: "Deepa Raj", title: "VP - Engineering and Technology", image: "/asset/team/deepa.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/deepa-raj-b30467121/" },
     { id: 7, name: "Ira Prasad", title: "UX Designer", image: "/asset/team/ira.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/ira-prasad-5ba77016a/" },
     { id: 8, name: "Lakshmi Pratap", title: "UX Designer", image: "/asset/team/lakshmi.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/lakshmi-pratap/" },
-    { id: 10, name: "Olivia Mary James", title: "Software Developer", image: "/asset/team/olivia.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/olivia-mary-james-533a98268/" },
+    { id: 10, name: "Olivia Mary James", title: "Software Development Engineering Intern ", image: "/asset/team/olivia.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/olivia-mary-james-533a98268/" },
     { id: 11, name: "Poojita Sharan", title: "Program & Services Head", image: "/asset/team/poojitha.jpg", hasLinkedIn: true, linkedinUrl:"https://www.linkedin.com/in/poojita-sharan/" },
   ];
 
