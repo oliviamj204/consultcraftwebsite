@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./insights.css";
 
+// YouTube Live Component
 function YouTubeLive() {
   const videoId = "m7q56YaTGzI";
   const [videoError, setVideoError] = useState(false);
@@ -314,13 +315,26 @@ function PhotoGallery() {
   );
 }
 
+// Main Insights Component
 export default function Insights() {
   const [wellnessData, setWellnessData] = useState([]);
   const [activeWellnessTab, setActiveWellnessTab] = useState('Performance');
   const [wellnessLoading, setWellnessLoading] = useState(true);
-  const [coachVideos, setCoachVideos] = useState([]);
-  const [videosLoading, setVideosLoading] = useState(true);
-  const [expandedCoach, setExpandedCoach] = useState('Animish'); // Default expanded
+  
+  // State for coaches
+  const [allCoachVideos, setAllCoachVideos] = useState({}); 
+  const [videosLoadingStatus, setVideosLoadingStatus] = useState({}); 
+  const [expandedCoach, setExpandedCoach] = useState('Animish Dighe');
+
+  // Data for all coaches
+  const coachesData = [
+    { name: 'Animish Dighe', channelId: 'UCxl5QbYGSTCLZDcb1XxoW1A' },
+    { name: 'Aditya Raj Sharma', channelId: 'UCNGvw7BkQJQqc4YTB-B_gqQ' },
+    { name: 'Jitesh Banjan', channelId: 'UCUf-D9PfTquZylgBd4mU24Q' },
+    { name: 'Abhishek Negi', channelId: 'UC4g2X4SjqWajcXbM7X2Xv_A' },
+    { name: 'Ben Barry', channelId: 'UCITFEZjlt8aBLXuMMwFQFnQ' },
+    { name: 'Sindhu Singh', channelId: 'UCiPmiHhI2a-S_joXVEaISEg' }
+  ];
 
   const carouselSettings = {
     dots: false,
@@ -337,19 +351,11 @@ export default function Insights() {
     responsive: [
       {
         breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          arrows: true,
-        }
+        settings: { slidesToShow: 2, slidesToScroll: 1, arrows: true }
       },
       {
         breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: true,
-        }
+        settings: { slidesToShow: 1, slidesToScroll: 1, arrows: true }
       }
     ]
   };
@@ -367,174 +373,154 @@ export default function Insights() {
   };
 
   const updates = [
-    { img: "/asset/events/1.jpg" },
-    { img: "/asset/events/2.jpg"},
-    { img: "/asset/events/3.jpg"},
-    { img: "/asset/events/4.jpg"},
-    { img: "/asset/events/5.jpg"}
+    { img: "/asset/events/1.jpg" }, { img: "/asset/events/2.jpg" },
+    { img: "/asset/events/3.jpg" }, { img: "/asset/events/4.jpg" },
+    { img: "/asset/events/5.jpg" }
   ];
 
-  useEffect(() => {
-    const fetchWellnessData = async () => {
-      try {
-        const response = await fetch('/asset/readingmaterails-20.csv');
-        const csvText = await response.text();
-        
-        const parseCSVLine = (line) => {
-          const result = [];
-          let current = '';
-          let inQuotes = false;
-          
-          for (let i = 0; i < line.length; i++) {
-            const char = line[i];
-            if (char === '"') {
-              inQuotes = !inQuotes;
-            } else if (char === ',' && !inQuotes) {
-              result.push(current.trim());
-              current = '';
-            } else {
-              current += char;
-            }
-          }
-          result.push(current.trim());
-          return result;
-        };
-        
-        const lines = csvText.split('\n').filter(line => line.trim());
-        const headers = parseCSVLine(lines[0]);
-        
-        const wellnessArticles = [];
-        for (let i = 1; i < lines.length; i++) {
-          const values = parseCSVLine(lines[i]);
-          if (values.length >= 5 && values[1]) {
-            const article = {};
-            headers.forEach((header, index) => {
-              article[header] = values[index] || '';
-            });
-            
-            const cleanArticle = {
-              id: article[''] || `article-${i}`,
-              tab: article.tab,
-              headline: article.headline,
-              summary: article.summary,
-              tags: article.tags,
-              source_label: article.source_label,
-              content_type: article.content_type,
-              est_read_sec: parseInt(article.est_read_sec) || 20,
-              extract: article.extract || ''
-            };
-            
-            wellnessArticles.push(cleanArticle);
-          }
-        }
-        
-        const groupedData = {};
-        const categories = ['Performance', 'Training', 'Recovery', 'Community'];
-        
-        categories.forEach(cat => {
-          groupedData[cat] = wellnessArticles
-            .filter(item => item.tab === cat)
-            .slice(0, 6);
-        });
-        
-        setWellnessData(groupedData);
-      } catch (err) {
-        console.error('Error fetching wellness data:', err);
-        setWellnessData({});
-      } finally {
-        setWellnessLoading(false);
-      }
-    };
+  // Function to fetch videos for a specific coach
+  const fetchVideosForCoach = async (coach) => {
+    try {
+      setVideosLoadingStatus(prev => ({ ...prev, [coach.name]: true }));
 
-    const fetchCoachVideos = async () => {
-      try {
-        setVideosLoading(true);
-        
-        // Check cache first
-        const CACHE_KEY = 'coachVideos_cache';
-        const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
-        
-        const cachedData = localStorage.getItem(CACHE_KEY);
-        if (cachedData) {
-          try {
-            const { videos, timestamp } = JSON.parse(cachedData);
-            const cacheAge = Date.now() - timestamp;
-            
-            if (cacheAge < CACHE_DURATION) {
-              console.log(`Using cached videos (${Math.round(cacheAge / 1000 / 60)} minutes old)`);
-              setCoachVideos(videos);
-              setVideosLoading(false);
-              return;
-            } else {
-              console.log('Cache expired, fetching fresh data...');
-            }
-          } catch (error) {
-            console.error('Error parsing cache:', error);
-            localStorage.removeItem(CACHE_KEY);
-          }
-        }
-        
-        // YouTube Data API v3 endpoint
-        const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-        const CHANNEL_ID = 'UCxl5QbYGSTCLZDcb1XxoW1A'; // Animish's channel
-        const maxResults = 50; // Maximum allowed by YouTube API per request
-        
-        console.log('Fetching YouTube videos with API key:', YOUTUBE_API_KEY ? 'Key exists' : 'Key missing');
-        
-        if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'YOUR_YOUTUBE_API_KEY_HERE') {
-          console.error('YouTube API key is not configured!');
-          setCoachVideos([]);
-          setVideosLoading(false);
+      const CACHE_KEY = `coachVideos_cache_${coach.channelId}`;
+      const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours
+
+      const cachedData = localStorage.getItem(CACHE_KEY);
+      if (cachedData) {
+        const { videos, timestamp } = JSON.parse(cachedData);
+        if (Date.now() - timestamp < CACHE_DURATION) {
+          console.log(`Using cached videos for ${coach.name}`);
+          setAllCoachVideos(prev => ({ ...prev, [coach.name]: videos }));
           return;
         }
-        
-        const url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=${maxResults}&type=video`;
-        
-        console.log('Fetching from YouTube API...');
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        console.log('YouTube API response:', data);
-        
-        if (data.error) {
-          console.error('YouTube API Error:', data.error);
-          setCoachVideos([]);
-        } else if (data.items) {
-          const videos = data.items.map(item => ({
-            id: item.id.videoId,
-            title: item.snippet.title,
-            thumbnail: item.snippet.thumbnails.medium.url,
-            publishedAt: item.snippet.publishedAt,
-            description: item.snippet.description
-          }));
-          console.log(`Successfully fetched ${videos.length} videos from API`);
-          
-          // Save to cache
-          localStorage.setItem(CACHE_KEY, JSON.stringify({
-            videos,
-            timestamp: Date.now()
-          }));
-          console.log('Videos cached for 6 hours');
-          
-          setCoachVideos(videos);
-        } else {
-          console.warn('No videos found in response');
-          setCoachVideos([]);
-        }
-      } catch (err) {
-        console.error('Error fetching coach videos:', err);
-        setCoachVideos([]);
-      } finally {
-        setVideosLoading(false);
       }
-    };
 
+      const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+      if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'YOUR_YOUTUBE_API_KEY_HERE') {
+        console.error('YouTube API key is not configured!');
+        setAllCoachVideos(prev => ({ ...prev, [coach.name]: [] }));
+        return;
+      }
+      
+      const url = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${coach.channelId}&part=snippet,id&order=date&maxResults=50&type=video`;
+      
+      console.log(`Fetching videos for ${coach.name}...`);
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.error) {
+        console.error(`YouTube API Error for ${coach.name}:`, data.error);
+        setAllCoachVideos(prev => ({ ...prev, [coach.name]: [] }));
+      } else if (data.items) {
+        const videos = data.items.map(item => ({
+          id: item.id.videoId,
+          title: item.snippet.title,
+          thumbnail: item.snippet.thumbnails.medium.url,
+          publishedAt: item.snippet.publishedAt,
+          description: item.snippet.description
+        }));
+        
+        setAllCoachVideos(prev => ({ ...prev, [coach.name]: videos }));
+        
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ videos, timestamp: Date.now() }));
+      }
+    } catch (err) {
+      console.error(`Error fetching videos for ${coach.name}:`, err);
+      setAllCoachVideos(prev => ({ ...prev, [coach.name]: [] }));
+    } finally {
+      setVideosLoadingStatus(prev => ({ ...prev, [coach.name]: false }));
+    }
+  };
+  
+  useEffect(() => {
+    const fetchWellnessData = async () => {
+        try {
+            const response = await fetch('/asset/readingmaterails-20.csv');
+            const csvText = await response.text();
+            
+            const parseCSVLine = (line) => {
+              const result = [];
+              let current = '';
+              let inQuotes = false;
+              for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                  inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                  result.push(current.trim());
+                  current = '';
+                } else {
+                  current += char;
+                }
+              }
+              result.push(current.trim());
+              return result;
+            };
+            
+            const lines = csvText.split('\n').filter(line => line.trim());
+            const headers = parseCSVLine(lines[0]);
+            
+            const wellnessArticles = [];
+            for (let i = 1; i < lines.length; i++) {
+              const values = parseCSVLine(lines[i]);
+              if (values.length >= 5 && values[1]) {
+                const article = {};
+                headers.forEach((header, index) => {
+                  article[header] = values[index] || '';
+                });
+                
+                const cleanArticle = {
+                  id: article[''] || `article-${i}`,
+                  tab: article.tab,
+                  headline: article.headline,
+                  summary: article.summary,
+                  tags: article.tags,
+                  source_label: article.source_label,
+                  content_type: article.content_type,
+                  est_read_sec: parseInt(article.est_read_sec) || 20,
+                  extract: article.extract || ''
+                };
+                
+                wellnessArticles.push(cleanArticle);
+              }
+            }
+            
+            const groupedData = {};
+            const categories = ['Performance', 'Training', 'Recovery', 'Community'];
+            
+            categories.forEach(cat => {
+              groupedData[cat] = wellnessArticles
+                .filter(item => item.tab === cat)
+                .slice(0, 6);
+            });
+            
+            setWellnessData(groupedData);
+          } catch (err) {
+            console.error('Error fetching wellness data:', err);
+            setWellnessData({});
+          } finally {
+            setWellnessLoading(false);
+          }
+    };
     fetchWellnessData();
-    fetchCoachVideos();
+
+    const defaultCoach = coachesData.find(c => c.name === expandedCoach);
+    if (defaultCoach) {
+      fetchVideosForCoach(defaultCoach);
+    }
   }, []);
 
   const toggleCoach = (coachName) => {
-    setExpandedCoach(expandedCoach === coachName ? null : coachName);
+    const newExpandedCoach = expandedCoach === coachName ? null : coachName;
+    setExpandedCoach(newExpandedCoach);
+
+    if (newExpandedCoach && !allCoachVideos[newExpandedCoach]) {
+      const coachToFetch = coachesData.find(c => c.name === newExpandedCoach);
+      if (coachToFetch) {
+        fetchVideosForCoach(coachToFetch);
+      }
+    }
   };
 
   return (
@@ -543,10 +529,8 @@ export default function Insights() {
         <h1>SPORTS INSIGHTS</h1>
         <p>Insights that fuel your sports journey</p>
       </header>
-
       <div className="main-container">
         <main className="feature-section">
-          {/* YouTube Live and Updates Side by Side */}
           <div className="youtube-updates-container">
             <div className="youtube-live-wrapper">
               <YouTubeLive />
@@ -557,12 +541,12 @@ export default function Insights() {
                 {updates.map((item, i) => (
                   <div key={i}>
                     <div className="update-card">
-                        <img src={item.img} alt={item.title} />
-                        <div className="update-card-content">
-                            <h4>{item.title}</h4>
-                            <p>{item.desc}</p>
-                            <span className="time">{item.time}</span>
-                        </div>
+                      <img src={item.img} alt={item.title} />
+                      <div className="update-card-content">
+                        <h4>{item.title}</h4>
+                        <p>{item.desc}</p>
+                        <span className="time">{item.time}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -573,42 +557,42 @@ export default function Insights() {
           <section className="wellness-reading-section">
             <h2>Sports and Wellness Oriented Reading</h2>
             <div className="wellness-tabs">
-              {['Performance', 'Training', 'Recovery', 'Community'].map((category) => (
+                {['Performance', 'Training', 'Recovery', 'Community'].map((category) => (
                 <button
-                  key={category}
-                  className={`wellness-tab ${activeWellnessTab === category ? 'active' : ''}`}
-                  onClick={() => setActiveWellnessTab(category)}
+                    key={category}
+                    className={`wellness-tab ${activeWellnessTab === category ? 'active' : ''}`}
+                    onClick={() => setActiveWellnessTab(category)}
                 >
-                  {category}
+                    {category}
                 </button>
-              ))}
+                ))}
             </div>
             <div className="wellness-content">
-              {wellnessLoading && <p>Loading wellness articles...</p>}
-              {!wellnessLoading && (
+                {wellnessLoading && <p>Loading wellness articles...</p>}
+                {!wellnessLoading && (
                 <div className="wellness-cards-container">
-                  <div className="wellness-cards-scroll">
+                    <div className="wellness-cards-scroll">
                     {wellnessData[activeWellnessTab]?.map((article, index) => (
-                      <div key={article.id || index} className="wellness-reading-card">
+                        <div key={article.id || index} className="wellness-reading-card">
                         <div className="wellness-card-header">
-                          <span className="wellness-tab-badge">{article.tab || 'General'}</span>
+                            <span className="wellness-tab-badge">{article.tab || 'General'}</span>
                         </div>
                         <h3 className="wellness-card-title">{article.headline || 'Untitled'}</h3>
                         <p className="wellness-card-summary">{article.summary || 'No summary available'}</p>
                         <div className="wellness-card-tags">
-                          {article.tags ? article.tags.split(',').slice(0, 4).map((tag, i) => (
+                            {article.tags ? article.tags.split(',').slice(0, 4).map((tag, i) => (
                             <span key={i} className="wellness-tag">{tag.trim()}</span>
-                          )) : null}
+                            )) : null}
                         </div>
                         <div className="wellness-card-footer">
-                          <span className="wellness-label">{article.source_label || ''}</span>
-                          <button className="wellness-read-btn">Read Article</button>
+                            <span className="wellness-label">{article.source_label || ''}</span>
+                            <button className="wellness-read-btn">Read Article</button>
                         </div>
-                      </div>
+                        </div>
                     ))}
-                  </div>
+                    </div>
                 </div>
-              )}
+                )}
             </div>
           </section>
 
@@ -617,64 +601,61 @@ export default function Insights() {
             <PhotoGallery />
           </section>
 
-          {/* Watch the Coaches Section */}
           <section className="watch-coaches-section">
             <h2>Watch the Coaches</h2>
             
-            {/* Collapsible Coach Flap */}
-            <div className="coach-flap-container">
-              <div 
-                className={`coach-flap ${expandedCoach === 'Animish' ? 'expanded' : ''}`}
-                onClick={() => toggleCoach('Animish')}
-              >
-                <span className="coach-flap-name">Animish Dighe</span>
-                <span className="coach-flap-icon">{expandedCoach === 'Animish' ? '▼' : '▶'}</span>
-              </div>
-              
-              {expandedCoach === 'Animish' && (
-                <div className="coach-videos-wrapper">
-                  {videosLoading && <p className="loading-text">Loading coach videos...</p>}
+            {coachesData.map((coach) => {
+              const isLoading = videosLoadingStatus[coach.name];
+              const videos = allCoachVideos[coach.name] || [];
+
+              return (
+                <div className="coach-flap-container" key={coach.name}>
+                  <div 
+                    className={`coach-flap ${expandedCoach === coach.name ? 'expanded' : ''}`}
+                    onClick={() => toggleCoach(coach.name)}
+                  >
+                    <span className="coach-flap-name">{coach.name}</span>
+                    <span className="coach-flap-icon">{expandedCoach === coach.name ? '▼' : '▶'}</span>
+                  </div>
                   
-                  {!videosLoading && coachVideos.length > 0 && (
-                    <div className="coach-videos-scroll">
-                      {coachVideos.map((video) => (
-                        <div key={video.id} className="video-card">
-                          <a 
-                            href={`https://www.youtube.com/watch?v=${video.id}`} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="video-thumbnail-link"
-                          >
-                            <img 
-                              src={video.thumbnail} 
-                              alt={video.title} 
-                              className="video-thumbnail"
-                            />
-                            <div className="play-button-overlay">
-                              <div className="play-icon">▶</div>
+                  {expandedCoach === coach.name && (
+                    <div className="coach-videos-wrapper">
+                      {isLoading && <p className="loading-text">Loading videos for {coach.name}...</p>}
+                      
+                      {!isLoading && videos.length > 0 && (
+                        <div className="coach-videos-scroll">
+                          {videos.map((video) => (
+                            <div key={video.id} className="video-card">
+                              <a 
+                                href={`https://www.youtube.com/watch?v=${video.id}`} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="video-thumbnail-link"
+                              >
+                                <img src={video.thumbnail} alt={video.title} className="video-thumbnail" />
+                                <div className="play-button-overlay"><div className="play-icon">▶</div></div>
+                              </a>
+                              <div className="video-info">
+                                <h4 className="video-title">{video.title}</h4>
+                                <p className="video-date">
+                                  {new Date(video.publishedAt).toLocaleDateString('en-US', { 
+                                    year: 'numeric', month: 'short', day: 'numeric' 
+                                  })}
+                                </p>
+                              </div>
                             </div>
-                          </a>
-                          <div className="video-info">
-                            <h4 className="video-title">{video.title}</h4>
-                            <p className="video-date">
-                              {new Date(video.publishedAt).toLocaleDateString('en-US', { 
-                                year: 'numeric', 
-                                month: 'short', 
-                                day: 'numeric' 
-                              })}
-                            </p>
-                          </div>
+                          ))}
                         </div>
-                      ))}
+                      )}
+                      
+                      {!isLoading && videos.length === 0 && (
+                        <p className="no-videos-text">No videos available for {coach.name} at the moment.</p>
+                      )}
                     </div>
                   )}
-                  
-                  {!videosLoading && coachVideos.length === 0 && (
-                    <p className="no-videos-text">No videos available at the moment.</p>
-                  )}
                 </div>
-              )}
-            </div>
+              );
+            })}
           </section>
         </main>
       </div>
