@@ -7,33 +7,41 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from './logo.png';
 
 const Navbar = () => {
-  // State for managing the desktop dropdown and the mobile menu visibility
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const dropdownRef = useRef(null); // Ref to detect clicks outside the dropdown
+  const [sportsCoveSubmenuOpen, setSportsCoveSubmenuOpen] = useState(false); // NEW STATE
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  // Handler for the logo click: navigates to home and scrolls to top
   const handleLogoClick = () => {
     navigate("/");
     window.scrollTo({ top: 0, behavior: "smooth" });
-    closeAllMenus(); // Close any open menus on navigation
+    closeAllMenus();
   };
 
-  // Toggles the mobile menu open/closed
   const toggleMobileMenu = () => setMobileMenuOpen(prev => !prev);
   
-  // Closes all menus, useful when a link is clicked
   const closeAllMenus = () => {
     setMobileMenuOpen(false);
     setDropdownOpen(false);
+    setSportsCoveSubmenuOpen(false); // Reset submenu state
   };
 
-  // Effect to close the desktop dropdown if a click occurs outside of it
+  const toggleDropdown = () => { // NEW: Combined dropdown toggling logic
+    setDropdownOpen(prev => !prev);
+    setSportsCoveSubmenuOpen(false); // Close submenu if main dropdown is closed
+  };
+
+  const toggleSportsCoveSubmenu = (e) => { // NEW: Handler for SportsCove click
+    e.preventDefault(); // Prevent NavLink from immediately navigating
+    setSportsCoveSubmenuOpen(prev => !prev);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
+        setSportsCoveSubmenuOpen(false); // Also close submenu on outside click
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -42,18 +50,15 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      {/* Logo and Brand Name */}
       <div className="navbar-logo" onClick={handleLogoClick}>
         <img src={logo} alt="Logo" />
         <span className="navbar-brand">ConsultCraft</span>
       </div>
 
-      {/* Hamburger Icon for Mobile View */}
       <div className="hamburger" onClick={toggleMobileMenu}>
         {mobileMenuOpen ? <FaTimes /> : <FaBars />}
       </div>
 
-      {/* Full-screen Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div className="mobile-overlay">
           <div className="close-btn" onClick={closeAllMenus}>
@@ -62,10 +67,8 @@ const Navbar = () => {
           <ul className="mobile-links">
             <li><NavLink to="/" end onClick={closeAllMenus}>Home</NavLink></li>
 
-            {/* Parent link for SportsCove */}
             <li className="mobile-parent-link">
               <NavLink to="/products/sportscove" onClick={closeAllMenus}>SportsCove</NavLink>
-              {/* Nested Sub-menu for SportsCove Tribe */}
               <ul className="mobile-sub-menu">
                 <li>
                   <NavLink to="/sctribe" onClick={closeAllMenus}>SportsCove Tribe</NavLink>
@@ -75,36 +78,47 @@ const Navbar = () => {
 
             <li><NavLink to="/products/consultcove" onClick={closeAllMenus}>ConsultCove</NavLink></li>
             <li><NavLink to="/about" onClick={closeAllMenus}>About</NavLink></li>
-            {/* <li><NavLink to="/insights" onClick={closeAllMenus}>Insights</NavLink></li> */}
+            <li><NavLink to="/insights" onClick={closeAllMenus}>Insights</NavLink></li>
             <li><NavLink to="/contact" onClick={closeAllMenus}>Contact</NavLink></li>
           </ul>
         </div>
       )}
 
-      {/* Desktop Navigation Links */}
       <ul className="navbar-links">
         <li><NavLink to="/" end className="nav-link" onClick={closeAllMenus}>Home</NavLink></li>
         <li><NavLink to="/about" className="nav-link" onClick={closeAllMenus}>About</NavLink></li>
 
-        {/* Desktop Products Dropdown */}
         <li ref={dropdownRef} className="nav-link dropdown">
           <span
             className="nav-link-text"
-            onClick={() => setDropdownOpen(prev => !prev)}
+            onClick={toggleDropdown} // Use the new toggleDropdown
           >
             Products
           </span>
 
-          {/* Conditionally rendered dropdown menu */}
           {dropdownOpen && (
             <div className="dropdown-menu">
+              
+              {/* This is the SportsCove link, now with a click handler */}
               <NavLink
                 to="/products/sportscove"
-                className="dropdown-item"
-                onClick={closeAllMenus}
+                className="dropdown-item-link" // Keep existing class for styling
+                onClick={toggleSportsCoveSubmenu} // Use new handler
               >
                 SportsCove
               </NavLink>
+              
+              {/* Render SportsCove Tribe only if sportsCoveSubmenuOpen is true */}
+              {sportsCoveSubmenuOpen && (
+                <NavLink
+                  to="/sctribe"
+                  className="dropdown-item nested-sub-item" // NEW CLASS for indentation
+                  onClick={closeAllMenus}
+                >
+                  SportsCove Tribe
+                </NavLink>
+              )}
+
               <NavLink
                 to="/products/consultcove"
                 className="dropdown-item"
@@ -115,10 +129,8 @@ const Navbar = () => {
             </div>
           )}
         </li>
-
-        <li><NavLink to="/sctribe" className="nav-link" onClick={closeAllMenus}>SportsCove Tribe</NavLink></li>
-        {/* <li><NavLink to="/insights" className="nav-link" onClick={closeAllMenus}>Insights</NavLink></li> */}
-        {/* <li><NavLink to="/beacoach" className="nav-link" onClick={closeAllMenus}>Be a Coach</NavLink></li> */}
+        
+        <li><NavLink to="/insights" className="nav-link" onClick={closeAllMenus}>Insights</NavLink></li>
         <li><NavLink to="/contact" className="nav-link" onClick={closeAllMenus}>Contact</NavLink></li>
       </ul>
     </nav>

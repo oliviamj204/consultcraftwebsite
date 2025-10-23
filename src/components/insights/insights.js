@@ -328,12 +328,12 @@ export default function Insights() {
 
   // Data for all coaches
   const coachesData = [
-    { name: 'Animish Dighe', channelId: 'UCxl5QbYGSTCLZDcb1XxoW1A' },
-    { name: 'Aditya Raj Sharma', channelId: 'UCNGvw7BkQJQqc4YTB-B_gqQ' },
-    { name: 'Jitesh Banjan', channelId: 'UCUf-D9PfTquZylgBd4mU24Q' },
-    { name: 'Abhishek Negi', channelId: 'UC4g2X4SjqWajcXbM7X2Xv_A' },
-    { name: 'Ben Barry', channelId: 'UCITFEZjlt8aBLXuMMwFQFnQ' },
-    { name: 'Sindhu Singh', channelId: 'UCiPmiHhI2a-S_joXVEaISEg' }
+    { name: 'Animish Dighe', channelId: 'UCxl5QbYGSTCLZDcb1XxoW1A', channelUrl: 'https://youtube.com/@just_animish?si=2fEvx5cD0PTxPNJL' },
+    { name: 'Aditya Raj Sharma', channelId: 'UCNGvw7BkQJQqc4YTB-B_gqQ', channelUrl: 'https://www.youtube.com/@fittaditya07' },
+    { name: 'Jitesh Banjan', channelId: 'UCUf-D9PfTquZylgBd4mU24Q', channelUrl: 'https://www.youtube.com/@indiancombatsportsacademy' },
+    { name: 'Abhishek Negi', channelId: 'UC4g2X4SjqWajcXbM7X2Xv_A', channelUrl: 'https://www.youtube.com/@TheWayOfAbhishek' },
+    { name: 'Ben Barry', channelId: 'UCITFEZjlt8aBLXuMMwFQFnQ', channelUrl: 'https://www.youtube.com/@benbarry6791' },
+    { name: 'Sindhu Singh', channelId: 'UCiPmiHhI2a-S_joXVEaISEg', channelUrl: 'https://www.youtube.com/@sindhuboxingclub' }
   ];
 
   const carouselSettings = {
@@ -554,7 +554,7 @@ export default function Insights() {
             </aside>
           </div>
           
-          <section className="wellness-reading-section">
+          {/* <section className="wellness-reading-section">
             <h2>Sports and Wellness Oriented Reading</h2>
             <div className="wellness-tabs">
                 {['Performance', 'Training', 'Recovery', 'Community'].map((category) => (
@@ -594,7 +594,7 @@ export default function Insights() {
                 </div>
                 )}
             </div>
-          </section>
+          </section> */}
 
           <section className="photo-gallery-section">
             <h2>SportsCove Super Coaches in Action</h2>
@@ -614,7 +614,21 @@ export default function Insights() {
                     className={`coach-flap ${expandedCoach === coach.name ? 'expanded' : ''}`}
                     onClick={() => toggleCoach(coach.name)}
                   >
-                    <span className="coach-flap-name">{coach.name}</span>
+                    {/* Wrapper for name and link */}
+                    <div className="coach-flap-info">
+                      <span className="coach-flap-name">{coach.name}</span>
+                      <a 
+                        href={coach.channelUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="coach-yt-link"
+                        // This stops the click from toggling the flap
+                        onClick={(e) => e.stopPropagation()} 
+                      >
+                        📺 Go to Channel
+                      </a>
+                    </div>
+                    
                     <span className="coach-flap-icon">{expandedCoach === coach.name ? '▼' : '▶'}</span>
                   </div>
                   

@@ -1148,6 +1148,106 @@
   object-fit: cover;
 }
 
+/* ======================================== */
+/* Watch the Coaches Section Styles        */
+/* ======================================== */
+
+.coach-flap-container {
+  margin-bottom: 12px;
+}
+
+.coach-flap {
+  display: flex;
+  justify-content: space-between; /* Pushes icon to the far right */
+  align-items: center;
+  padding: 16px;
+  background-color: #004d40; /* Dark teal from your image */
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.coach-flap:hover {
+  background-color: #00695c; /* A slightly lighter teal for hover */
+}
+
+/* This styles the flap when it's open */
+.coach-flap.expanded {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.coach-flap-info {
+  display: flex;
+  flex-direction: column; /* MOBILE-FIRST: Stacks name and link */
+  justify-content: center;
+  gap: 4px; /* Space between name and link */
+}
+
+.coach-flap-name {
+  font-size: 1.3rem; /* Large, bold name */
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+.coach-yt-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #FF0000; /* YouTube Red */
+  text-decoration: underline;
+  display: inline-flex; /* Aligns 📺 icon with text */
+  align-items: center;
+  gap: 5px; /* Space between 📺 and "Go to Channel" */
+}
+
+.coach-yt-link:hover {
+  color: #ff4d4d; /* Lighter red on hover */
+}
+
+.coach-flap-icon {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+/* VIDEOS WRAPPER (for smooth transition) */
+.coach-videos-wrapper {
+  background: #f9f9f9;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) inset;
+  padding: 16px;
+  overflow: hidden; /* Ensures smooth appearance */
+}
+
+
+/* ======================================== */
+/* Responsive styles for larger screens    */
+/* ======================================== */
+
+/* On tablets and desktops (screens wider than 600px) */
+@media (min-width: 600px) {
+  .coach-flap {
+    padding: 20px;
+  }
+
+  .coach-flap-info {
+    flex-direction: row;  /* DESKTOP: Puts name and link side-by-side */
+    align-items: baseline; /* Aligns the text nicely */
+    gap: 16px;           /* More space between name and link */
+  }
+
+  .coach-flap-name {
+    font-size: 1.6rem;
+  }
+
+  .coach-yt-link {
+    font-size: 1rem;
+  }
+}
 /* =================================================================== */
 /* RESPONSIVE STYLES */
 /* =================================================================== */

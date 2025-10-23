@@ -95,6 +95,36 @@ export default function Sctribe() {
       <h1 className="sctribe-header">SPORTSCOVE TRIBE</h1>
       <p className="sctribe-title">Meet the Tribe. Find your Coach</p>
 
+      {/* START: Tribe Anthem Section */}
+      <div className="tribe-anthem-section">
+        <h2 className="anthem-headline">A CHAMPION'S MINDSET</h2>
+        <p className="anthem-attribution">— Tanner Smith, VP SportsCove</p>
+        <div className="video-responsive-wrapper">
+          <video
+            controls
+            width="100%"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            {/* STEP 2: Use the imported variable as the source */}
+            <source src={anthemVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        {/* START: Add this new credits block */}
+        <div className="video-credits">
+            <p>
+            Video: Tanner Smith, Edit: <a href="https://www.instagram.com/jerrowmathullah/" target="_blank" rel="noopener noreferrer">Jerrow</a>
+            </p>
+            <p>Location Credits: Title Boxing Club, Greenwood, Seattle</p>
+        </div>
+        {/* END: Add this new credits block */}
+      </div>
+      {/* END: Tribe Anthem Section */}
+
+      {/* START: MOVED FILTER BAR */}
       <div className="sctribe-filter-bar">
         {Object.keys(dropdowns).map((category) => (
           <div key={category} className="filter-wrapper">
@@ -126,35 +156,8 @@ export default function Sctribe() {
           Clear Filters
         </button>
       </div>
+      {/* END: MOVED FILTER BAR */}
 
-      {/* START: Tribe Anthem Section */}
-      <div className="tribe-anthem-section">
-        <h2 className="anthem-headline">A CHAMPION'S MINDSET</h2>
-        <p className="anthem-attribution">— Tanner Smith, VP SportsCove</p>
-        <div className="video-responsive-wrapper">
-          <video
-            controls
-            width="100%"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            {/* STEP 2: Use the imported variable as the source */}
-            <source src={anthemVideo} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        {/* START: Add this new credits block */}
-        <div className="video-credits">
-            <p>
-            Video: Tanner Smith, Edit: <a href="https://www.instagram.com/jerrowmathullah/" target="_blank" rel="noopener noreferrer">Jerrow</a>
-            </p>
-            <p>Location Credits: Title Boxing Club, Greenwood, Seattle</p>
-        </div>
-        {/* END: Add this new credits block */}
-      </div>
-      {/* END: Tribe Anthem Section */}
       <div className="coach-grid">
         {filteredCoaches.length > 0 ? (
           filteredCoaches.map((coach) => (

@@ -14,7 +14,7 @@
 .navbar-logo {
   display: flex;
   align-items: center;
-  cursor: pointer; /* Added for better UX since it's clickable */
+  cursor: pointer;
 }
 
 .navbar-logo img {
@@ -90,7 +90,8 @@
   border: 1px solid #333;
   border-radius: 6px;
   padding: 8px;
-  margin-top: 8px; /* Added some space from the "Products" link */
+  margin-top: 8px; 
+  /* Removed overflow: visible; as it's no longer a fly-out */
 }
 
 .dropdown-item {
@@ -107,13 +108,113 @@
   color: black;
 }
 
-/* --- Hamburger & Mobile Menu --- */
+/* --- New styles for nested dropdown item --- */
+.dropdown-item-link { /* This applies to SportsCove */
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: white;
+  white-space: nowrap;
+  box-sizing: border-box;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+  position: relative; /* Needed for the optional arrow */
+}
+
+.dropdown-item-link:hover {
+  background: linear-gradient(to right, #CFFFA5, #074048);
+  color: black;
+}
+
+/* Optional: Add a down arrow for SportsCove when its submenu is closed */
+.dropdown-item-link::after {
+  content: '▼'; /* Down arrow */
+  font-size: 0.7em;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  transition: transform 0.2s ease;
+}
+
+/* Optional: Rotate arrow when submenu is open */
+.dropdown-item-link.active::after { /* Add 'active' class via JS if desired, or handle in JS */
+  transform: translateY(-50%) rotate(180deg);
+}
+
+
+/* Style for the nested "SportsCove Tribe" item */
+.nested-sub-item {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px 8px 32px; /* Indent this item */
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+  display: block; /* Ensures it takes full width and padding */
+  font-size: 0.9em; /* Make it slightly smaller */
+  opacity: 0.8; /* Make it slightly dimmer */
+  position: relative;
+}
+
+.nested-sub-item::before {
+  content: '—'; /* Add a dash marker */
+  position: absolute;
+  left: 16px; /* Position the dash */
+  color: #aaa;
+}
+
+.nested-sub-item:hover {
+  background: linear-gradient(to right, #CFFFA5, #074048);
+  color: black;
+}
+/* --- End new styles for nested dropdown item --- */
+
+
+/* --- Removed previous fly-out submenu styles --- */
+/*
+.dropdown-item-with-submenu {
+  position: relative;
+}
+
+.dropdown-submenu {
+  display: none;
+  position: absolute;
+  top: -8px; 
+  left: 100%;
+  background-color: black;
+  min-width: 160px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.dropdown-item-with-submenu:hover > .dropdown-submenu {
+  display: block;
+}
+
+.dropdown-item-with-submenu > .dropdown-item-link::after {
+  content: '▸';
+  font-size: 0.8em;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+*/
+/* --- End removed styles --- */
+
+
 /* --- Hamburger & Mobile Menu --- */
 .hamburger {
-  display: none; /* Hidden by default */
+  display: none;
   font-size: 1.8rem;
   cursor: pointer;
-  z-index: 101; /* <-- CORRECTED VALUE */
+  z-index: 101;
   color: white;
 }
 
@@ -158,7 +259,7 @@
 .close-btn {
   position: absolute;
   top: 20px;
-  right: 32px; /* Matched to navbar padding for alignment */
+  right: 32px;
   font-size: 2rem;
   color: white;
   cursor: pointer;
@@ -168,18 +269,18 @@
 /* --- Mobile Sub-menu Styles (for SportsCove Tribe) --- */
 .mobile-sub-menu {
   list-style: none;
-  padding-left: 20px; /* Creates the indentation */
+  padding-left: 20px;
   margin-top: 12px;
   margin-bottom: 0;
 }
 
 .mobile-sub-menu li a {
-  font-size: 0.9em; /* Makes sub-link text smaller */
+  font-size: 0.9em;
   opacity: 0.85;
 }
 
 .mobile-sub-menu li::before {
-  content: '—'; /* Adds a dash marker */
+  content: '—';
   margin-right: 8px;
   color: #a0a0a0;
 }
@@ -187,7 +288,6 @@
 
 /* --- Responsive Breakpoint --- */
 @media (max-width: 768px) {
-  /* Hide desktop links and show hamburger */
   .navbar-links {
     display: none;
   }
@@ -195,7 +295,6 @@
     display: block;
   }
   
-  /* Adjust navbar padding for smaller screens */
   .navbar {
     padding: 16px 24px;
   }
